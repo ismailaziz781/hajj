@@ -1,0 +1,1331 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl" id="htmlRoot">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>حج و عمرہ مکمل رہنما | Complete Hajj & Umrah Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;500;600;700&family=Amiri+Quran&family=Amiri:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --gold:#C9A84C; --gold-l:#E8C96A; --gold-d:#8B6914; --gold-p:#FFF8E7;
+  --green:#1A5C3A; --green-l:#2D8A57; --green-d:#0D3B24; --green-p:#E8F5EE;
+  --cream:#F9F3E3; --cream-d:#EDE0C4;
+  --text:#1A1208; --text-m:#3D2B0A; --text-l:#6B5C3E;
+  --white:#FFFDF7; --blue:#1A4A7A; --blue-p:#E8F0FF;
+  --red:#8B1A1A; --red-p:#FFF0F0;
+  --teal:#1A6B6B; --teal-p:#E0F5F5;
+  --sh-sm:0 2px 8px rgba(26,18,8,.08);
+  --sh-md:0 4px 16px rgba(26,18,8,.14);
+  --r:14px; --r-s:8px;
+  --ur:'Noto Nastaliq Urdu',serif;
+  --ar:'Amiri Quran','Amiri',serif;
+  --en:'Inter',sans-serif;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--ur);background:var(--green-d);color:var(--text);min-height:100vh;direction:rtl;line-height:2;}
+body.en{font-family:var(--en);direction:ltr;line-height:1.6;}
+body.en .ur{display:none!important;}
+body.en .en-t{display:block;}
+body.ur .en-t{display:none!important;}
+body.ur .ur{display:block;}
+.en-t{display:none;}
+
+/* ── WIDGET BAR ── */
+.widget-bar{
+  background:linear-gradient(135deg,#0A2C1A,#0D3B24);
+  padding:10px 16px;
+  display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+  border-bottom:1px solid rgba(201,168,76,.3);
+  position:sticky;top:0;z-index:100;
+}
+.widget-item{
+  display:flex;align-items:center;gap:7px;
+  background:rgba(201,168,76,.1);
+  border:1px solid rgba(201,168,76,.25);
+  border-radius:8px;padding:6px 12px;
+  color:var(--gold-l);font-size:13px;
+  font-family:var(--en);cursor:pointer;
+  transition:all .2s;
+}
+.widget-item:hover{background:rgba(201,168,76,.2);}
+.widget-icon{font-size:16px;}
+.widget-val{font-weight:700;}
+.widget-label{font-size:11px;opacity:.8;}
+.widget-sep{flex:1;}
+.lang-pill{
+  display:flex;border:1.5px solid var(--gold);border-radius:30px;overflow:hidden;padding:3px;gap:2px;
+}
+.lang-pill button{
+  padding:4px 14px;border:none;border-radius:24px;cursor:pointer;
+  font-size:12px;font-weight:700;transition:all .25s;
+  background:transparent;color:var(--gold-l);font-family:var(--en);
+}
+.lang-pill button.active{background:var(--gold);color:var(--green-d);}
+
+/* ── MODALS ── */
+.modal-overlay{
+  display:none;position:fixed;inset:0;
+  background:rgba(0,0,0,.7);z-index:200;
+  align-items:center;justify-content:center;
+}
+.modal-overlay.show{display:flex;}
+.modal-box{
+  background:var(--white);border-radius:var(--r);
+  width:min(95vw,460px);max-height:90vh;overflow-y:auto;
+  box-shadow:0 20px 60px rgba(0,0,0,.4);
+}
+.modal-head{
+  background:linear-gradient(135deg,var(--green-d),var(--green));
+  padding:16px 20px;display:flex;align-items:center;justify-content:space-between;
+  border-radius:var(--r) var(--r) 0 0;
+  border-bottom:2px solid var(--gold);
+}
+.modal-head h3{color:var(--white);font-family:var(--ur);font-size:16px;line-height:2;}
+body.en .modal-head h3{font-family:var(--en);line-height:1.4;}
+.modal-close{
+  background:rgba(255,255,255,.15);border:none;color:white;
+  width:30px;height:30px;border-radius:50%;cursor:pointer;font-size:16px;
+}
+.modal-body{padding:16px;}
+
+/* Calendar */
+.cal-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;}
+.cal-title{font-family:var(--en);font-weight:700;color:var(--green-d);font-size:15px;}
+.cal-nav{background:var(--green);color:white;border:none;border-radius:6px;width:28px;height:28px;cursor:pointer;font-size:14px;}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;}
+.cal-day-name{text-align:center;font-size:10px;font-weight:700;color:var(--text-l);padding:4px 0;font-family:var(--en);}
+.cal-day{
+  text-align:center;padding:6px 2px;border-radius:6px;
+  font-size:12px;font-family:var(--en);cursor:default;
+  transition:background .2s;
+}
+.cal-day.other{color:var(--cream-d);}
+.cal-day.today{background:var(--green);color:white;font-weight:700;}
+.cal-day.hajj-day{background:var(--gold-p);color:var(--gold-d);font-weight:700;border:1px solid var(--gold);}
+.cal-day.islamic{color:var(--green-l);font-weight:600;}
+.cal-legend{margin-top:12px;display:flex;gap:12px;flex-wrap:wrap;}
+.cal-legend-item{display:flex;align-items:center;gap:5px;font-size:11px;font-family:var(--en);}
+.cal-legend-dot{width:10px;height:10px;border-radius:3px;}
+
+/* Weather */
+.weather-main{text-align:center;padding:16px 0;}
+.weather-icon{font-size:52px;margin-bottom:8px;}
+.weather-temp{font-size:40px;font-weight:700;color:var(--green-d);font-family:var(--en);}
+.weather-city{font-size:13px;color:var(--text-l);margin-top:4px;font-family:var(--en);}
+.weather-desc{font-size:14px;color:var(--text-m);margin-top:4px;}
+.weather-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px;}
+.weather-card{background:var(--green-p);border-radius:var(--r-s);padding:10px;text-align:center;}
+.weather-card-label{font-size:11px;color:var(--text-l);font-family:var(--en);}
+.weather-card-val{font-size:18px;font-weight:700;color:var(--green-d);font-family:var(--en);}
+.city-btns{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;}
+.city-btn{
+  padding:6px 14px;border-radius:20px;border:1.5px solid var(--green-l);
+  background:transparent;color:var(--green);font-family:var(--en);
+  font-size:12px;font-weight:600;cursor:pointer;transition:all .2s;
+}
+.city-btn.active,.city-btn:hover{background:var(--green);color:white;}
+
+/* ── HEADER ── */
+.header{
+  background:linear-gradient(160deg,#0D3B24 0%,#1A5C3A 45%,#0D3B24 100%);
+  padding:22px 16px 18px;text-align:center;
+  border-bottom:3px solid var(--gold);position:relative;overflow:hidden;
+}
+.header-pat{
+  position:absolute;inset:0;opacity:.04;
+  background-image:url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M40 10L45 25L60 25L48 33L53 48L40 40L27 48L32 33L20 25L35 25Z' fill='%23C9A84C'/%3E%3C/svg%3E");
+}
+.bismillah{font-family:var(--ar);font-size:28px;color:var(--gold-l);margin-bottom:5px;text-shadow:0 2px 12px rgba(0,0,0,.4);line-height:2;position:relative;z-index:1;}
+.gold-line{width:130px;height:1.5px;background:linear-gradient(to right,transparent,var(--gold),transparent);margin:7px auto;}
+.h-title{font-family:var(--ur);font-size:28px;color:var(--white);font-weight:700;line-height:2;text-shadow:0 2px 16px rgba(0,0,0,.5);position:relative;z-index:1;}
+body.en .h-title{font-family:var(--en);font-size:22px;line-height:1.4;}
+.h-title span{color:var(--gold-l);}
+.h-sub{font-family:var(--ur);color:var(--cream-d);font-size:12px;margin-top:4px;opacity:.85;position:relative;z-index:1;line-height:2;}
+body.en .h-sub{font-family:var(--en);line-height:1.5;}
+.h-author{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(201,168,76,.15);border:1px solid rgba(201,168,76,.4);
+  border-radius:20px;padding:5px 14px;margin-top:10px;
+  font-size:12px;color:var(--gold-l);position:relative;z-index:1;
+}
+.h-author-name{font-family:var(--ur);line-height:2;}
+body.en .h-author-name{font-family:var(--en);line-height:1.4;}
+
+/* ── HERO IMAGE ── */
+.hero-img{
+  width:100%;height:180px;object-fit:cover;
+  border-bottom:3px solid var(--gold);display:block;
+}
+
+/* ── TABS ── */
+.tabs-wrap{background:var(--green);border-bottom:2px solid rgba(201,168,76,.4);position:sticky;top:52px;z-index:50;box-shadow:0 2px 12px rgba(0,0,0,.3);}
+.tabs{display:flex;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
+.tabs::-webkit-scrollbar{display:none;}
+.tab{
+  flex-shrink:0;padding:12px 14px;text-align:center;cursor:pointer;
+  font-size:12px;color:rgba(242,232,208,.7);
+  border-bottom:3px solid transparent;transition:all .25s;white-space:nowrap;
+  font-family:var(--ur);line-height:1.8;display:flex;align-items:center;gap:5px;
+}
+body.en .tab{font-family:var(--en);line-height:1;}
+.tab:hover{color:var(--gold-l);background:rgba(201,168,76,.08);}
+.tab.active{color:var(--gold-l);border-bottom-color:var(--gold);background:rgba(201,168,76,.1);font-weight:600;}
+
+/* ── CONTENT ── */
+.content{background:var(--cream);flex:1;}
+.section{display:none;padding-bottom:60px;}
+.section.active{display:block;}
+
+/* ── SECTION BANNER ── */
+.s-banner{
+  background:linear-gradient(135deg,var(--green-d) 0%,var(--green) 60%,var(--green-d) 100%);
+  padding:18px 16px;display:flex;align-items:center;gap:14px;
+  border-bottom:2px solid rgba(201,168,76,.5);
+}
+.b-icon{width:48px;height:48px;background:linear-gradient(135deg,var(--gold),var(--gold-d));border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;box-shadow:0 4px 14px rgba(201,168,76,.4);}
+.b-text h2{font-family:var(--ur);color:var(--white);font-size:18px;font-weight:700;line-height:2;}
+body.en .b-text h2{font-family:var(--en);font-size:16px;line-height:1.4;}
+.b-text p{font-family:var(--ur);color:var(--cream-d);font-size:11px;opacity:.85;line-height:1.8;margin-top:2px;}
+body.en .b-text p{font-family:var(--en);line-height:1.4;}
+
+/* ── SECTION IMAGE ── */
+.s-img{width:100%;height:160px;object-fit:cover;display:block;}
+
+/* ── QURANIC VERSE CARD ── */
+.quran-card{
+  background:linear-gradient(135deg,#0D3B24,#1A5C3A);
+  margin:16px;border-radius:var(--r);padding:18px;
+  border:1.5px solid var(--gold);box-shadow:var(--sh-md);
+}
+.quran-card .ar-text{font-family:var(--ar);font-size:24px;color:var(--gold-l);line-height:2.5;text-align:center;direction:rtl;display:block;}
+.quran-card .q-tr{text-align:center;color:var(--cream-d);font-size:13px;margin-top:8px;font-family:var(--ur);line-height:2;}
+body.en .quran-card .q-tr{font-family:var(--en);line-height:1.6;}
+.quran-card .q-ref{text-align:center;color:var(--gold);font-size:11px;font-family:var(--en);margin-top:6px;}
+
+/* ── HADITH CARD ── */
+.hadith-card{
+  background:linear-gradient(135deg,#1A3A5C,#0D2038);
+  margin:0 16px 16px;border-radius:var(--r);padding:16px;
+  border:1.5px solid #5599CC;box-shadow:var(--sh-sm);
+}
+.hadith-card .ar-text{font-family:var(--ar);font-size:22px;color:#A8D4FF;line-height:2.5;text-align:center;direction:rtl;display:block;}
+.hadith-card .h-tr{text-align:center;color:#C8E4FF;font-size:12px;margin-top:8px;font-family:var(--ur);line-height:2;}
+body.en .hadith-card .h-tr{font-family:var(--en);line-height:1.6;}
+.hadith-card .h-ref{text-align:center;color:#5599CC;font-size:11px;font-family:var(--en);margin-top:5px;}
+
+/* ── STEPS ── */
+.steps-wrap{padding:14px;}
+.step-card{background:var(--white);border-radius:var(--r);margin-bottom:12px;border:1px solid var(--cream-d);box-shadow:var(--sh-sm);overflow:hidden;transition:box-shadow .25s;}
+.step-card:hover{box-shadow:var(--sh-md);}
+.step-head{background:linear-gradient(to left,var(--green),var(--green-l));padding:12px 14px;display:flex;align-items:center;gap:11px;cursor:pointer;user-select:none;}
+body.en .step-head{background:linear-gradient(to right,var(--green),var(--green-l));}
+.step-num{width:32px;height:32px;background:var(--gold);color:var(--green-d);border-radius:9px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;flex-shrink:0;font-family:var(--en);box-shadow:0 2px 8px rgba(201,168,76,.4);}
+.step-lbl{color:var(--white);font-size:14px;font-weight:600;flex:1;font-family:var(--ur);line-height:2;}
+body.en .step-lbl{font-family:var(--en);line-height:1.4;font-size:13px;}
+.step-arr{color:var(--gold-l);font-size:17px;transition:transform .3s;flex-shrink:0;}
+.step-card.open .step-arr{transform:rotate(180deg);}
+.step-body{display:none;padding:16px 14px;border-top:1.5px solid var(--cream-d);}
+.step-card.open .step-body{display:block;}
+
+/* ── STEP IMAGE ── */
+.step-img{width:100%;height:140px;object-fit:cover;border-radius:var(--r-s);margin-bottom:12px;display:block;}
+
+/* ── BADGES ── */
+.badges{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:10px;}
+.badge{padding:3px 9px;border-radius:18px;font-size:10px;font-weight:700;font-family:var(--en);}
+.b-farz{background:#C0392B;color:white;}
+.b-wajib{background:#E67E22;color:white;}
+.b-sunnah{background:var(--green-l);color:white;}
+.b-rukn{background:#6C3483;color:white;}
+.b-mustahab{background:#2980B9;color:white;}
+
+/* ── INFO BOXES ── */
+.info{border-radius:var(--r-s);padding:11px 12px;margin:8px 0;display:flex;gap:10px;align-items:flex-start;}
+.info.green{background:var(--green-p);border-right:4px solid var(--green-l);}
+.info.gold{background:var(--gold-p);border-right:4px solid var(--gold);}
+.info.blue{background:var(--blue-p);border-right:4px solid #4A7ADB;}
+.info.red{background:var(--red-p);border-right:4px solid #C0392B;}
+.info.teal{background:var(--teal-p);border-right:4px solid var(--teal);}
+body.en .info.green{border-right:none;border-left:4px solid var(--green-l);}
+body.en .info.gold{border-right:none;border-left:4px solid var(--gold);}
+body.en .info.blue{border-right:none;border-left:4px solid #4A7ADB;}
+body.en .info.red{border-right:none;border-left:4px solid #C0392B;}
+body.en .info.teal{border-right:none;border-left:4px solid var(--teal);}
+.info-ico{font-size:17px;flex-shrink:0;margin-top:3px;}
+.info-txt{font-size:13px;line-height:2;color:var(--text-m);font-family:var(--ur);}
+body.en .info-txt{font-family:var(--en);line-height:1.7;}
+.info-txt strong{color:var(--green-d);}
+
+/* ── NOTES ── */
+.note-warn{background:linear-gradient(to left,#FFF4E5,#FFECD0);border:1px solid #F0A500;border-right:4px solid #E67E22;border-radius:var(--r-s);padding:11px 12px;margin:8px 0;font-size:12.5px;color:#7A4500;line-height:2;font-family:var(--ur);}
+.note-danger{background:linear-gradient(to left,#FFF0F0,#FFE5E5);border:1px solid #E57373;border-right:4px solid #C0392B;border-radius:var(--r-s);padding:11px 12px;margin:8px 0;font-size:12.5px;color:#7B2020;line-height:2;font-family:var(--ur);}
+.note-success{background:linear-gradient(to left,var(--green-p),#D0EDD8);border:1px solid #81C784;border-right:4px solid var(--green-l);border-radius:var(--r-s);padding:11px 12px;margin:8px 0;font-size:12.5px;color:#1B5E20;line-height:2;font-family:var(--ur);}
+body.en .note-warn,.note-danger,.note-success{font-family:var(--en);line-height:1.7;}
+body.en .note-warn{border-right:none;border-left:4px solid #E67E22;}
+body.en .note-danger{border-right:none;border-left:4px solid #C0392B;}
+body.en .note-success{border-right:none;border-left:4px solid var(--green-l);}
+
+/* ── STEPS LIST ── */
+.slist{list-style:none;margin:8px 0;}
+.slist li{padding:6px 0;border-bottom:1px dashed var(--cream-d);font-size:13px;color:var(--text-m);display:flex;gap:9px;line-height:2;font-family:var(--ur);}
+body.en .slist li{font-family:var(--en);line-height:1.7;}
+.slist li:last-child{border:none;}
+.slist li::before{content:'◆';color:var(--gold);font-size:7px;margin-top:8px;flex-shrink:0;}
+
+/* ── ARABIC BLOCK ── */
+.ar-block{
+  background:linear-gradient(160deg,#FFFCF0,#FFF8E0);
+  border:1.5px solid var(--gold);border-radius:var(--r);
+  padding:16px;margin:12px 0;text-align:center;position:relative;
+  box-shadow:0 2px 10px rgba(201,168,76,.12);
+}
+.ar-lbl{font-size:10px;color:var(--gold-d);font-weight:700;font-family:var(--en);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;display:block;}
+.ar-lbl.ur{font-family:var(--ur);font-size:12px;text-transform:none;letter-spacing:0;line-height:2;}
+.ar-text{font-family:var(--ar)!important;font-size:26px;color:var(--green-d);line-height:2.4;direction:rtl;display:block;}
+.roman{font-size:11.5px;color:var(--text-l);font-style:italic;font-family:var(--en);direction:ltr;margin-top:5px;display:block;text-align:center;line-height:1.6;}
+.meaning{font-size:12.5px;color:var(--green);font-weight:600;margin-top:7px;text-align:center;font-family:var(--ur);line-height:2;display:block;border-top:1px dashed var(--cream-d);padding-top:7px;}
+body.en .meaning{font-family:var(--en);line-height:1.6;}
+
+/* ── DIVIDER ── */
+.div{display:flex;align-items:center;gap:8px;margin:12px 0;}
+.div::before,.div::after{content:'';flex:1;height:1px;background:var(--cream-d);}
+.div span{color:var(--gold-d);font-size:10.5px;font-family:var(--ur);white-space:nowrap;font-weight:700;background:var(--cream);padding:0 6px;line-height:2;}
+body.en .div span{font-family:var(--en);line-height:1.4;}
+
+/* ── DUA CARDS ── */
+.dua-card{background:var(--white);border-radius:var(--r);margin-bottom:12px;border:1px solid var(--cream-d);overflow:hidden;box-shadow:var(--sh-sm);transition:box-shadow .25s;}
+.dua-card:hover{box-shadow:var(--sh-md);}
+.dc-head{background:linear-gradient(to left,var(--gold-p),#FEF5D6);padding:10px 14px;border-bottom:1px solid rgba(201,168,76,.35);display:flex;align-items:center;gap:9px;}
+body.en .dc-head{background:linear-gradient(to right,var(--gold-p),#FEF5D6);}
+.dc-title{color:var(--gold-d);font-weight:700;font-size:13px;font-family:var(--ur);line-height:2;flex:1;}
+body.en .dc-title{font-family:var(--en);line-height:1.4;}
+.dc-badge{background:var(--gold);color:var(--green-d);padding:2px 9px;border-radius:18px;font-size:10px;font-weight:700;font-family:var(--en);flex-shrink:0;}
+.dc-body{padding:14px;}
+
+/* ── MADINAH CARDS ── */
+.mad-card{background:var(--white);border-radius:var(--r);margin-bottom:12px;border:1px solid #BDD4EE;overflow:hidden;box-shadow:var(--sh-sm);}
+.mad-card .dc-head{background:linear-gradient(to left,#EEF6FF,#DDF0FF);border-bottom-color:#5599CC;}
+.mad-card .dc-title{color:#0D3A6B;}
+.mad-card .ar-block{background:linear-gradient(160deg,#EEF6FF,#E0F0FF);border-color:#5599CC;}
+.mad-card .ar-text{color:#0D2038;}
+
+/* ── SECTION HEADING ── */
+.s-head{background:var(--green);color:var(--gold-l);padding:8px 14px;font-size:13px;font-weight:700;border-right:4px solid var(--gold);margin:12px 0 8px;border-radius:0 5px 5px 0;font-family:var(--ur);line-height:2;}
+body.en .s-head{border-right:none;border-left:4px solid var(--gold);border-radius:5px 0 0 5px;font-family:var(--en);line-height:1.4;}
+.s-head.mad{background:linear-gradient(to left,#1A3A5C,#0D2038);color:#A8D4FF;border-right-color:#5599CC;}
+body.en .s-head.mad{border-right:none;border-left-color:#5599CC;}
+
+/* ── FLOW CHART ── */
+.flow-box{background:linear-gradient(135deg,var(--gold-p),#FEF5D0);border:1.5px solid var(--gold);border-radius:var(--r);padding:16px;margin:12px 0;}
+.flow-step{display:flex;align-items:center;gap:10px;margin-bottom:7px;}
+.flow-step:last-child{margin-bottom:0;}
+.f-num{width:28px;height:28px;background:var(--green);color:var(--gold-l);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;font-family:var(--en);}
+.f-lbl{background:var(--green-l);color:white;padding:7px 14px;border-radius:7px;font-size:13px;font-weight:600;flex:1;font-family:var(--ur);line-height:2;}
+body.en .f-lbl{font-family:var(--en);line-height:1.4;}
+.f-arr{color:var(--gold-d);font-size:18px;text-align:center;margin:3px 0 3px 38px;font-weight:700;}
+body.en .f-arr{margin:3px 38px 3px 0;}
+.flow-note{text-align:center;font-size:11.5px;color:var(--text-l);margin-top:10px;font-family:var(--ur);line-height:2;border-top:1px dashed var(--gold);padding-top:9px;}
+body.en .flow-note{font-family:var(--en);line-height:1.5;}
+
+/* ── TABLE ── */
+.tbl{width:100%;border-collapse:collapse;font-size:12.5px;margin:10px 0;border-radius:var(--r-s);overflow:hidden;box-shadow:var(--sh-sm);}
+.tbl thead tr{background:var(--green);color:white;}
+.tbl th{padding:9px 12px;text-align:right;font-family:var(--ur);font-weight:600;line-height:2;}
+body.en .tbl th{text-align:left;font-family:var(--en);line-height:1.4;}
+.tbl td{padding:9px 12px;border-bottom:1px solid var(--cream-d);font-family:var(--ur);line-height:2;color:var(--text-m);}
+body.en .tbl td{font-family:var(--en);line-height:1.7;}
+.tbl tr:nth-child(even) td{background:var(--cream);}
+.tbl tr:last-child td{border:none;}
+
+/* ── TIMELINE ── */
+.timeline{padding:14px;}
+.t-item{display:flex;gap:12px;position:relative;}
+.t-item::after{content:'';position:absolute;right:19px;top:40px;bottom:0;width:2px;background:linear-gradient(to bottom,var(--gold),transparent 90%);}
+body.en .t-item::after{right:auto;left:19px;}
+.t-item:last-child::after{display:none;}
+.t-dot{width:26px;height:26px;background:linear-gradient(135deg,var(--gold),var(--gold-d));border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--green-d);font-weight:700;margin-top:11px;z-index:1;font-family:var(--en);box-shadow:0 2px 8px rgba(201,168,76,.35);}
+.t-content{background:var(--white);border-radius:var(--r);padding:12px 14px;flex:1;margin-bottom:14px;border:1px solid var(--cream-d);box-shadow:var(--sh-sm);}
+.t-date{background:var(--green);color:var(--gold-l);padding:2px 10px;border-radius:18px;font-size:10.5px;display:inline-block;margin-bottom:7px;font-family:var(--ur);line-height:2;}
+body.en .t-date{font-family:var(--en);line-height:1.4;}
+.t-title{font-size:14px;font-weight:700;color:var(--green-d);margin-bottom:5px;font-family:var(--ur);line-height:2;}
+body.en .t-title{font-family:var(--en);line-height:1.4;font-size:13px;}
+.t-desc{font-size:12.5px;color:var(--text-m);line-height:2;font-family:var(--ur);}
+body.en .t-desc{font-family:var(--en);line-height:1.7;}
+
+/* ── TIPS GRID ── */
+.tips-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;padding:14px;}
+@media(max-width:480px){.tips-grid{grid-template-columns:1fr;}}
+.tip-card{background:var(--white);border-radius:var(--r);padding:14px;border:1px solid var(--cream-d);text-align:center;box-shadow:var(--sh-sm);transition:box-shadow .25s,transform .25s;}
+.tip-card:hover{box-shadow:var(--sh-md);transform:translateY(-2px);}
+.tip-ico{font-size:28px;margin-bottom:8px;}
+.tip-title{font-size:13px;font-weight:700;color:var(--green-d);margin-bottom:5px;font-family:var(--ur);line-height:2;}
+body.en .tip-title{font-family:var(--en);line-height:1.4;}
+.tip-txt{font-size:12px;color:var(--text-l);line-height:2;font-family:var(--ur);}
+body.en .tip-txt{font-family:var(--en);line-height:1.7;}
+
+/* ── FOOTER ── */
+.footer{background:var(--green-d);color:var(--cream-d);text-align:center;padding:20px 16px;border-top:2px solid var(--gold-d);}
+.f-verse{font-family:var(--ar);font-size:20px;color:var(--gold-l);margin-bottom:5px;line-height:2.5;}
+.f-tr{font-family:var(--ur);line-height:2;font-size:12px;}
+body.en .f-tr{font-family:var(--en);line-height:1.5;}
+.f-author{font-size:11px;color:var(--gold);margin-top:6px;font-family:var(--en);}
+
+/* ── SCROLL TOP ── */
+.btn-top{position:fixed;bottom:20px;left:16px;width:40px;height:40px;background:var(--gold);border:none;border-radius:50%;cursor:pointer;font-size:17px;color:var(--green-d);box-shadow:0 4px 14px rgba(0,0,0,.3);z-index:99;display:none;align-items:center;justify-content:center;transition:transform .2s;}
+.btn-top.show{display:flex;}
+.btn-top:hover{transform:scale(1.1);}
+
+/* temperature unit */
+.unit-toggle{cursor:pointer;text-decoration:underline;color:var(--gold);}
+</style>
+</head>
+<body class="ur" id="bodyEl">
+
+<!-- ── WIDGET BAR ── -->
+<div class="widget-bar">
+  <div class="widget-item" onclick="openModal('calModal')">
+    <span class="widget-icon">📅</span>
+    <div>
+      <div class="widget-val" id="wDate">--</div>
+      <div class="widget-label">Calendar</div>
+    </div>
+  </div>
+  <div class="widget-item" onclick="openModal('weatherModal')">
+    <span class="widget-icon" id="wIcon">🌡️</span>
+    <div>
+      <div class="widget-val" id="wTemp">-- °C</div>
+      <div class="widget-label" id="wCity">Makkah</div>
+    </div>
+  </div>
+  <div class="widget-sep"></div>
+  <div class="lang-pill">
+    <button id="btnUr" class="active" onclick="setLang('ur')">اردو</button>
+    <button id="btnEn" onclick="setLang('en')">English</button>
+  </div>
+</div>
+
+<!-- ── CALENDAR MODAL ── -->
+<div class="modal-overlay" id="calModal">
+  <div class="modal-box">
+    <div class="modal-head">
+      <h3><span class="ur">حج کیلنڈر</span><span class="en-t">Hajj Calendar</span></h3>
+      <button class="modal-close" onclick="closeModal('calModal')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="cal-header">
+        <button class="cal-nav" onclick="prevMonth()">‹</button>
+        <div class="cal-title" id="calTitle"></div>
+        <button class="cal-nav" onclick="nextMonth()">›</button>
+      </div>
+      <div class="cal-grid" id="calGrid"></div>
+      <div class="cal-legend" style="margin-top:14px;">
+        <div class="cal-legend-item"><div class="cal-legend-dot" style="background:var(--green);"></div>Today</div>
+        <div class="cal-legend-item"><div class="cal-legend-dot" style="background:var(--gold-p);border:1px solid var(--gold);"></div>Hajj Day</div>
+      </div>
+      <div style="margin-top:14px;background:var(--cream);border-radius:8px;padding:12px;">
+        <div style="font-family:var(--en);font-weight:700;color:var(--green-d);font-size:13px;margin-bottom:8px;">📅 Hajj 2026 Key Dates (Dhul Hijjah 1447)</div>
+        <div style="font-family:var(--en);font-size:12px;color:var(--text-m);line-height:1.8;">
+          🗓️ 8 Dhul Hijjah — Yom al-Tarwiyah (Mina)<br>
+          ⭐ 9 Dhul Hijjah — Yom Arafah (Wuquf)<br>
+          🎉 10 Dhul Hijjah — Eid al-Adha<br>
+          📿 11 Dhul Hijjah — Ayyam al-Tashreeq<br>
+          📿 12 Dhul Hijjah — Ayyam al-Tashreeq<br>
+          📿 13 Dhul Hijjah — Ayyam al-Tashreeq
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── WEATHER MODAL ── -->
+<div class="modal-overlay" id="weatherModal">
+  <div class="modal-box">
+    <div class="modal-head">
+      <h3><span class="ur">موسم — مکہ و مدینہ</span><span class="en-t">Weather — Makkah & Madinah</span></h3>
+      <button class="modal-close" onclick="closeModal('weatherModal')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="city-btns">
+        <button class="city-btn active" onclick="selectCity('Makkah')">🕋 Makkah</button>
+        <button class="city-btn" onclick="selectCity('Madinah')">🌹 Madinah</button>
+        <button class="city-btn" onclick="selectCity('Mina')">⛺ Mina</button>
+        <button class="city-btn" onclick="selectCity('Arafat')">🏔️ Arafat</button>
+      </div>
+      <div class="weather-main">
+        <div class="weather-icon" id="mIcon">☀️</div>
+        <div class="weather-temp" id="mTemp">42 °C</div>
+        <div class="weather-city" id="mCityName">Makkah al-Mukarramah, Saudi Arabia</div>
+        <div class="weather-desc" id="mDesc" style="font-family:var(--en);font-size:13px;color:var(--text-m);margin-top:4px;">Sunny & Hot</div>
+      </div>
+      <div class="weather-grid">
+        <div class="weather-card">
+          <div class="weather-card-label">💧 Humidity</div>
+          <div class="weather-card-val" id="mHumid">28%</div>
+        </div>
+        <div class="weather-card">
+          <div class="weather-card-label">💨 Wind</div>
+          <div class="weather-card-val" id="mWind">15 km/h</div>
+        </div>
+        <div class="weather-card">
+          <div class="weather-card-label">🌅 Sunrise</div>
+          <div class="weather-card-val" id="mSunrise">5:48</div>
+        </div>
+        <div class="weather-card">
+          <div class="weather-card-label">🌇 Sunset</div>
+          <div class="weather-card-val" id="mSunset">19:12</div>
+        </div>
+      </div>
+      <div style="margin-top:12px;background:var(--red-p);border-radius:8px;padding:10px;font-family:var(--en);font-size:12px;color:#7B2020;line-height:1.7;">
+        ⚠️ <strong>Hajj Season Warning:</strong> Temperatures in Makkah during Hajj season (June) can reach 45–48°C. Always carry water, use umbrella, and avoid peak sun hours (11AM–4PM).
+      </div>
+      <div style="margin-top:8px;background:var(--blue-p);border-radius:8px;padding:10px;font-family:var(--en);font-size:12px;color:var(--blue);line-height:1.7;">
+        📌 <strong>Note:</strong> Weather data shown is typical for Hajj season. For live weather, ensure internet connectivity.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── HEADER ── -->
+<div class="header">
+  <div class="header-pat"></div>
+  <div class="bismillah">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</div>
+  <div class="gold-line"></div>
+  <h1 class="h-title ur">حج و عمرہ — <span>مکمل رہنما</span></h1>
+  <h1 class="h-title en-t">Hajj & Umrah — <span>Complete Guide</span></h1>
+  <div class="h-sub ur">مرحلہ وار تمام افعال، ذکر، دعائیں اور احکام — تصاویر کے ساتھ</div>
+  <div class="h-sub en-t">Step-by-step guide with all rituals, Du'as, rulings & images</div>
+  <div class="h-author">
+    <span>✍️</span>
+    <span class="h-author-name ur">مرتب: مفتی محمد اسماعیل عزیز</span>
+    <span class="h-author-name en-t">Compiled by: Mufti Muhammad Ismail Aziz</span>
+  </div>
+</div>
+
+<!-- Hero image of Ka'bah -->
+<img class="hero-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/24701-nature-natural-beauty.jpg/1280px-24701-nature-natural-beauty.jpg"
+  onerror="this.style.display='none'"
+  alt="Masjid al-Haram Makkah"
+  style="height:200px;object-fit:cover;width:100%;display:block;border-bottom:3px solid var(--gold);">
+
+<!-- ── TABS ── -->
+<div class="tabs-wrap">
+  <div class="tabs" id="tabsEl">
+    <div class="tab active" onclick="showTab('umrah',this)"><span>🕋</span><span class="ur">عمرہ</span><span class="en-t">Umrah</span></div>
+    <div class="tab" onclick="showTab('hajj',this)"><span>⛺</span><span class="ur">حج</span><span class="en-t">Hajj</span></div>
+    <div class="tab" onclick="showTab('azkar',this)"><span>📿</span><span class="ur">اذکار</span><span class="en-t">Du'as</span></div>
+    <div class="tab" onclick="showTab('schedule',this)"><span>📅</span><span class="ur">ایام حج</span><span class="en-t">Schedule</span></div>
+    <div class="tab" onclick="showTab('tartib',this)"><span>⚖️</span><span class="ur">ترتیب و دم</span><span class="en-t">Order & Dam</span></div>
+    <div class="tab" onclick="showTab('tips',this)"><span>💡</span><span class="ur">ہدایات</span><span class="en-t">Tips</span></div>
+  </div>
+</div>
+
+<div class="content">
+
+<!-- ═══ UMRAH ═══ -->
+<div id="umrah" class="section active">
+  <div class="s-banner">
+    <div class="b-icon">🕋</div>
+    <div class="b-text">
+      <h2><span class="ur">عمرہ — مرحلہ وار رہنما</span><span class="en-t">Umrah — Step by Step Guide</span></h2>
+      <p><span class="ur">احرام سے تحلل تک مکمل ہدایات</span><span class="en-t">Complete guide from Ihram to completion</span></p>
+    </div>
+  </div>
+
+  <!-- Quranic Ayah -->
+  <div style="padding:14px 14px 0;">
+    <div class="quran-card">
+      <span class="ar-text">وَأَتِمُّوا الْحَجَّ وَالْعُمْرَةَ لِلَّهِ</span>
+      <div class="q-tr ur">اور حج و عمرہ اللہ کے لیے پورے کرو</div>
+      <div class="q-tr en-t">Complete the Hajj and Umrah for Allah.</div>
+      <div class="q-ref">Surah al-Baqarah 2:196</div>
+    </div>
+  </div>
+
+  <div class="steps-wrap">
+  <!-- STEP 1 -->
+  <div class="step-card open">
+    <div class="step-head" onclick="toggleCard(this)">
+      <div class="step-num">1</div>
+      <div class="step-lbl"><span class="ur">احرام باندھنا — پہلا قدم</span><span class="en-t">Wearing Ihram — First Step</span></div>
+      <div class="step-arr">▾</div>
+    </div>
+    <div class="step-body">
+      <img class="step-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Ihram_at_Masjid_al-Haram.jpg/640px-Ihram_at_Masjid_al-Haram.jpg" onerror="this.style.display='none'" alt="Ihram">
+      <div class="badges"><span class="badge b-farz">فرض / Fard</span></div>
+      <div class="info gold"><div class="info-ico">🌿</div><div class="info-txt"><span class="ur"><strong>احرام</strong> — نیت کے ساتھ خاص لباس پہننا اور ممنوع کاموں سے رکنا۔ یہ حج و عمرہ کا پہلا رکن ہے۔</span><span class="en-t"><strong>Ihram</strong> — Entering a state of ritual purity with intention, wearing specific garments, avoiding all prohibitions.</span></div></div>
+      <div class="div"><span><span class="ur">روانگی سے پہلے تیاری</span><span class="en-t">Preparation before departure</span></span></div>
+      <ul class="slist">
+        <li><span class="ur">بال سنوار لیں، خط پٹی بنوائیں، مونچھیں کترلیں، ناخن کاٹ لیں، زیرِ ناف اور بغل کے بال صاف کرلیں</span><span class="en-t">Trim hair, beard, moustache, nails, and body hair before Ihram</span></li>
+        <li><span class="ur">غسل کریں — نہ ہو سکے تو وضو کافی ہے</span><span class="en-t">Take ghusl — if unable, wudu is sufficient</span></li>
+        <li><span class="ur">مرد: دو سفید بغیر سلی چادریں — ازار (نیچے) ردا (اوپر) — جوتے یا چپل پہنیں</span><span class="en-t">Men: Two white seamless sheets — izar (lower) rida (upper) — wear sandals/flip-flops</span></li>
+        <li><span class="ur">خواتین: عام ساتر لباس — منہ اور ہاتھ کھلے</span><span class="en-t">Women: Regular modest clothing — face and hands uncovered</span></li>
+        <li><span class="ur">میقات پر دو رکعت نفل پڑھیں پھر نیت کریں</span><span class="en-t">Pray 2 rak'ah at Miqat then make intention</span></li>
+      </ul>
+      <div class="ar-block">
+        <span class="ar-lbl ur">نیتِ عمرہ</span><span class="ar-lbl">Niyyah — Umrah</span>
+        <span class="ar-text">اللَّهُمَّ إِنِّي أُرِيدُ الْعُمْرَةَ فَيَسِّرْهَا لِي وَتَقَبَّلْهَا مِنِّي</span>
+        <span class="roman">Allāhumma innī urīdul-ʿumrata fayassir-hā lī wa taqabbal-hā minnī</span>
+        <span class="meaning"><span class="ur">یا اللہ! میں عمرہ کا ارادہ رکھتا ہوں، آسان فرما اور قبول فرما</span><span class="en-t">O Allah! I intend Umrah, make it easy and accept it from me.</span></span>
+      </div>
+      <div class="ar-block">
+        <span class="ar-lbl ur">تلبیہ — نیت کے بعد بلند آواز سے تین بار پڑھیں</span><span class="ar-lbl">Talbiyah — Recite aloud 3 times after niyyah</span>
+        <span class="ar-text">لَبَّيْكَ اللَّهُمَّ لَبَّيْكَ ۖ لَبَّيْكَ لَا شَرِيكَ لَكَ لَبَّيْكَ ۖ إِنَّ الْحَمْدَ وَالنِّعْمَةَ لَكَ وَالْمُلْكَ ۖ لَا شَرِيكَ لَكَ</span>
+        <span class="roman">Labbayk Allāhumma labbayk, labbayk lā sharīka laka labbayk, innal-ḥamda wan-niʿmata laka wal-mulk, lā sharīka lak</span>
+        <span class="meaning"><span class="ur">حاضر ہوں یا اللہ! تیرا کوئی شریک نہیں، تمام تعریف، نعمت اور بادشاہی تیری ہے</span><span class="en-t">Here I am O Allah! You have no partner. All praise, grace and sovereignty belong to You.</span></span>
+      </div>
+      <div class="note-danger">⚠️ <span class="ur"><strong>احرام کی ممنوعات (چھ):</strong> ۱) خوشبو لگانا ۲) ناخن کاٹنا ۳) میاں بیوی خاص تعلقات اور جنسی شہوت کے کام کرنا ۴) جسم سے بال دور کرنا ۵) چہرہ ڈھانکنا (خواتین) ۶) خشکی کے جانور کا شکار کرنا</span><span class="en-t"><strong>Ihram Prohibitions (6):</strong> 1) Perfume 2) Cutting nails 3) Marital relations/desire 4) Removing body hair 5) Covering face (women) 6) Hunting land animals</span></div>
+      <div class="note-warn">📌 <span class="ur"><strong>صرف مردوں کے لیے ممنوعات:</strong> ۱) سلا ہوا لباس ۲) سر ڈھانپنا ۳) جوتا جو ٹخنہ ڈھانپے</span><span class="en-t"><strong>For Men only:</strong> 1) Sewn garments 2) Covering head 3) Footwear covering ankles</span></div>
+    </div>
+  </div>
+
+  <!-- STEP 2 -->
+  <div class="step-card">
+    <div class="step-head" onclick="toggleCard(this)">
+      <div class="step-num">2</div>
+      <div class="step-lbl"><span class="ur">طوافِ کعبہ — ۷ چکر</span><span class="en-t">Tawaf al-Ka'bah — 7 Circuits</span></div>
+      <div class="step-arr">▾</div>
+    </div>
+    <div class="step-body">
+      <img class="step-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Tawaf%2C_Makkah.jpg/640px-Tawaf%2C_Makkah.jpg" onerror="this.style.display='none'" alt="Tawaf">
+      <div class="badges"><span class="badge b-rukn">رکنِ اعظم / Greatest Pillar</span></div>
+      <div class="info gold"><div class="info-ico">🕋</div><div class="info-txt"><span class="ur">خانۂ کعبہ کے گرد سات چکر — حجرِ اسود سے شروع، کعبہ بائیں طرف، باوضو لازمی۔</span><span class="en-t">Seven circuits around Ka'bah — starting at Hajar al-Aswad, Ka'bah on your left, must have wudu.</span></div></div>
+      <div class="ar-block">
+        <span class="ar-lbl ur">حجرِ اسود کو بوسہ/اشارہ — ہر چکر پر</span><span class="ar-lbl">Hajar al-Aswad — every round</span>
+        <span class="ar-text">بِسْمِ اللَّهِ وَاللَّهُ أَكْبَرُ</span>
+        <span class="roman">Bismillāhi wallāhu akbar</span>
+        <span class="meaning"><span class="ur">اللہ کے نام سے، اللہ سب سے بڑا ہے</span><span class="en-t">In the name of Allah, Allah is the Greatest.</span></span>
+      </div>
+      <div class="ar-block">
+        <span class="ar-lbl ur">رکنِ یمانی سے حجرِ اسود کے درمیان — ہر چکر</span><span class="ar-lbl">Between Rukn Yamani & Hajar al-Aswad</span>
+        <span class="ar-text">رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ</span>
+        <span class="roman">Rabbanā ātinā fid-dunyā ḥasanatan wa fil-ākhirati ḥasanatan wa qinā ʿadhāban-nār</span>
+        <span class="meaning"><span class="ur">اے ہمارے رب! دنیا میں بھلائی، آخرت میں بھلائی اور جہنم سے بچا</span><span class="en-t">Our Lord! Give us good in this world and good in the Hereafter, and save us from the Fire.</span></span>
+      </div>
+      <ul class="slist">
+        <li><span class="ur">سات چکر مکمل کریں — ہر چکر حجرِ اسود سے شروع</span><span class="en-t">Complete 7 circuits — each starting at Hajar al-Aswad</span></li>
+        <li><span class="ur">مقامِ ابراہیم کے پیچھے دو رکعت — پہلی: سورۂ کافرون، دوسری: سورۂ اخلاص</span><span class="en-t">2 rak'ah behind Maqam Ibrahim — 1st: Surah Kafiroon, 2nd: Surah Ikhlas</span></li>
+        <li><span class="ur">زمزم پئیں — قبلہ رخ، تین سانس میں</span><span class="en-t">Drink Zamzam — facing Qiblah, in 3 breaths</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- STEP 3 -->
+  <div class="step-card">
+    <div class="step-head" onclick="toggleCard(this)">
+      <div class="step-num">3</div>
+      <div class="step-lbl"><span class="ur">سعی — صفا و مروہ ۷ چکر</span><span class="en-t">Sa'ee — Safa & Marwah 7 Rounds</span></div>
+      <div class="step-arr">▾</div>
+    </div>
+    <div class="step-body">
+      <img class="step-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Mas%27aa_-_Safa_and_Marwa.jpg/640px-Mas%27aa_-_Safa_and_Marwa.jpg" onerror="this.style.display='none'" alt="Safa Marwa">
+      <div class="badges"><span class="badge b-wajib">واجب / Wajib</span></div>
+      <div class="info green"><div class="info-ico">🏃</div><div class="info-txt"><span class="ur">صفا سے مروہ = ایک چکر۔ مروہ سے صفا = دوسرا۔ صفا سے شروع، مروہ پر ختم = ۷ چکر</span><span class="en-t">Safa to Marwah = 1 round. Marwah to Safa = 2nd. Starts at Safa, ends at Marwah = 7 rounds total.</span></div></div>
+      <div class="ar-block">
+        <span class="ar-lbl ur">صفا پر چڑھتے وقت</span><span class="ar-lbl">Ascending Safa — recite first</span>
+        <span class="ar-text">إِنَّ الصَّفَا وَالْمَرْوَةَ مِن شَعَائِرِ اللَّهِ</span>
+        <span class="roman">Innaṣ-Ṣafā wal-Marwata min shaʿāʾirillāh</span>
+        <span class="meaning"><span class="ur">صفا اور مروہ اللہ کی نشانیوں میں سے ہیں — ایک بار پڑھیں، پھر دعا</span><span class="en-t">Indeed Safa and Marwah are among the symbols of Allah — recite once, then make dua.</span></span>
+      </div>
+      <div class="ar-block">
+        <span class="ar-lbl ur">صفا و مروہ پر — قبلہ رخ — تین بار</span><span class="ar-lbl">On Safa & Marwah — facing Qiblah — 3 times</span>
+        <span class="ar-text">لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ ۚ لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَىٰ كُلِّ شَيْءٍ قَدِيرٌ</span>
+        <span class="roman">Lā ilāha illallāhu waḥdahu lā sharīka lah, lahul-mulku wa lahul-ḥamd, wa huwa ʿalā kulli shayʾin qadīr</span>
+        <span class="meaning"><span class="ur">اللہ کے سوا کوئی معبود نہیں، وہ اکیلا، بادشاہی اور حمد اسی کی، ہر چیز پر قادر</span><span class="en-t">None worthy of worship but Allah alone, His is the dominion and praise, He is able over all things.</span></span>
+      </div>
+      <div class="info blue"><div class="info-ico">🏃‍♂️</div><div class="info-txt"><span class="ur"><strong>سبز ستونوں کے درمیان:</strong> مرد تیز چلیں (رَمَل) — سنت۔ خواتین معمول سے چلیں۔</span><span class="en-t"><strong>Between green pillars:</strong> Men walk briskly (ramal) — Sunnah. Women walk at normal pace.</span></div></div>
+    </div>
+  </div>
+
+  <!-- STEP 4 -->
+  <div class="step-card">
+    <div class="step-head" onclick="toggleCard(this)">
+      <div class="step-num">4</div>
+      <div class="step-lbl"><span class="ur">حلق یا قصر — بال کٹوانا</span><span class="en-t">Halq or Qasr — Hair Cutting</span></div>
+      <div class="step-arr">▾</div>
+    </div>
+    <div class="step-body">
+      <div class="badges"><span class="badge b-wajib">واجب / Wajib</span></div>
+      <ul class="slist">
+        <li><span class="ur"><strong>حلق:</strong> پورا سر منڈوانا — افضل</span><span class="en-t"><strong>Halq:</strong> Shaving entire head — more virtuous</span></li>
+        <li><span class="ur"><strong>قصر:</strong> پورے سر کے بالوں سے ایک انگلی برابر کاٹنا</span><span class="en-t"><strong>Qasr:</strong> Trimming at least one fingertip length from all hair</span></li>
+        <li><span class="ur">خواتین: بالوں کے سروں سے ایک انگلی کے برابر</span><span class="en-t">Women: Trim one fingertip length from the ends of hair</span></li>
+      </ul>
+      <div class="note-success">✅ <span class="ur">حلق/قصر کے بعد عمرہ مکمل! احرام کھولیں، عام لباس پہنیں۔ مبارک ہو!</span><span class="en-t">Umrah is complete after Halq/Qasr! Remove Ihram, wear regular clothes. Congratulations!</span></div>
+    </div>
+  </div>
+  </div>
+</div>
+
+<!-- ═══ HAJJ ═══ -->
+<div id="hajj" class="section">
+  <div class="s-banner">
+    <div class="b-icon">⛺</div>
+    <div class="b-text">
+      <h2><span class="ur">حج — مرحلہ وار رہنما</span><span class="en-t">Hajj — Step by Step Guide</span></h2>
+      <p><span class="ur">۸ ذی الحجہ سے ۱۳ ذی الحجہ تک</span><span class="en-t">From 8th to 13th Dhul Hijjah</span></p>
+    </div>
+  </div>
+
+  <div style="padding:14px 14px 0;">
+    <div class="hadith-card">
+      <span class="ar-text">مَنْ حَجَّ لِلَّهِ فَلَمْ يَرْفُثْ وَلَمْ يَفْسُقْ رَجَعَ كَيَوْمِ وَلَدَتْهُ أُمُّهُ</span>
+      <div class="h-tr ur">جس نے اللہ کے لیے حج کیا، بے حیائی اور گناہ سے بچا، وہ ایسے لوٹا جیسے آج پیدا ہوا</div>
+      <div class="h-tr en-t">Whoever performs Hajj for Allah, without immorality or sinning, returns like the day his mother bore him.</div>
+      <div class="h-ref">Sahih Bukhari & Muslim</div>
+    </div>
+  </div>
+
+  <div class="steps-wrap">
+
+  <!-- STEP 1: 8 Dhul Hijjah -->
+  <div class="step-card open">
+    <div class="step-head" onclick="toggleCard(this)">
+      <div class="step-num">1</div>
+      <div class="step-lbl"><span class="ur">۸ ذی الحجہ — یوم الترویہ</span><span class="en-t">8 Dhul Hijjah — Day of Tarwiyah</span></div>
+      <div class="step-arr">▾</div>
+    </div>
+    <div class="step-body">
+      <img class="step-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Mina_valley.jpg/640px-Mina_valley.jpg" onerror="this.style.display='none'" alt="Mina">
+      <div class="info gold"><div class="info-ico">📅</div><div class="info-txt"><span class="ur"><strong>آج کا کام:</strong> احرام باندھیں، تلبیہ پڑھتے منٰی پہنچیں، رات منٰی میں گزاریں۔ منٰی آتے ہوئے راستے میں کثرت سے تلبیہ اور تسبیحات پڑھتے رہیں۔ ضرورت سے زیادہ سامان نہ لیں۔</span><span class="en-t"><strong>Today:</strong> Wear Ihram, proceed to Mina reciting Talbiyah, spend night in Mina. Recite Talbiyah abundantly. Don't take unnecessary luggage.</span></div></div>
+      <div class="ar-block">
+        <span class="ar-lbl ur">نیتِ حج</span><span class="ar-lbl">Niyyah for Hajj</span>
+        <span class="ar-text">اللَّهُمَّ إِنِّي أُرِيدُ الْحَجَّ فَيَسِّرْهُ لِي وَتَقَبَّلْهُ مِنِّي</span>
+        <span class="roman">Allāhumma innī urīdul-ḥajja fayassir-hu lī wa taqabbal-hu minnī</span>
+        <span class="meaning"><span class="ur">یا اللہ! میں حج کا ارادہ رکھتا ہوں، آسان فرما اور قبول فرما</span><span class="en-t">O Allah! I intend Hajj, make it easy and accept it from me.</span></span>
+      </div>
+      <ul class="slist">
+        <li><span class="ur">۸ ذی الحجہ کی صبح احرام باندھیں — پھر حرم شریف جا کر احرام کی دو رکعت نفل پڑھیں</span><span class="en-t">Wear Ihram morning of 8th — pray 2 rak'ah at Masjid al-Haram</span></li>
+        <li><span class="ur">تلبیہ پڑھتے منٰی روانہ ہوں — منٰی آتے راستے میں نو ذی الحجہ کی رات تک منٰی میں رہنا سنت ہے</span><span class="en-t">Proceed to Mina reciting Talbiyah — staying in Mina until 9th is Sunnah</span></li>
+        <li><span class="ur">ظہر، عصر، مغرب، عشاء اور فجر — قصر کریں (ظہر، عصر، عشاء: دو دو رکعت)</span><span class="en-t">Pray Dhuhr, Asr, Maghrib, Isha, Fajr — shorten (Dhuhr, Asr, Isha: 2 rak'ah each)</span></li>
+        <li><span class="ur">فضول باتوں اور گھومنے میں وقت ضائع نہ کریں — قرآن، تلبیہ، تسبیحات اور نوافل کا خوب اہتمام کریں</span><span class="en-t">Don't waste time idly — spend in Quran, Talbiyah, dhikr and nafl prayers</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- STEP 2: 9 Dhul Hijjah -->
+  <div class="step-card">
+    <div class="step-head" onclick="toggleCard(this)">
+      <div class="step-num">2</div>
+      <div class="step-lbl"><span class="ur">۹ ذی الحجہ — یومِ عرفہ ⭐</span><span class="en-t">9 Dhul Hijjah — Day of Arafah ⭐</span></div>
+      <div class="step-arr">▾</div>
+    </div>
+    <div class="step-body">
+      <img class="step-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Arafat_pilgrims_2006.jpg/640px-Arafat_pilgrims_2006.jpg" onerror="this.style.display='none'" alt="Arafat">
+      <div class="badges"><span class="badge b-rukn">رکنِ اعظم — الحج عرفہ</span></div>
+      <div class="info red"><div class="info-ico">⭐</div><div class="info-txt"><span class="ur"><strong>وقوفِ عرفہ:</strong> حج کا دوسرا رکن اور فرض ہے۔ زوال کے بعد سے غروب تک میدانِ عرفات میں رہنا لازمی۔ البتہ وقوف عرفہ کا وقت ۹ ذی الحجہ کے زوال سے شروع ہوتا ہے۔</span><span class="en-t"><strong>Wuquf at Arafah:</strong> The greatest pillar of Hajj. Standing in Arafat from after noon until sunset is obligatory.</span></div></div>
+      <div class="info teal"><div class="info-ico">🏔️</div><div class="info-txt"><span class="ur">وقوف عرفہ کھڑے ہو کر کرنا افضل ہے — بیٹھ کر اور سو کر بھی جائز ہے۔ عرفات میں جہاں چاہیں قیام کریں، عرنہ کے علاوہ — جبل رحمت کے نزدیک افضل ہے۔</span><span class="en-t">Standing at Arafat is preferable but sitting/lying is also valid. Stay anywhere in Arafat except Wadi Uranah — near Jabal Rahmah is best.</span></div></div>
+      <ul class="slist">
+        <li><span class="ur">۹ ذی الحجہ — نو ذی الحجہ سے پیشتر یا سورج نکلنے کے بعد منٰی سے عرفات روانہ — سنت یہ ہے کہ پہلے منٰی سے نہ نکلیں</span><span class="en-t">Proceed from Mina to Arafat — Sunnah to depart after sunrise on 9th</span></li>
+        <li><span class="ur">نمرہ مسجد میں: ظہر + عصر جمع تقدیم — ایک اذان، دو اقامتیں</span><span class="en-t">At Masjid Namirah: Dhuhr + Asr combined early — one adhan, two iqamahs</span></li>
+        <li><span class="ur">زوال کے بعد وقوفِ عرفہ شروع — شام تک کثرت سے دعا، تلبیہ، تیسرا کلمہ، چوتھا کلمہ، استغفار</span><span class="en-t">After noon: Begin Wuquf — make extensive dua, Talbiyah, dhikr, istighfar until evening</span></li>
+        <li><span class="ur">غروب کے بعد مزدلفہ روانہ — مغرب+عشاء جمع تاخیر مزدلفہ میں</span><span class="en-t">After sunset: Depart to Muzdalifah — pray Maghrib+Isha combined at Muzdalifah</span></li>
+        <li><span class="ur">مزدلفہ میں مشعر الحرام کے قریب ٹھہرنا افضل — ۷۰ کنکریاں چنیں — صبح تک دعا میں مشغول رہنا سنت</span><span class="en-t">Stay near Mash'ar al-Haram at Muzdalifah — collect 70 pebbles — staying in dua till dawn is Sunnah</span></li>
+      </ul>
+      <div class="ar-block">
+        <span class="ar-lbl ur">عرفات کی سب سے افضل دعا — بار بار پڑھیں</span><span class="ar-lbl">Best du'a at Arafat — repeat frequently</span>
+        <span class="ar-text">لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ ۚ لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ ۚ وَهُوَ عَلَىٰ كُلِّ شَيْءٍ قَدِيرٌ</span>
+        <span class="roman">Lā ilāha illallāhu waḥdahu lā sharīka lah, lahul-mulku wa lahul-ḥamd, wa huwa ʿalā kulli shayʾin qadīr</span>
+        <span class="meaning"><span class="ur">یہ دعا حدیث میں یومِ عرفہ کے لیے خاص طور پر آئی ہے — خوب روکر اپنے رب سے مانگیں</span><span class="en-t">This is specifically mentioned for Arafah — weep and ask your Lord abundantly.</span></span>
+      </div>
+      <div class="note-warn">📌 <span class="ur">خوب یاد رکھیں: سورج غروب ہونے سے پہلے عرفات سے ہرگز نہ نکلیں — ورنہ دم واجب ہوگا۔ بہت سے لوگ دوسروں کی دیکھا دیکھی پہلے نکل جاتے ہیں — یہ غلطی نہ کریں۔</span><span class="en-t">Critical: Never leave Arafat before sunset — Dam will become obligatory. Many people leave early following others — do not make this mistake.</span></div>
+    </div>
+  </div>
+
+  <!-- STEP 3: 10 Dhul Hijjah -->
+  <div class="step-card">
+    <div class="step-head" onclick="toggleCard(this)">
+      <div class="step-num">3</div>
+      <div class="step-lbl"><span class="ur">۱۰ ذی الحجہ — یومِ النحر 🎉</span><span class="en-t">10 Dhul Hijjah — Eid al-Adha 🎉</span></div>
+      <div class="step-arr">▾</div>
+    </div>
+    <div class="step-body">
+      <img class="step-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Jamarat_2006.jpg/640px-Jamarat_2006.jpg" onerror="this.style.display='none'" alt="Jamarat">
+      <div class="info green"><div class="info-ico">📋</div><div class="info-txt"><span class="ur"><strong>آج کے ۴ کام — ترتیب لازمی ہے:</strong></span><span class="en-t"><strong>4 acts today — sequence is obligatory:</strong></span></div></div>
+      <div class="flow-box">
+        <div class="flow-step"><div class="f-num">1</div><div class="f-lbl"><span class="ur">رمی جمرہ عقبہ — ۷ کنکریاں</span><span class="en-t">Rami Jamrah Aqabah — 7 pebbles</span></div></div>
+        <div class="f-arr">↓</div>
+        <div class="flow-step"><div class="f-num">2</div><div class="f-lbl"><span class="ur">قربانی</span><span class="en-t">Sacrifice (Hady)</span></div></div>
+        <div class="f-arr">↓</div>
+        <div class="flow-step"><div class="f-num">3</div><div class="f-lbl"><span class="ur">حلق یا قصر</span><span class="en-t">Halq or Qasr</span></div></div>
+        <div class="f-arr">↓</div>
+        <div class="flow-step"><div class="f-num">4</div><div class="f-lbl"><span class="ur">طوافِ افاضہ + سعی</span><span class="en-t">Tawaf al-Ifadah + Sa'ee</span></div></div>
+        <div class="flow-note"><span class="ur">یہ ترتیب توڑنے سے دم واجب ہوتا ہے</span><span class="en-t">Breaking this sequence makes Dam obligatory</span></div>
+      </div>
+      <div class="ar-block">
+        <span class="ar-lbl ur">ہر کنکری پھینکتے وقت — رمی کی دعا</span><span class="ar-lbl">While throwing each pebble — Rami du'a</span>
+        <span class="ar-text">بِسْمِ اللَّهِ وَاللَّهُ أَكْبَرُ رَغْمًا لِّلشَّيْطَانِ وَرِضًا لِّلرَّحْمَنِ</span>
+        <span class="roman">Bismillāhi wallāhu akbar, raghman lish-shayṭāni wa riḍan lir-raḥmān</span>
+        <span class="meaning"><span class="ur">اللہ کے نام سے، اللہ بڑا ہے — شیطان کی ذلت اور رحمان کی رضا کے لیے</span><span class="en-t">In Allah's name, Allah is Greatest — in humiliation of Satan and pleasure of the Most Merciful.</span></span>
+      </div>
+      <ul class="slist">
+        <li><span class="ur">کنکری شہادت کی انگلی اور انگوٹھے سے پکڑ کر تھوڑا اوپر اٹھا کر پھینکیں — ری جمار واجب ہے، چھوڑنے سے دم لازم</span><span class="en-t">Hold pebble between thumb & index finger, throw upward — Rami is Wajib, missing it requires Dam</span></li>
+        <li><span class="ur">کنکریاں جمرات پر لگنا ضروری نہیں — گول احاطے میں گر جائیں تو رمی صحیح</span><span class="en-t">Pebbles don't need to hit the pillar — falling in the circular basin is sufficient</span></li>
+        <li><span class="ur">پہلی کنکری مارتے ہی تلبیہ بند کریں</span><span class="en-t">Stop Talbiyah with the first pebble thrown</span></li>
+        <li><span class="ur">قربانی خود کریں یا معتمد ادارے سے کروائیں — یقین ہو تو حلق/قصر کریں</span><span class="en-t">Perform sacrifice yourself or through trusted authority — once confirmed, do Halq/Qasr</span></li>
+        <li><span class="ur">بال کٹوانے کے بعد احرام کھولیں — بیوی سے جماع کے علاوہ سب حلال ہو جاتا ہے</span><span class="en-t">After Halq: Remove Ihram — everything becomes lawful except marital relations until Tawaf Ifadah</span></li>
+        <li><span class="ur">طوافِ افاضہ کریں — طواف زیارت حج کا آخری رکن اور فرض ہے — اس کا وقت ۱۰ ذی الحجہ سے ۱۲ ذی الحجہ غروب تک ہے</span><span class="en-t">Perform Tawaf al-Ifadah — the final pillar of Hajj — time: 10th to sunset of 12th Dhul Hijjah</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- STEP 4: Ayyam Tashreeq -->
+  <div class="step-card">
+    <div class="step-head" onclick="toggleCard(this)">
+      <div class="step-num">4</div>
+      <div class="step-lbl"><span class="ur">۱۱–۱۳ ذی الحجہ — ایامِ تشریق</span><span class="en-t">11–13 Dhul Hijjah — Ayyam al-Tashreeq</span></div>
+      <div class="step-arr">▾</div>
+    </div>
+    <div class="step-body">
+      <div class="info blue"><div class="info-ico">⛺</div><div class="info-txt"><span class="ur">منٰی میں قیام اور تینوں جمرات کو ہر روز زوال کے بعد ۷-۷ کنکریاں مارنا۔ نمازوں کے بعد تکبیرِ تشریق پڑھنا واجب ہے۔</span><span class="en-t">Stay in Mina and stone all 3 Jamarat with 7 pebbles each after Dhuhr daily. Reciting Takbir al-Tashreeq after every fard prayer is Wajib.</span></div></div>
+
+      <div class="ar-block">
+        <span class="ar-lbl ur">تکبیرِ تشریق — ہر فرض نماز کے بعد — ۹ ذی الحجہ کی فجر سے ۱۳ ذی الحجہ کی عصر تک</span><span class="ar-lbl">Takbir al-Tashreeq — after every Fard — Fajr 9th to Asr 13th Dhul Hijjah</span>
+        <span class="ar-text">اَللَّهُ أَكْبَرُ اَللَّهُ أَكْبَرُ ۖ لَا إِلَهَ إِلَّا اللَّهُ ۖ وَاللَّهُ أَكْبَرُ اَللَّهُ أَكْبَرُ ۖ وَلِلَّهِ الْحَمْدُ</span>
+        <span class="roman">Allāhu akbar, Allāhu akbar, lā ilāha illallāh, wallāhu akbar, Allāhu akbar, walillāhil-ḥamd</span>
+        <span class="meaning"><span class="ur">یہ تکبیر مرد بلند آواز سے، عورتیں آہستہ پڑھیں — فرض نماز کے فوراً بعد</span><span class="en-t">Men recite aloud, women softly — immediately after every fard prayer.</span></span>
+      </div>
+
+      <ul class="slist">
+        <li><span class="ur"><strong>جمرہ صغریٰ (چھوٹا):</strong> ۷ کنکریاں ← قبلہ رخ دعا</span><span class="en-t"><strong>Jamrah Sughra (small):</strong> 7 pebbles ← face Qiblah & make du'a</span></li>
+        <li><span class="ur"><strong>جمرہ وسطیٰ (درمیانہ):</strong> ۷ کنکریاں ← قبلہ رخ دعا</span><span class="en-t"><strong>Jamrah Wusta (middle):</strong> 7 pebbles ← face Qiblah & make du'a</span></li>
+        <li><span class="ur"><strong>جمرہ عقبہ (بڑا):</strong> ۷ کنکریاں ← دعا نہیں</span><span class="en-t"><strong>Jamrah Aqabah (large):</strong> 7 pebbles ← no du'a after</span></li>
+        <li><span class="ur">اگر آپ ۱۳ ذی الحجہ کی صبح منٰی میں ہوں تو بغیر رمی کے آنا جائز نہیں — ۱۳ کو زوال کے بعد رمی کر کے ہی منٰی سے نکلیں</span><span class="en-t">If in Mina on 13th morning, cannot leave without Rami — must stone after Dhuhr on 13th then depart</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- STEP 5: Tawaf Wada -->
+  <div class="step-card">
+    <div class="step-head" onclick="toggleCard(this)">
+      <div class="step-num">5</div>
+      <div class="step-lbl"><span class="ur">طوافِ وداع — آخری فریضہ</span><span class="en-t">Tawaf al-Wada — Farewell Tawaf</span></div>
+      <div class="step-arr">▾</div>
+    </div>
+    <div class="step-body">
+      <div class="badges"><span class="badge b-wajib">واجب / Wajib</span></div>
+      <ul class="slist">
+        <li><span class="ur">مکہ سے روانگی کا آخری عمل — سات چکر</span><span class="en-t">Last act before leaving Makkah — 7 circuits</span></li>
+        <li><span class="ur">حیض/نفاس والی خواتین پر معاف</span><span class="en-t">Excused for women in menstruation/postnatal bleeding</span></li>
+        <li><span class="ur">طواف کے بعد مکہ میں رکنا مکروہ ہے — جلد روانہ ہوں</span><span class="en-t">Staying in Makkah after Wada Tawaf is makruh — depart soon</span></li>
+      </ul>
+      <div class="ar-block">
+        <span class="ar-lbl ur">طوافِ وداع کی دعا</span><span class="ar-lbl">Du'a for Tawaf al-Wada</span>
+        <span class="ar-text">اللَّهُمَّ هَٰذَا بَيْتُكَ فَاحْفَظْنِي وَلَا تُحَرِّمْنِي زِيَارَتَهُ أَبَدًا</span>
+        <span class="roman">Allāhumma hādhā baytuka faḥfaẓnī wa lā tuḥarrimnī ziyāratahu abadā</span>
+        <span class="meaning"><span class="ur">یا اللہ! یہ تیرا گھر ہے، میری حفاظت فرما اور مجھے اس کی زیارت سے کبھی محروم نہ کرنا</span><span class="en-t">O Allah! This is Your House, protect me and never deprive me of its visitation.</span></span>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>
+
+<!-- ═══ AZKAR ═══ -->
+<div id="azkar" class="section">
+  <div class="s-banner">
+    <div class="b-icon">📿</div>
+    <div class="b-text">
+      <h2><span class="ur">اذکار و دعائیں</span><span class="en-t">Du'as & Adhkar — Complete Journey</span></h2>
+      <p><span class="ur">گھر سے روانگی سے روضۂ رسول ﷺ تک</span><span class="en-t">From leaving home to the Rawdah of the Prophet ﷺ</span></p>
+    </div>
+  </div>
+  <img class="s-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Al-Masjid_al-Nabawi.jpg/640px-Al-Masjid_al-Nabawi.jpg" onerror="this.style.display='none'" alt="Masjid Nabawi">
+
+  <div class="steps-wrap">
+  <div class="s-head">🏠 <span class="ur">حصہ اول — گھر سے روانگی اور سفر</span><span class="en-t">Part 1 — Departure & Travel</span></div>
+
+  <div class="dua-card">
+    <div class="dc-head"><span class="dc-title"><span class="ur">🏠 گھر سے نکلتے وقت</span><span class="en-t">🏠 Leaving the Home</span></span><span class="dc-badge">Sunnah</span></div>
+    <div class="dc-body">
+      <div class="ar-block">
+        <span class="ar-text">بِسْمِ اللَّهِ تَوَكَّلْتُ عَلَى اللَّهِ ۖ وَلَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللَّهِ</span>
+        <span class="roman">Bismillāh, tawakkaltu ʿalallāh, wa lā ḥawla wa lā quwwata illā billāh</span>
+        <span class="meaning"><span class="ur">اللہ کے نام سے، اللہ پر بھروسہ، طاقت و قوت اللہ ہی سے</span><span class="en-t">In Allah's name, I place trust in Allah, there is no might except with Allah.</span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="dua-card">
+    <div class="dc-head"><span class="dc-title"><span class="ur">🚗✈️ سواری پر بیٹھتے وقت</span><span class="en-t">🚗✈️ Upon Boarding Transport</span></span><span class="dc-badge">Sunnah</span></div>
+    <div class="dc-body">
+      <div class="ar-block">
+        <span class="ar-text">سُبْحَانَ الَّذِي سَخَّرَ لَنَا هَٰذَا وَمَا كُنَّا لَهُ مُقْرِنِينَ ۝ وَإِنَّا إِلَىٰ رَبِّنَا لَمُنقَلِبُونَ</span>
+        <span class="roman">Subḥānal-ladhī sakhkhara lanā hādhā wa mā kunnā lahu muqrinīn, wa innā ilā Rabbinā lamunqalibūn</span>
+        <span class="meaning"><span class="ur">پاک ہے وہ جس نے یہ ہمارے لیے مسخر کی، ہم اپنے رب کی طرف لوٹنے والے ہیں</span><span class="en-t">Glory be to Him who subjected this for us, and we shall return to our Lord.</span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="dua-card">
+    <div class="dc-head"><span class="dc-title"><span class="ur">✈️ سفر کی دعا</span><span class="en-t">✈️ Du'a for the Journey</span></span><span class="dc-badge">Sunnah</span></div>
+    <div class="dc-body">
+      <div class="ar-block">
+        <span class="ar-text">اللَّهُمَّ إِنِّي أَسْأَلُكَ فِي سَفَرِي هَٰذَا الْبِرَّ وَالتَّقْوَىٰ ۖ وَمِنَ الْعَمَلِ مَا تَرْضَىٰ ۖ اللَّهُمَّ هَوِّنْ عَلَيْنَا سَفَرَنَا هَٰذَا وَاطْوِ عَنَّا بُعْدَهُ</span>
+        <span class="roman">Allāhumma innī asʾaluka fī safarī hādhal-birra wat-taqwā wa minal-ʿamali mā tarḍā, Allāhumma hawwin ʿalaynā safaranā hādhā waṭwi ʿannā buʿdah</span>
+        <span class="meaning"><span class="ur">یا اللہ! اس سفر میں نیکی، تقویٰ اور پسندیدہ عمل عطا فرما۔ سفر آسان فرما، دوری سمیٹ دے</span><span class="en-t">O Allah! Grant goodness, piety and pleasing deeds in this journey. Make it easy and fold its distance.</span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="s-head">🕋 <span class="ur">حصہ دوم — مکہ مکرمہ</span><span class="en-t">Part 2 — Makkah al-Mukarramah</span></div>
+
+  <div class="dua-card">
+    <div class="dc-head"><span class="dc-title"><span class="ur">🌟 مکہ مکرمہ میں داخل ہوتے وقت</span><span class="en-t">🌟 Entering Makkah</span></span><span class="dc-badge">Sunnah</span></div>
+    <div class="dc-body">
+      <div class="ar-block">
+        <span class="ar-text">اللَّهُمَّ هَٰذَا حَرَمُكَ وَأَمْنُكَ ۖ فَحَرِّمْنِي عَلَى النَّارِ ۖ وَأَمِّنِّي مِنْ عَذَابِكَ يَوْمَ تَبْعَثُ عِبَادَكَ</span>
+        <span class="roman">Allāhumma hādhā ḥaramuka wa amnuka, faḥarrimnī ʿalan-nār, wa amminni min ʿadhābika yawma tabʿathu ʿibādak</span>
+        <span class="meaning"><span class="ur">یا اللہ! یہ تیرا حرم اور امن ہے، مجھے آگ پر حرام کر دے، اپنے عذاب سے محفوظ رکھ</span><span class="en-t">O Allah! This is Your Haram and sanctuary — forbid me to the Fire, grant security from Your punishment.</span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="dua-card">
+    <div class="dc-head"><span class="dc-title"><span class="ur">🕌 مسجدِ حرام میں داخل ہوتے وقت</span><span class="en-t">🕌 Entering Masjid al-Haram</span></span><span class="dc-badge">Mustahab</span></div>
+    <div class="dc-body">
+      <div class="info teal"><div class="info-ico">👣</div><div class="info-txt"><span class="ur">دائیں پاؤں سے داخل — باب السلام سے داخلہ افضل</span><span class="en-t">Enter with right foot — entering from Bab al-Salam is preferable</span></div></div>
+      <div class="ar-block">
+        <span class="ar-text">اللَّهُمَّ افْتَحْ لِي أَبْوَابَ رَحْمَتِكَ</span>
+        <span class="roman">Allāhumma iftaḥ lī abwāba raḥmatik</span>
+        <span class="meaning"><span class="ur">یا اللہ! میرے لیے اپنی رحمت کے دروازے کھول دے</span><span class="en-t">O Allah! Open for me the doors of Your mercy.</span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="dua-card">
+    <div class="dc-head"><span class="dc-title"><span class="ur">✨ خانۂ کعبہ پر پہلی نظر پڑتے وقت</span><span class="en-t">✨ First Sight of the Ka'bah</span></span><span class="dc-badge">Mustahab</span></div>
+    <div class="dc-body">
+      <div class="ar-block">
+        <span class="ar-text">اللَّهُمَّ زِدْ هَٰذَا الْبَيْتَ تَشْرِيفًا وَتَعْظِيمًا وَتَكْرِيمًا وَمَهَابَةً</span>
+        <span class="roman">Allāhumma zid hādhal-bayta tashrīfan wa taʿẓīman wa takrīman wa mahābatan</span>
+        <span class="meaning"><span class="ur">یا اللہ! اس گھر کی شرافت، عظمت، عزت اور ہیبت بڑھا — پھر اپنی تمام حاجات مانگیں — یہ وقت قبولیت کا ہے</span><span class="en-t">O Allah! Increase this House in honour, greatness, dignity and awe — then ask for all your needs — this moment is special.</span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="dua-card">
+    <div class="dc-head"><span class="dc-title"><span class="ur">💧 آبِ زمزم پیتے وقت</span><span class="en-t">💧 Drinking Zamzam Water</span></span><span class="dc-badge">Sunnah</span></div>
+    <div class="dc-body">
+      <div class="info green"><div class="info-ico">💧</div><div class="info-txt"><span class="ur">قبلہ رخ، تین سانس میں پئیں — زمزم اسی مقصد کے لیے ہے جس کے لیے پیا جائے (حدیث)</span><span class="en-t">Face Qiblah, drink in 3 breaths — Zamzam is for whatever purpose it is drunk (Hadith)</span></div></div>
+      <div class="ar-block">
+        <span class="ar-text">اللَّهُمَّ إِنِّي أَسْأَلُكَ عِلْمًا نَافِعًا وَرِزْقًا وَاسِعًا وَشِفَاءً مِّن كُلِّ دَاءٍ</span>
+        <span class="roman">Allāhumma innī asʾaluka ʿilman nāfiʿan wa rizqan wāsiʿan wa shifāʾan min kulli dāʾ</span>
+        <span class="meaning"><span class="ur">یا اللہ! نفع بخش علم، وسیع رزق اور ہر بیماری سے شفا مانگتا ہوں</span><span class="en-t">O Allah! I ask for beneficial knowledge, vast provision, and cure from every illness.</span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="dua-card">
+    <div class="dc-head"><span class="dc-title"><span class="ur">🕌 مسجدِ حرام سے نکلتے وقت</span><span class="en-t">🕌 Leaving Masjid al-Haram</span></span><span class="dc-badge">Sunnah</span></div>
+    <div class="dc-body">
+      <div class="ar-block">
+        <span class="ar-text">اللَّهُمَّ إِنِّي أَسْأَلُكَ مِنْ فَضْلِكَ</span>
+        <span class="roman">Allāhumma innī asʾaluka min faḍlik</span>
+        <span class="meaning"><span class="ur">یا اللہ! تجھ سے تیرا فضل مانگتا ہوں — بائیں پاؤں سے نکلیں</span><span class="en-t">O Allah! I ask of Your bounty — exit with left foot.</span></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- MADINAH SECTION -->
+  <div class="s-head mad">🌹 <span class="ur">حصہ سوم — مدینہ منورہ</span><span class="en-t">Part 3 — Madinah al-Munawwarah</span></div>
+
+  <div class="mad-card dua-card">
+    <div class="dc-head"><span class="dc-title"><span class="ur">🌇 مدینہ منورہ میں داخل ہوتے وقت</span><span class="en-t">🌇 Entering Madinah</span></span><span class="dc-badge">Sunnah</span></div>
+    <div class="dc-body">
+      <div class="ar-block">
+        <span class="ar-text">اللَّهُمَّ هَٰذَا حَرَمُ نَبِيِّكَ ۖ فَاجْعَلْهُ لِي وِقَايَةً مِّنَ النَّارِ ۖ وَأَمَانًا مِّنَ الْعَذَابِ وَسُوءِ الْحِسَابِ</span>
+        <span class="roman">Allāhumma hādhā ḥaramu nabiyyika, fajʿalhu lī wiqāyatan minan-nār, wa amānan minal-ʿadhāb wa sūʾil-ḥisāb</span>
+        <span class="meaning"><span class="ur">یا اللہ! یہ تیرے نبی کا حرم ہے، اسے میرے لیے جہنم سے حفاظت اور برے حساب سے بچاؤ بنا</span><span class="en-t">O Allah! This is Your Prophet's sanctuary — make it protection from the Fire and bad reckoning.</span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="mad-card dua-card">
+    <div class="dc-head"><span class="dc-title"><span class="ur">🕌 مسجدِ نبوی میں داخل ہوتے وقت</span><span class="en-t">🕌 Entering Masjid al-Nabawi</span></span><span class="dc-badge">Sunnah</span></div>
+    <div class="dc-body">
+      <div class="info blue"><div class="info-ico">👣</div><div class="info-txt"><span class="ur">دائیں پاؤں سے داخل — ریاضِ الجنہ میں دو رکعت تحیۃ المسجد پڑھنے کی کوشش کریں</span><span class="en-t">Enter with right foot — try to pray 2 rak'ah Tahiyyat al-Masjid in Riyad al-Jannah</span></div></div>
+      <div class="ar-block">
+        <span class="ar-text">اللَّهُمَّ صَلِّ عَلَىٰ مُحَمَّدٍ وَسَلِّمْ ۖ اللَّهُمَّ افْتَحْ لِي أَبْوَابَ رَحْمَتِكَ</span>
+        <span class="roman">Allāhumma ṣalli ʿalā Muḥammadin wa sallim, Allāhumma iftaḥ lī abwāba raḥmatik</span>
+        <span class="meaning"><span class="ur">یا اللہ! محمد ﷺ پر درود و سلام نازل فرما اور میرے لیے رحمت کے دروازے کھول دے</span><span class="en-t">O Allah! Send blessings upon Muhammad ﷺ and open the doors of Your mercy for me.</span></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- RAWDAH MUBARAK - Most important -->
+  <div class="mad-card dua-card" style="border:2px solid #5599CC;">
+    <div class="dc-head" style="background:linear-gradient(to left,#1A3A5C,#0D2038);">
+      <span class="dc-title" style="color:#A8D4FF;font-size:14px;"><span class="ur">🌹 روضۂ اقدس پر حاضری — طریقہ و سلام</span><span class="en-t">🌹 Visiting Rawdah al-Mubaraka</span></span>
+      <span class="dc-badge" style="background:var(--gold);color:var(--green-d);">اہم</span>
+    </div>
+    <div class="dc-body">
+      <div class="info blue">
+        <div class="info-ico">📋</div>
+        <div class="info-txt">
+          <span class="ur"><strong>حاضری کا طریقہ (مکمل):</strong><br/>
+          ۱) باوضو جائیں — بلند آواز، ہجوم اور بے ادبی سے مکمل پرہیز<br/>
+          ۲) درود شریف پڑھتے ہوئے روضے کی طرف آئیں<br/>
+          ۳) قبلۂ اقدس کی طرف پیٹھ اور روضے کی طرف منہ کر کے آہستہ آواز میں سلام پڑھیں<br/>
+          ۴) ایک قدم دائیں طرف ہٹ کر حضرت ابوبکر صدیقؓ کو سلام<br/>
+          ۵) ایک قدم اور بڑھ کر حضرت عمر فاروقؓ کو سلام<br/>
+          ۶) پھر واپس قبلہ رخ ہو کر دعا کریں<br/>
+          ⚠️ روضے کو ہاتھ یا سینہ نہ لگائیں — روضے کی طرف منہ کر کے دعا نہ کریں</span>
+          <span class="en-t"><strong>Complete Method of Visit:</strong><br/>
+          1) Go in state of wudu — avoid loud voice, crowding and disrespect<br/>
+          2) Walk toward Rawdah reciting Durood<br/>
+          3) Face the Rawdah (back to Qiblah) and give Salaam softly<br/>
+          4) Step right to give Salaam to Abu Bakr al-Siddiq ؓ<br/>
+          5) One more step right for Umar al-Faruq ؓ<br/>
+          6) Then face Qiblah and make du'a<br/>
+          ⚠️ Do not touch or rub the enclosure — do not make du'a facing the Rawdah</span>
+        </div>
+      </div>
+
+      <div class="ar-block">
+        <span class="ar-lbl ur">اختصار کے ساتھ سلام</span><span class="ar-lbl">Brief Salaam</span>
+        <span class="ar-text">اَلسَّلَامُ عَلَيْكَ يَا رَسُولَ اللَّهِ ﷺ</span>
+        <span class="roman">As-salāmu ʿalayka yā Rasūlallāh ﷺ</span>
+        <span class="meaning"><span class="ur">آپ ﷺ پر سلام ہو یا رسول اللہ</span><span class="en-t">Peace be upon you, O Messenger of Allah ﷺ</span></span>
+      </div>
+
+      <div class="ar-block">
+        <span class="ar-lbl ur">مکمل سلام کے الفاظ</span><span class="ar-lbl">Complete Salaam</span>
+        <span class="ar-text">اَلسَّلَامُ عَلَيْكَ يَا رَسُولَ اللَّهِ ۝ اَلسَّلَامُ عَلَيْكَ يَا نَبِيَّ اللَّهِ ۝ اَلسَّلَامُ عَلَيْكَ يَا خَيْرَ خَلْقِ اللَّهِ ۝ اَلسَّلَامُ عَلَيْكَ يَا حَبِيبَ اللَّهِ</span>
+        <span class="roman">As-salāmu ʿalayka yā Rasūlallāh · yā Nabiyallāh · yā Khayra Khalqillāh · yā Ḥabīballāh ﷺ</span>
+        <span class="meaning"><span class="ur">سلام ہو یا رسول اللہ · یا نبی اللہ · اے اللہ کی بہترین مخلوق · یا اللہ کے حبیب ﷺ</span><span class="en-t">Peace upon you O Messenger of Allah · O Prophet of Allah · O best of Allah's creation · O Beloved of Allah ﷺ</span></span>
+      </div>
+
+      <div class="ar-block">
+        <span class="ar-lbl ur">حضرت ابوبکر صدیقؓ کو سلام</span><span class="ar-lbl">Salaam to Abu Bakr al-Siddiq ؓ</span>
+        <span class="ar-text">اَلسَّلَامُ عَلَيْكَ يَا أَبَا بَكْرٍ الصِّدِّيقُ ۝ رَضِيَ اللَّهُ عَنْكَ وَجَزَاكَ اللَّهُ عَنْ أُمَّةِ مُحَمَّدٍ ﷺ خَيْرًا</span>
+        <span class="meaning"><span class="ur">آپ پر سلام یا ابوبکر صدیق، اللہ آپ سے راضی ہو اور امتِ محمدیہ کی طرف سے بہترین بدلہ دے</span><span class="en-t">Peace upon you O Abu Bakr al-Siddiq, may Allah be pleased with you and reward you for the Ummah.</span></span>
+      </div>
+
+      <div class="ar-block">
+        <span class="ar-lbl ur">حضرت عمر فاروقؓ کو سلام</span><span class="ar-lbl">Salaam to Umar al-Faruq ؓ</span>
+        <span class="ar-text">اَلسَّلَامُ عَلَيْكَ يَا عُمَرَ الْفَارُوقُ ۝ رَضِيَ اللَّهُ عَنْكَ وَجَزَاكَ اللَّهُ عَنْ أُمَّةِ مُحَمَّدٍ ﷺ خَيْرًا</span>
+        <span class="meaning"><span class="ur">آپ پر سلام یا عمر فاروق، اللہ آپ سے راضی ہو اور امتِ محمدیہ کی طرف سے بہترین بدلہ دے</span><span class="en-t">Peace upon you O Umar al-Faruq, may Allah be pleased with you and reward you for the Ummah.</span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="mad-card dua-card">
+    <div class="dc-head"><span class="dc-title"><span class="ur">📿 درودِ ابراہیمی — سب سے افضل درود</span><span class="en-t">📿 Durood Ibrahimi — Most Virtuous</span></span><span class="dc-badge">Afdhal</span></div>
+    <div class="dc-body">
+      <div class="ar-block">
+        <span class="ar-text">اللَّهُمَّ صَلِّ عَلَىٰ مُحَمَّدٍ وَّعَلَىٰ آلِ مُحَمَّدٍ ۚ كَمَا صَلَّيْتَ عَلَىٰ إِبْرَاهِيمَ وَعَلَىٰ آلِ إِبْرَاهِيمَ ۚ إِنَّكَ حَمِيدٌ مَّجِيدٌ ۝ اللَّهُمَّ بَارِكْ عَلَىٰ مُحَمَّدٍ وَّعَلَىٰ آلِ مُحَمَّدٍ ۚ كَمَا بَارَكْتَ عَلَىٰ إِبْرَاهِيمَ وَعَلَىٰ آلِ إِبْرَاهِيمَ ۚ إِنَّكَ حَمِيدٌ مَّجِيدٌ</span>
+        <span class="roman">Allāhumma ṣalli ʿalā Muḥammadin wa ʿalā āli Muḥammadin kamā ṣallayta ʿalā Ibrāhīma... Allāhumma bārik ʿalā Muḥammadin wa ʿalā āli Muḥammadin...</span>
+        <span class="meaning"><span class="ur">یا اللہ! محمد ﷺ اور آل محمد پر رحمت نازل فرما جیسا ابراہیمؑ پر فرمائی — تو تعریف والا بزرگی والا ہے</span><span class="en-t">O Allah! Send blessings upon Muhammad ﷺ and his family as You sent upon Ibrahim — You are the Praiseworthy, the Glorious.</span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="mad-card dua-card">
+    <div class="dc-head"><span class="dc-title"><span class="ur">🕊️ جنت البقیع کی زیارت</span><span class="en-t">🕊️ Visiting Jannat al-Baqi</span></span><span class="dc-badge">Mustahab</span></div>
+    <div class="dc-body">
+      <div class="ar-block">
+        <span class="ar-text">اَلسَّلَامُ عَلَيْكُمْ أَهْلَ الدِّيَارِ مِنَ الْمُؤْمِنِينَ وَالْمُسْلِمِينَ ۝ وَإِنَّا إِنْ شَاءَ اللَّهُ بِكُمْ لَاحِقُونَ ۝ نَسْأَلُ اللَّهَ لَنَا وَلَكُمُ الْعَافِيَةَ</span>
+        <span class="roman">As-salāmu ʿalaykum ahlad-diyāri minal-muʾminīna wal-muslimīn, wa innā in shāʾallāhu bikum lāḥiqūn, nasʾalullāha lanā wa lakumul-ʿāfiyah</span>
+        <span class="meaning"><span class="ur">آپ پر سلام اے مومنوں! ہم بھی آپ سے ملنے والے ہیں، اللہ سے ہم سب کے لیے عافیت مانگتے ہیں</span><span class="en-t">Peace upon you, dwellers of these abodes! We shall join you by Allah's will. We ask for well-being for all.</span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="s-head">🏡 <span class="ur">حصہ چہارم — واپسی کی دعائیں</span><span class="en-t">Part 4 — Return Journey</span></div>
+
+  <div class="dua-card">
+    <div class="dc-head"><span class="dc-title"><span class="ur">🔙 سفر سے واپسی</span><span class="en-t">🔙 Returning from Journey</span></span><span class="dc-badge">Sunnah</span></div>
+    <div class="dc-body">
+      <div class="ar-block">
+        <span class="ar-text">آيِبُونَ ۝ تَائِبُونَ ۝ عَابِدُونَ ۝ لِرَبِّنَا حَامِدُونَ</span>
+        <span class="roman">Āʾibūna, tāʾibūna, ʿābidūna, li-Rabbinā ḥāmidūn</span>
+        <span class="meaning"><span class="ur">لوٹنے، توبہ کرنے، عبادت گزار، اپنے رب کی حمد کرنے والے ہیں</span><span class="en-t">Returning, repenting, worshipping, praising our Lord.</span></span>
+      </div>
+      <div class="ar-block">
+        <span class="ar-lbl ur">تکمیلِ حج کی خصوصی دعا</span><span class="ar-lbl">Special du'a upon completing Hajj</span>
+        <span class="ar-text">اللَّهُمَّ اجْعَلْهُ حَجًّا مَّبْرُورًا ۝ وَذَنْبًا مَّغْفُورًا ۝ وَسَعْيًا مَّشْكُورًا ۝ وَتِجَارَةً لَّنْ تَبُورَ</span>
+        <span class="roman">Allāhumma-jʿalhu ḥajjan mabrūran wa dhanban maghfūran wa saʿyan mashkūran wa tijāratan lan tabūr</span>
+        <span class="meaning"><span class="ur">یا اللہ! اسے حجِ مقبول، معاف گناہ، مشکور سعی اور نہ گھاٹے والی تجارت بنا</span><span class="en-t">O Allah! Make it an accepted Hajj, forgiven sin, appreciated effort, and a never-losing trade.</span></span>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>
+
+<!-- ═══ SCHEDULE ═══ -->
+<div id="schedule" class="section">
+  <div class="s-banner">
+    <div class="b-icon">📅</div>
+    <div class="b-text">
+      <h2><span class="ur">ایامِ حج کا جدول</span><span class="en-t">Hajj Day-by-Day Schedule</span></h2>
+      <p><span class="ur">۸ سے ۱۳ ذی الحجہ تک</span><span class="en-t">8th to 13th Dhul Hijjah</span></p>
+    </div>
+  </div>
+  <div class="timeline">
+    <div class="t-item"><div class="t-dot">8</div><div class="t-content">
+      <div class="t-date"><span class="ur">یوم الترویہ</span><span class="en-t">Day of Tarwiyah</span></div>
+      <div class="t-title"><span class="ur">احرام اور منٰی روانگی</span><span class="en-t">Ihram & Departure to Mina</span></div>
+      <div class="t-desc"><span class="ur">احرام، تلبیہ، منٰی۔ ظہر تا فجر قصر۔ قرآن، تلبیہ، تسبیحات کا اہتمام۔ رات منٰی میں گزاریں۔</span><span class="en-t">Ihram, Talbiyah, Mina. Shorten prayers Dhuhr to Fajr. Quran, dhikr abundantly. Spend night in Mina.</span></div>
+    </div></div>
+    <div class="t-item"><div class="t-dot">9</div><div class="t-content">
+      <div class="t-date" style="background:#8B1A1A;"><span class="ur">یوم عرفہ ⭐ — رکنِ اعظم</span><span class="en-t">Arafah ⭐ — Greatest Pillar</span></div>
+      <div class="t-title"><span class="ur">وقوفِ عرفہ — خوب دعا کریں</span><span class="en-t">Wuquf Arafah — Make Extensive Du'a</span></div>
+      <div class="t-desc"><span class="ur">فجر منٰی میں۔ سورج نکلنے کے بعد عرفات۔ ظہر+عصر جمع تقدیم نمرہ میں۔ زوال سے غروب تک وقوف۔ غروب کے بعد مزدلفہ۔ مغرب+عشاء جمع تاخیر۔ کنکریاں چنیں۔ فجر تک دعا۔</span><span class="en-t">Fajr in Mina. After sunrise to Arafat. Dhuhr+Asr combined at Namirah. Wuquf noon to sunset. After sunset to Muzdalifah. Maghrib+Isha combined. Collect pebbles. Dua till dawn.</span></div>
+    </div></div>
+    <div class="t-item"><div class="t-dot">10</div><div class="t-content">
+      <div class="t-date" style="background:#8B6914;"><span class="ur">یومِ النحر 🎉 عید الاضحیٰ</span><span class="en-t">Eid al-Adha 🎉 — Day of Sacrifice</span></div>
+      <div class="t-title"><span class="ur">چار لازمی کام بالترتیب</span><span class="en-t">4 Obligatory Acts in Sequence</span></div>
+      <div class="t-desc"><span class="ur">مزدلفہ سے منٰی۔ ۱)رمی جمرہ عقبہ ۲)قربانی ۳)حلق/قصر ۴)طوافِ افاضہ+سعی۔ رات منٰی میں۔</span><span class="en-t">Muzdalifah to Mina. 1)Rami Jamrah Aqabah 2)Sacrifice 3)Halq/Qasr 4)Tawaf Ifadah+Sa'ee. Night in Mina.</span></div>
+    </div></div>
+    <div class="t-item"><div class="t-dot">11</div><div class="t-content">
+      <div class="t-date"><span class="ur">۱۱ ذی الحجہ</span><span class="en-t">11th Dhul Hijjah</span></div>
+      <div class="t-title"><span class="ur">تینوں جمرات — رمی</span><span class="en-t">Stone All 3 Jamarat</span></div>
+      <div class="t-desc"><span class="ur">زوال کے بعد تینوں جمرات ۷-۷ کنکریاں۔ پہلے دو کے بعد قبلہ رخ دعا۔ رات منٰی میں۔</span><span class="en-t">After Dhuhr: 7 pebbles at each Jamarat. Du'a after first two. Night in Mina.</span></div>
+    </div></div>
+    <div class="t-item"><div class="t-dot">12</div><div class="t-content">
+      <div class="t-date"><span class="ur">۱۲ ذی الحجہ</span><span class="en-t">12th Dhul Hijjah</span></div>
+      <div class="t-title"><span class="ur">رمی — نفرِ اول کا آپشن</span><span class="en-t">Rami — Option to Leave Early</span></div>
+      <div class="t-desc"><span class="ur">تینوں جمرات ۷-۷ کنکریاں۔ غروب سے پہلے منٰی چھوڑ سکتے ہیں۔ ۱۳ تک رہنا افضل۔</span><span class="en-t">7 pebbles at each Jamarat. May leave before sunset (permissible). Staying till 13th is more virtuous.</span></div>
+    </div></div>
+    <div class="t-item"><div class="t-dot">13</div><div class="t-content">
+      <div class="t-date"><span class="ur">۱۳ ذی الحجہ — آخری دن</span><span class="en-t">13th Dhul Hijjah — Final Day</span></div>
+      <div class="t-title"><span class="ur">آخری رمی ← طوافِ وداع ← حج مکمل!</span><span class="en-t">Final Rami → Tawaf Wada → Hajj Complete!</span></div>
+      <div class="t-desc"><span class="ur">تینوں جمرات۔ مکہ جا کر طوافِ وداع۔ الحمد للہ! اپنے والدین، گھر والوں اور رشتہ داروں کی طرف سے دعا کریں۔ نفلی طواف اور عمرے بھی کر سکتے ہیں۔</span><span class="en-t">Stone all 3 Jamarat. Go to Makkah for Tawaf al-Wada. Alhamdulillah! Pray for family and dear ones. Optional additional Tawaf or Umrah.</span></div>
+    </div></div>
+  </div>
+</div>
+
+<!-- ═══ TARTIB & DAM ═══ -->
+<div id="tartib" class="section">
+  <div class="s-banner">
+    <div class="b-icon">⚖️</div>
+    <div class="b-text">
+      <h2><span class="ur">ترتیب اور دم کے مسائل</span><span class="en-t">Tartib (Sequence) & Dam Issues</span></h2>
+      <p><span class="ur">جن میں ترتیب لازم، جن میں نہیں، دم کب واجب</span><span class="en-t">Required sequences, optional ones, when Dam becomes obligatory</span></p>
+    </div>
+  </div>
+  <div class="steps-wrap">
+    <div class="step-card open">
+      <div class="step-head" onclick="toggleCard(this)"><div class="step-num">1</div><div class="step-lbl"><span class="ur">جن افعال میں ترتیب واجب ہے</span><span class="en-t">Acts Requiring Obligatory Sequence</span></div><div class="step-arr">▾</div></div>
+      <div class="step-body">
+        <div class="info red"><div class="info-ico">⚠️</div><div class="info-txt"><span class="ur">یوم النحر کی ترتیب توڑنے سے دم واجب ہوتا ہے۔</span><span class="en-t">Breaking the sequence on Yom al-Nahr makes Dam obligatory.</span></div></div>
+        <div class="flow-box">
+          <div style="text-align:center;font-family:var(--ur);font-size:13px;color:var(--gold-d);font-weight:700;margin-bottom:12px;line-height:2;"><span class="ur">یوم النحر — لازمی ترتیب</span><span class="en-t">Yom al-Nahr — Obligatory Sequence</span></div>
+          <div class="flow-step"><div class="f-num">1</div><div class="f-lbl"><span class="ur">رمی جمرہ عقبہ</span><span class="en-t">Rami Jamrah Aqabah</span></div></div>
+          <div class="f-arr">↓</div>
+          <div class="flow-step"><div class="f-num">2</div><div class="f-lbl"><span class="ur">قربانی</span><span class="en-t">Sacrifice</span></div></div>
+          <div class="f-arr">↓</div>
+          <div class="flow-step"><div class="f-num">3</div><div class="f-lbl"><span class="ur">حلق یا قصر</span><span class="en-t">Halq or Qasr</span></div></div>
+          <div class="f-arr">↓</div>
+          <div class="flow-step"><div class="f-num">4</div><div class="f-lbl"><span class="ur">طوافِ افاضہ</span><span class="en-t">Tawaf al-Ifadah</span></div></div>
+        </div>
+        <ul class="slist">
+          <li><span class="ur"><strong>احرام:</strong> سب سے پہلے — بغیر احرام کوئی نسک نہیں</span><span class="en-t"><strong>Ihram:</strong> Must be first — no ritual valid without it</span></li>
+          <li><span class="ur"><strong>وقوف عرفہ:</strong> احرام کے بعد، طوافِ افاضہ سے پہلے</span><span class="en-t"><strong>Wuquf Arafah:</strong> After Ihram, before Tawaf al-Ifadah</span></li>
+          <li><span class="ur"><strong>سعی:</strong> طواف کے بعد</span><span class="en-t"><strong>Sa'ee:</strong> After Tawaf</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="step-card">
+      <div class="step-head" onclick="toggleCard(this)"><div class="step-num">2</div><div class="step-lbl"><span class="ur">جن میں ترتیب واجب نہیں</span><span class="en-t">Acts Without Required Sequence</span></div><div class="step-arr">▾</div></div>
+      <div class="step-body">
+        <div class="info green"><div class="info-ico">✅</div><div class="info-txt"><span class="ur">ان میں ترتیب ٹوٹے تو دم واجب نہیں — ترتیب سے کرنا بہتر ہے۔</span><span class="en-t">Breaking sequence here does not make Dam obligatory — but order is better.</span></div></div>
+        <ul class="slist">
+          <li><span class="ur">طوافِ وداع: روانگی سے پہلے جب چاہیں</span><span class="en-t">Tawaf al-Wada: Anytime before departure</span></li>
+          <li><span class="ur">ایامِ تشریق کی رمی: چھوٹے سے بڑے کی ترتیب مستحب، واجب نہیں</span><span class="en-t">Tashreeq Rami: Small to large order is preferred, not obligatory</span></li>
+          <li><span class="ur">مدینہ کی زیارت: حج سے پہلے یا بعد میں، کوئی پابندی نہیں</span><span class="en-t">Madinah visit: Before or after Hajj, no restriction</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="step-card">
+      <div class="step-head" onclick="toggleCard(this)"><div class="step-num">3</div><div class="step-lbl"><span class="ur">دم واجب ہونے کے اسباب</span><span class="en-t">Causes Making Dam Obligatory</span></div><div class="step-arr">▾</div></div>
+      <div class="step-body">
+        <div class="info red"><div class="info-ico">🩸</div><div class="info-txt"><span class="ur"><strong>دم</strong> = ایک بکری یا اونٹ/گائے کا ساتواں حصہ — مکہ یا منٰی میں ذبح</span><span class="en-t"><strong>Dam</strong> = 1 sheep or 1/7 of camel/cow — slaughtered in Makkah or Mina</span></div></div>
+        <table class="tbl">
+          <thead><tr><th><span class="ur">سبب</span><span class="en-t">Cause</span></th><th style="text-align:center;"><span class="ur">کفارہ</span><span class="en-t">Kaffarah</span></th></tr></thead>
+          <tbody>
+            <tr><td><span class="ur">وقوفِ مزدلفہ چھوڑنا</span><span class="en-t">Missing Wuquf Muzdalifah</span></td><td style="text-align:center;"><span class="badge b-farz">دم</span></td></tr>
+            <tr><td><span class="ur">رمی چھوڑنا</span><span class="en-t">Missing Rami</span></td><td style="text-align:center;"><span class="badge b-farz">دم</span></td></tr>
+            <tr><td><span class="ur">طوافِ وداع چھوڑنا</span><span class="en-t">Omitting Tawaf Wada</span></td><td style="text-align:center;"><span class="badge b-farz">دم</span></td></tr>
+            <tr><td><span class="ur">یوم النحر کی ترتیب توڑنا</span><span class="en-t">Breaking Yom al-Nahr sequence</span></td><td style="text-align:center;"><span class="badge b-farz">دم</span></td></tr>
+            <tr><td><span class="ur">منٰی میں رات نہ گزارنا</span><span class="en-t">Not staying nights in Mina</span></td><td style="text-align:center;"><span class="badge b-farz">دم</span></td></tr>
+            <tr><td><span class="ur">میقات سے بغیر احرام گزرنا</span><span class="en-t">Passing Miqat without Ihram</span></td><td style="text-align:center;"><span class="badge b-farz">دم</span></td></tr>
+            <tr><td><span class="ur">خوشبو لگانا / سلا لباس</span><span class="en-t">Perfume / sewn clothes</span></td><td style="text-align:center;"><span class="badge b-wajib">فدیہ*</span></td></tr>
+            <tr><td><span class="ur">بال یا ناخن کاٹنا</span><span class="en-t">Cutting hair/nails</span></td><td style="text-align:center;"><span class="badge b-wajib">فدیہ*</span></td></tr>
+            <tr><td><span class="ur">ازدواجی تعلق (عرفہ سے پہلے)</span><span class="en-t">Marital relations before Arafah</span></td><td style="text-align:center;"><span class="badge b-farz">حج باطل + بدنہ</span></td></tr>
+          </tbody>
+        </table>
+        <div class="info blue"><div class="info-ico">📋</div><div class="info-txt"><span class="ur"><strong>فدیہ* تین میں سے ایک:</strong> ۱) بکری ذبح ۲) چھ مسکین کو کھانا ۳) تین دن روزے</span><span class="en-t"><strong>Fidya* — one of three:</strong> 1) Slaughter a sheep 2) Feed 6 poor 3) Fast 3 days</span></div></div>
+      </div>
+    </div>
+
+    <div class="step-card">
+      <div class="step-head" onclick="toggleCard(this)"><div class="step-num">4</div><div class="step-lbl"><span class="ur">حج باطل ہونے کی صورتیں</span><span class="en-t">When Hajj is Invalidated</span></div><div class="step-arr">▾</div></div>
+      <div class="step-body">
+        <div class="note-danger">⛔ <span class="ur"><strong>وقوفِ عرفہ چھوٹنا:</strong> ۹ ذی الحجہ زوال سے ۱۰ کی فجر تک عرفات میں نہ پہنچے — حج باطل۔<br/><strong>ازدواجی تعلق (وقوف سے پہلے):</strong> حج باطل + اگلے سال قضا لازم + بدنہ۔</span><span class="en-t">⛔ <strong>Missing Wuquf Arafah:</strong> If not in Arafat from noon 9th to Fajr 10th — Hajj invalid.<br/><strong>Marital relations before Wuquf:</strong> Hajj invalid + must repeat next year + camel required.</span></div>
+        <div class="note-success">✅ <span class="ur"><strong>یاد رہے:</strong> الحج عرفہ — عرفہ ہی حج کا ستون ہے۔ باقی سب کا کفارہ ممکن ہے۔</span><span class="en-t"><strong>Remember:</strong> "Al-Hajj Arafah" — Arafah is the pillar. All other violations have compensation.</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ TIPS ═══ -->
+<div id="tips" class="section">
+  <div class="s-banner">
+    <div class="b-icon">💡</div>
+    <div class="b-text">
+      <h2><span class="ur">اہم ہدایات و نصیحتیں</span><span class="en-t">Essential Tips & Advice</span></h2>
+      <p><span class="ur">مفتی محمد اسماعیل عزیز کی نصیحتیں</span><span class="en-t">Guidance from Mufti Muhammad Ismail Aziz</span></p>
+    </div>
+  </div>
+  <div class="tips-grid">
+    <div class="tip-card"><div class="tip-ico">🌡️</div><div class="tip-title"><span class="ur">گرمی سے بچاؤ</span><span class="en-t">Heat Protection</span></div><div class="tip-txt"><span class="ur">پانی ہر وقت ساتھ رکھیں۔ چھاتہ اور ٹھنڈا تولیہ استعمال کریں۔ ORS ساتھ رکھیں۔ دوپہر ۱۱ سے ۴ بجے باہر نہ نکلیں۔</span><span class="en-t">Always carry water. Use umbrella and cooling towel. Keep ORS. Avoid going out 11AM–4PM.</span></div></div>
+    <div class="tip-card"><div class="tip-ico">🤲</div><div class="tip-title"><span class="ur">دعا کا اہتمام</span><span class="en-t">Prioritize Du'a</span></div><div class="tip-txt"><span class="ur">دعاؤں کی فہرست پہلے سے بنائیں۔ عرفات میں خوب روئیں اور مانگیں۔ اپنے لیے، والدین، استاذ، گھر والوں کے لیے دعا کریں۔</span><span class="en-t">Prepare a du'a list beforehand. Weep and ask at Arafat. Pray for yourself, parents, teachers and family.</span></div></div>
+    <div class="tip-card"><div class="tip-ico">📱</div><div class="tip-title"><span class="ur">گم ہونے سے بچاؤ</span><span class="en-t">Avoid Getting Lost</span></div><div class="tip-txt"><span class="ur">گروپ رہنما کا نمبر یاد رکھیں۔ ہوٹل کا کارڈ ساتھ رکھیں۔ بچوں پر شناختی بینڈ لگائیں۔</span><span class="en-t">Memorize group leader's number. Keep hotel card. Put ID bands on children.</span></div></div>
+    <div class="tip-card"><div class="tip-ico">⚕️</div><div class="tip-title"><span class="ur">صحت کا خیال</span><span class="en-t">Health Care</span></div><div class="tip-txt"><span class="ur">دوائیں ساتھ لائیں۔ آرام دہ جوتے پہنیں۔ بزرگ وہیل چیئر استعمال کریں۔ ڈاکٹر سے پہلے سے مشورہ کریں۔</span><span class="en-t">Bring medications. Wear comfortable shoes. Elderly use wheelchair. Consult doctor before trip.</span></div></div>
+    <div class="tip-card"><div class="tip-ico">📿</div><div class="tip-title"><span class="ur">ذکر کا معمول</span><span class="en-t">Dhikr Routine</span></div><div class="tip-txt"><span class="ur">سفر میں تلبیہ کثرت سے پڑھیں۔ صبح شام کے اذکار جاری رکھیں۔ استغفار کی کثرت کریں۔</span><span class="en-t">Recite Talbiyah constantly. Continue morning/evening adhkar. Make abundant Istighfar.</span></div></div>
+    <div class="tip-card"><div class="tip-ico">🕊️</div><div class="tip-title"><span class="ur">اخلاق اور صبر</span><span class="en-t">Character & Patience</span></div><div class="tip-txt"><span class="ur">جھگڑے سے مکمل پرہیز کریں۔ ہر تکلیف پر صبر۔ دوسرے حاجیوں کی مدد کریں۔</span><span class="en-t">Completely avoid disputes. Be patient with every difficulty. Help fellow pilgrims.</span></div></div>
+    <div class="tip-card"><div class="tip-ico">💰</div><div class="tip-title"><span class="ur">مالی تیاری</span><span class="en-t">Financial Preparation</span></div><div class="tip-txt"><span class="ur">سعودی ریال نقد ساتھ رکھیں۔ قربانی اور صدقہ کی رقم الگ کریں۔</span><span class="en-t">Keep Saudi Riyals in cash. Set aside money for sacrifice and charity.</span></div></div>
+    <div class="tip-card"><div class="tip-ico">📖</div><div class="tip-title"><span class="ur">علمی تیاری</span><span class="en-t">Knowledge Preparation</span></div><div class="tip-txt"><span class="ur">پہلے سے احکامِ حج سیکھیں۔ اپنے مسلک کے عالم سے رہنمائی لیں۔ یہ رہنما کتاب ساتھ رکھیں۔</span><span class="en-t">Learn Hajj rulings beforehand. Seek guidance from a scholar of your madhab. Keep this guide with you.</span></div></div>
+  </div>
+  <div class="steps-wrap" style="padding-top:0;">
+    <div class="info gold"><div class="info-ico">⭐</div><div class="info-txt"><span class="ur"><strong>حج مقبول کی علامت:</strong> حج کے بعد زندگی میں مثبت تبدیلی — گناہوں سے نفرت اور نیکی کی رغبت۔</span><span class="en-t"><strong>Sign of Accepted Hajj:</strong> Positive change after Hajj — aversion to sins and eagerness for good deeds.</span></div></div>
+    <div class="ar-block">
+      <span class="ar-lbl ur">حج کے بعد کی دعا</span><span class="ar-lbl">Du'a after completing Hajj</span>
+      <span class="ar-text">اللَّهُمَّ اجْعَلْهُ حَجًّا مَّبْرُورًا وَذَنْبًا مَّغْفُورًا وَسَعْيًا مَّشْكُورًا</span>
+      <span class="roman">Allāhumma-jʿalhu ḥajjan mabrūran wa dhanban maghfūran wa saʿyan mashkūran</span>
+      <span class="meaning"><span class="ur">یا اللہ! اسے حجِ مبرور، گناہِ معاف اور سعیِ مشکور بنا</span><span class="en-t">O Allah! Make it an accepted Hajj, a forgiven sin, and an appreciated effort.</span></span>
+    </div>
+  </div>
+</div>
+
+</div><!-- end content -->
+
+<!-- ── FOOTER ── -->
+<div class="footer">
+  <div class="f-verse">وَأَتِمُّوا الْحَجَّ وَالْعُمْرَةَ لِلَّهِ</div>
+  <div class="f-tr ur">اور حج و عمرہ اللہ کے لیے پورے کرو — سورۃ البقرہ: ۱۹۶</div>
+  <div class="f-tr en-t">Complete Hajj and Umrah for Allah — Surah al-Baqarah: 196</div>
+  <div class="f-author">✍️ Compiled by Mufti Muhammad Ismail Aziz &nbsp;|&nbsp; تقبل اللہ منا و منکم</div>
+</div>
+
+<button class="btn-top" id="btnTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+</div><!-- end app -->
+
+<script>
+// ── Language ──
+function setLang(l){
+  const b=document.getElementById('bodyEl'),h=document.getElementById('htmlRoot');
+  b.className=l;h.lang=l==='ur'?'ur':'en';h.dir=l==='ur'?'rtl':'ltr';
+  document.getElementById('btnUr').classList.toggle('active',l==='ur');
+  document.getElementById('btnEn').classList.toggle('active',l==='en');
+}
+
+// ── Tabs ──
+function showTab(id,el){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  el.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+// ── Cards ──
+function toggleCard(h){h.parentElement.classList.toggle('open');}
+
+// ── Modals ──
+function openModal(id){document.getElementById(id).classList.add('show');}
+function closeModal(id){document.getElementById(id).classList.remove('show');}
+document.querySelectorAll('.modal-overlay').forEach(o=>o.addEventListener('click',function(e){if(e.target===this)this.classList.remove('show');}));
+
+// ── Scroll Top ──
+window.addEventListener('scroll',()=>document.getElementById('btnTop').classList.toggle('show',window.scrollY>350));
+
+// ── Widget Date ──
+function updateDate(){
+  const n=new Date();
+  const opts={weekday:'short',month:'short',day:'numeric'};
+  document.getElementById('wDate').textContent=n.toLocaleDateString('en-GB',opts);
+}
+updateDate();setInterval(updateDate,60000);
+
+// ── Calendar ──
+let calYear=new Date().getFullYear(),calMonth=new Date().getMonth();
+const days=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+
+// Hajj 2026 approximate dates (Dhul Hijjah 8-13 = approx May/June 2026)
+// Using approximate: 8 DH ≈ June 2026 - exact depends on moon
+const hajjDates2026=[
+  new Date(2026,4,24), // 8 DH
+  new Date(2026,4,25), // 9 DH - Arafah
+  new Date(2026,4,26), // 10 DH - Eid
+  new Date(2026,4,27), // 11 DH
+  new Date(2026,4,28), // 12 DH
+  new Date(2026,4,29), // 13 DH
+];
+
+function isHajjDay(d){
+  return hajjDates2026.some(hd=>hd.getFullYear()===d.getFullYear()&&hd.getMonth()===d.getMonth()&&hd.getDate()===d.getDate());
+}
+
+function renderCal(){
+  const months=['January','February','March','April','May','June','July','August','September','October','November','December'];
+  document.getElementById('calTitle').textContent=months[calMonth]+' '+calYear;
+  const g=document.getElementById('calGrid');
+  g.innerHTML=days.map(d=>`<div class="cal-day-name">${d}</div>`).join('');
+  const first=new Date(calYear,calMonth,1).getDay();
+  const last=new Date(calYear,calMonth+1,0).getDate();
+  const today=new Date();
+  for(let i=0;i<first;i++) g.innerHTML+=`<div class="cal-day other"></div>`;
+  for(let d=1;d<=last;d++){
+    const dd=new Date(calYear,calMonth,d);
+    const isToday=dd.toDateString()===today.toDateString();
+    const isH=isHajjDay(dd);
+    let cls='cal-day';
+    if(isToday)cls+=' today';
+    else if(isH)cls+=' hajj-day';
+    g.innerHTML+=`<div class="${cls}">${d}</div>`;
+  }
+}
+function prevMonth(){if(calMonth===0){calMonth=11;calYear--;}else calMonth--;renderCal();}
+function nextMonth(){if(calMonth===11){calMonth=0;calYear++;}else calMonth++;renderCal();}
+renderCal();
+
+// ── Weather Data ──
+const weatherData={
+  Makkah:{icon:'☀️',temp:42,desc:'Sunny & Extremely Hot',humid:'28%',wind:'15 km/h',sunrise:'5:48',sunset:'19:12',city:'Makkah al-Mukarramah, Saudi Arabia'},
+  Madinah:{icon:'🌤️',temp:38,desc:'Partly Cloudy & Hot',humid:'32%',wind:'12 km/h',sunrise:'5:52',sunset:'19:08',city:'Madinah al-Munawwarah, Saudi Arabia'},
+  Mina:{icon:'🌞',temp:44,desc:'Hot & Sunny — Tent City',humid:'25%',wind:'10 km/h',sunrise:'5:48',sunset:'19:12',city:'Mina, Makkah, Saudi Arabia'},
+  Arafat:{icon:'🏔️',temp:45,desc:'Extremely Hot — Open Desert',humid:'22%',wind:'18 km/h',sunrise:'5:49',sunset:'19:11',city:'Jabal Arafat, Saudi Arabia'},
+};
+let activeCity='Makkah';
+
+function selectCity(c){
+  activeCity=c;
+  document.querySelectorAll('.city-btn').forEach(b=>b.classList.remove('active'));
+  event.target.classList.add('active');
+  const d=weatherData[c];
+  document.getElementById('mIcon').textContent=d.icon;
+  document.getElementById('mTemp').textContent=d.temp+' °C';
+  document.getElementById('mCityName').textContent=d.city;
+  document.getElementById('mDesc').textContent=d.desc;
+  document.getElementById('mHumid').textContent=d.humid;
+  document.getElementById('mWind').textContent=d.wind;
+  document.getElementById('mSunrise').textContent=d.sunrise;
+  document.getElementById('mSunset').textContent=d.sunset;
+  // update widget
+  document.getElementById('wTemp').textContent=d.temp+' °C';
+  document.getElementById('wCity').textContent=c;
+  document.getElementById('wIcon').textContent=d.icon;
+}
+
+// init widget weather
+const wd=weatherData[activeCity];
+document.getElementById('wTemp').textContent=wd.temp+' °C';
+document.getElementById('wCity').textContent=activeCity;
+document.getElementById('wIcon').textContent=wd.icon;
+</script>
+</body>
+</html>
