@@ -378,6 +378,142 @@ body.en .f-tr{font-family:var(--en);line-height:1.5;}
 
 /* temperature unit */
 .unit-toggle{cursor:pointer;text-decoration:underline;color:var(--gold);}
+
+/* ── OFFLINE BANNER ── */
+.offline-banner{
+  display:none;background:linear-gradient(to left,#7B2020,#C0392B);
+  color:white;text-align:center;padding:8px 16px;font-size:12px;
+  font-family:var(--en);font-weight:600;letter-spacing:.3px;
+  border-bottom:2px solid #FF6B6B;
+}
+.offline-banner.show{display:block;}
+
+/* ── MAP SECTION ── */
+.map-tab-btns{display:flex;gap:8px;flex-wrap:wrap;padding:14px 14px 0;}
+.map-tab-btn{
+  padding:7px 16px;border-radius:20px;border:1.5px solid var(--green-l);
+  background:transparent;color:var(--green);font-family:var(--en);
+  font-size:12px;font-weight:700;cursor:pointer;transition:all .2s;
+}
+.map-tab-btn.active,.map-tab-btn:hover{background:var(--green);color:white;border-color:var(--green);}
+.map-container{margin:12px 14px;border-radius:var(--r);overflow:hidden;border:2px solid var(--gold);box-shadow:var(--sh-md);}
+.map-placeholder{
+  background:linear-gradient(135deg,#0D2038,#1A3A5C);
+  height:260px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;
+  position:relative;
+}
+.map-placeholder-icon{font-size:48px;}
+.map-placeholder-text{color:#A8D4FF;font-family:var(--en);font-size:14px;font-weight:600;text-align:center;}
+.map-placeholder-sub{color:#5599CC;font-family:var(--en);font-size:11px;text-align:center;line-height:1.6;}
+.map-open-btn{
+  background:var(--gold);color:var(--green-d);border:none;border-radius:20px;
+  padding:8px 20px;font-family:var(--en);font-size:12px;font-weight:700;
+  cursor:pointer;transition:all .2s;box-shadow:0 2px 8px rgba(201,168,76,.4);
+  text-decoration:none;display:inline-block;
+}
+.map-open-btn:hover{background:var(--gold-l);transform:translateY(-1px);}
+.poi-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;padding:0 14px 14px;}
+@media(max-width:380px){.poi-grid{grid-template-columns:1fr;}}
+.poi-card{
+  background:var(--white);border-radius:var(--r-s);padding:10px 12px;
+  border:1px solid var(--cream-d);box-shadow:var(--sh-sm);
+  display:flex;align-items:center;gap:9px;cursor:pointer;
+  transition:all .2s;text-decoration:none;
+}
+.poi-card:hover{box-shadow:var(--sh-md);transform:translateY(-1px);}
+.poi-ico{font-size:20px;flex-shrink:0;}
+.poi-info{}
+.poi-name{font-family:var(--ur);font-size:12px;font-weight:700;color:var(--green-d);line-height:2;}
+body.en .poi-name{font-family:var(--en);line-height:1.4;}
+.poi-dist{font-family:var(--en);font-size:10px;color:var(--text-l);}
+
+/* ── DAILY CHECKLIST ── */
+.day-sel-wrap{display:flex;gap:6px;flex-wrap:wrap;padding:14px 14px 0;overflow-x:auto;}
+.day-sel-btn{
+  flex-shrink:0;padding:6px 14px;border-radius:20px;
+  border:1.5px solid var(--green-l);background:transparent;
+  color:var(--green);font-family:var(--en);font-size:11px;font-weight:700;
+  cursor:pointer;transition:all .2s;white-space:nowrap;
+}
+.day-sel-btn.active,.day-sel-btn:hover{background:var(--green);color:white;border-color:var(--green);}
+.day-sel-btn.done{background:var(--green-d);color:var(--gold-l);border-color:var(--green-d);}
+.checklist-wrap{padding:12px 14px;}
+.checklist-day-title{
+  background:linear-gradient(135deg,var(--green-d),var(--green));
+  color:var(--white);padding:10px 14px;border-radius:var(--r-s) var(--r-s) 0 0;
+  font-family:var(--ur);font-size:14px;font-weight:700;line-height:2;
+  border-bottom:2px solid var(--gold);
+}
+body.en .checklist-day-title{font-family:var(--en);line-height:1.4;}
+.checklist-progress{
+  background:var(--cream-d);height:6px;
+  border-radius:0;overflow:hidden;
+}
+.checklist-progress-bar{
+  height:100%;background:linear-gradient(to left,var(--gold),var(--green-l));
+  transition:width .4s ease;border-radius:0 3px 3px 0;
+}
+.checklist-items{background:var(--white);border-radius:0 0 var(--r-s) var(--r-s);border:1px solid var(--cream-d);border-top:none;}
+.checklist-item{
+  display:flex;align-items:flex-start;gap:12px;padding:10px 14px;
+  border-bottom:1px solid var(--cream-d);cursor:pointer;
+  transition:background .2s;
+}
+.checklist-item:last-child{border-bottom:none;}
+.checklist-item:hover{background:var(--cream);}
+.checklist-item.checked{background:var(--green-p);}
+.ci-check{
+  width:22px;height:22px;border:2px solid var(--green-l);border-radius:6px;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  margin-top:2px;transition:all .2s;background:white;
+}
+.checklist-item.checked .ci-check{background:var(--green);border-color:var(--green);}
+.ci-text{font-family:var(--ur);font-size:13px;color:var(--text-m);line-height:2;flex:1;}
+body.en .ci-text{font-family:var(--en);line-height:1.7;}
+.checklist-item.checked .ci-text{color:var(--text-l);text-decoration:line-through;}
+.ci-time{font-family:var(--en);font-size:10px;color:var(--text-l);background:var(--cream-d);padding:2px 6px;border-radius:10px;flex-shrink:0;margin-top:3px;}
+
+/* ── EMERGENCY ── */
+.emg-banner{
+  background:linear-gradient(135deg,#7B0000,#C0392B);
+  margin:14px;border-radius:var(--r);padding:16px;
+  border:2px solid #FF6B6B;box-shadow:0 4px 20px rgba(192,57,43,.3);
+}
+.emg-title{color:white;font-family:var(--ur);font-size:16px;font-weight:700;line-height:2;margin-bottom:10px;display:flex;align-items:center;gap:8px;}
+body.en .emg-title{font-family:var(--en);line-height:1.4;}
+.emg-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;}
+@media(max-width:380px){.emg-grid{grid-template-columns:1fr;}}
+.emg-card{
+  background:rgba(255,255,255,.1);border-radius:var(--r-s);padding:10px;
+  border:1px solid rgba(255,255,255,.2);cursor:pointer;
+  transition:all .2s;text-decoration:none;
+  display:flex;align-items:center;gap:9px;
+}
+.emg-card:hover{background:rgba(255,255,255,.2);transform:translateY(-1px);}
+.emg-ico{font-size:20px;flex-shrink:0;}
+.emg-info{}
+.emg-label{font-family:var(--en);font-size:10px;color:rgba(255,255,255,.7);}
+.emg-num{font-family:var(--en);font-size:14px;font-weight:700;color:white;letter-spacing:.5px;}
+.emg-name{font-family:var(--ur);font-size:11px;color:rgba(255,255,255,.9);line-height:1.8;}
+body.en .emg-name{font-family:var(--en);line-height:1.4;}
+.hosp-card{
+  background:var(--white);border-radius:var(--r-s);margin:8px 14px;padding:12px 14px;
+  border:1px solid var(--cream-d);display:flex;align-items:center;gap:12px;
+  box-shadow:var(--sh-sm);cursor:pointer;transition:all .2s;text-decoration:none;
+}
+.hosp-card:hover{box-shadow:var(--sh-md);}
+.hosp-ico{font-size:24px;flex-shrink:0;}
+.hosp-name{font-family:var(--ur);font-size:13px;font-weight:700;color:var(--green-d);line-height:2;}
+body.en .hosp-name{font-family:var(--en);line-height:1.4;}
+.hosp-info{font-family:var(--en);font-size:11px;color:var(--text-l);line-height:1.5;}
+.hosp-dist{font-family:var(--en);font-size:10px;color:var(--green-l);font-weight:600;margin-top:2px;}
+
+/* ── ACTION IMAGES IN STEPS ── */
+.step-img-gallery{display:flex;gap:6px;overflow-x:auto;margin-bottom:12px;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding-bottom:4px;}
+.step-img-gallery::-webkit-scrollbar{display:none;}
+.step-img-gallery img{width:200px;height:130px;object-fit:cover;border-radius:var(--r-s);flex-shrink:0;border:1px solid var(--cream-d);}
+
+/* ── NEW TABS ── */
 </style>
 </head>
 <body class="ur" id="bodyEl">
@@ -486,6 +622,11 @@ body.en .f-tr{font-family:var(--en);line-height:1.5;}
   </div>
 </div>
 
+<!-- ── OFFLINE BANNER ── -->
+<div class="offline-banner" id="offlineBanner">
+  ⚡ آپ آف لائن ہیں — تمام دعائیں اور بنیادی مواد دستیاب ہے &nbsp;|&nbsp; You're offline — All du'as & content available
+</div>
+
 <!-- ── HEADER ── -->
 <div class="header">
   <div class="header-pat"></div>
@@ -515,6 +656,9 @@ body.en .f-tr{font-family:var(--en);line-height:1.5;}
     <div class="tab" onclick="showTab('hajj',this)"><span>⛺</span><span class="ur">حج</span><span class="en-t">Hajj</span></div>
     <div class="tab" onclick="showTab('azkar',this)"><span>📿</span><span class="ur">اذکار</span><span class="en-t">Du'as</span></div>
     <div class="tab" onclick="showTab('schedule',this)"><span>📅</span><span class="ur">ایام حج</span><span class="en-t">Schedule</span></div>
+    <div class="tab" onclick="showTab('checklist',this)"><span>✅</span><span class="ur">چیک لسٹ</span><span class="en-t">Checklist</span></div>
+    <div class="tab" onclick="showTab('maps',this)"><span>🗺️</span><span class="ur">نقشہ</span><span class="en-t">Maps</span></div>
+    <div class="tab" onclick="showTab('emergency',this)"><span>🆘</span><span class="ur">ہنگامی</span><span class="en-t">Emergency</span></div>
     <div class="tab" onclick="showTab('tartib',this)"><span>⚖️</span><span class="ur">ترتیب و دم</span><span class="en-t">Order & Dam</span></div>
     <div class="tab" onclick="showTab('tips',this)"><span>💡</span><span class="ur">ہدایات</span><span class="en-t">Tips</span></div>
   </div>
@@ -645,6 +789,7 @@ body.en .f-tr{font-family:var(--en);line-height:1.5;}
       <div class="step-arr">▾</div>
     </div>
     <div class="step-body">
+      <img class="step-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Barber_in_Mecca.jpg/640px-Barber_in_Mecca.jpg" onerror="this.style.display='none'" alt="Halq Qasr Makkah">
       <div class="badges"><span class="badge b-wajib">واجب / Wajib</span></div>
       <ul class="slist">
         <li><span class="ur"><strong>حلق:</strong> پورا سر منڈوانا — افضل</span><span class="en-t"><strong>Halq:</strong> Shaving entire head — more virtuous</span></li>
@@ -741,7 +886,7 @@ body.en .f-tr{font-family:var(--en);line-height:1.5;}
     </div>
     <div class="step-body">
       <img class="step-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Jamarat_2006.jpg/640px-Jamarat_2006.jpg" onerror="this.style.display='none'" alt="Jamarat">
-      <div class="info green"><div class="info-ico">📋</div><div class="info-txt"><span class="ur"><strong>آج کے ۴ کام — ترتیب لازمی ہے:</strong></span><span class="en-t"><strong>4 acts today — sequence is obligatory:</strong></span></div></div>
+      <div class="info green"><div class="info-ico">📋</div><div class="info-txt"><span class="ur"><strong>آج کے ۴ کام — ترتیب مسنون ہے:</strong></span><span class="en-t"><strong>4 acts today — sequence is Sunnah (recommended):</strong></span></div></div>
       <div class="flow-box">
         <div class="flow-step"><div class="f-num">1</div><div class="f-lbl"><span class="ur">رمی جمرہ عقبہ — ۷ کنکریاں</span><span class="en-t">Rami Jamrah Aqabah — 7 pebbles</span></div></div>
         <div class="f-arr">↓</div>
@@ -750,7 +895,7 @@ body.en .f-tr{font-family:var(--en);line-height:1.5;}
         <div class="flow-step"><div class="f-num">3</div><div class="f-lbl"><span class="ur">حلق یا قصر</span><span class="en-t">Halq or Qasr</span></div></div>
         <div class="f-arr">↓</div>
         <div class="flow-step"><div class="f-num">4</div><div class="f-lbl"><span class="ur">طوافِ افاضہ + سعی</span><span class="en-t">Tawaf al-Ifadah + Sa'ee</span></div></div>
-        <div class="flow-note"><span class="ur">یہ ترتیب توڑنے سے دم واجب ہوتا ہے</span><span class="en-t">Breaking this sequence makes Dam obligatory</span></div>
+        <div class="flow-note"><span class="ur">ترتیب مسنون ہے — مفتی تقی عثمانی صاحب کے مطابق اگر ترتیب برقرار رکھنا ممکن نہ ہو تو دم واجب نہیں ہوگا</span><span class="en-t">Sequence is Sunnah — per Mufti Taqi Usmani: if maintaining sequence is not possible, Dam is not obligatory</span></div>
       </div>
       <div class="ar-block">
         <span class="ar-lbl ur">ہر کنکری پھینکتے وقت — رمی کی دعا</span><span class="ar-lbl">While throwing each pebble — Rami du'a</span>
@@ -777,6 +922,7 @@ body.en .f-tr{font-family:var(--en);line-height:1.5;}
       <div class="step-arr">▾</div>
     </div>
     <div class="step-body">
+      <img class="step-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Jamarat_Bridge_2009.jpg/640px-Jamarat_Bridge_2009.jpg" onerror="this.style.display='none'" alt="Jamarat Bridge">
       <div class="info blue"><div class="info-ico">⛺</div><div class="info-txt"><span class="ur">منٰی میں قیام اور تینوں جمرات کو ہر روز زوال کے بعد ۷-۷ کنکریاں مارنا۔ نمازوں کے بعد تکبیرِ تشریق پڑھنا واجب ہے۔</span><span class="en-t">Stay in Mina and stone all 3 Jamarat with 7 pebbles each after Dhuhr daily. Reciting Takbir al-Tashreeq after every fard prayer is Wajib.</span></div></div>
 
       <div class="ar-block">
@@ -803,6 +949,7 @@ body.en .f-tr{font-family:var(--en);line-height:1.5;}
       <div class="step-arr">▾</div>
     </div>
     <div class="step-body">
+      <img class="step-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Tawaf%2C_Makkah.jpg/640px-Tawaf%2C_Makkah.jpg" onerror="this.style.display='none'" alt="Tawaf Wada">
       <div class="badges"><span class="badge b-wajib">واجب / Wajib</span></div>
       <ul class="slist">
         <li><span class="ur">مکہ سے روانگی کا آخری عمل — سات چکر</span><span class="en-t">Last act before leaving Makkah — 7 circuits</span></li>
@@ -1106,11 +1253,11 @@ body.en .f-tr{font-family:var(--en);line-height:1.5;}
   </div>
   <div class="steps-wrap">
     <div class="step-card open">
-      <div class="step-head" onclick="toggleCard(this)"><div class="step-num">1</div><div class="step-lbl"><span class="ur">جن افعال میں ترتیب واجب ہے</span><span class="en-t">Acts Requiring Obligatory Sequence</span></div><div class="step-arr">▾</div></div>
+      <div class="step-head" onclick="toggleCard(this)"><div class="step-num">1</div><div class="step-lbl"><span class="ur">جن افعال میں ترتیب مسنون ہے</span><span class="en-t">Acts With Recommended (Sunnah) Sequence</span></div><div class="step-arr">▾</div></div>
       <div class="step-body">
-        <div class="info red"><div class="info-ico">⚠️</div><div class="info-txt"><span class="ur">یوم النحر کی ترتیب توڑنے سے دم واجب ہوتا ہے۔</span><span class="en-t">Breaking the sequence on Yom al-Nahr makes Dam obligatory.</span></div></div>
+        <div class="info gold"><div class="info-ico">📌</div><div class="info-txt"><span class="ur"><strong>مفتی تقی عثمانی صاحب کا موقف:</strong> یوم النحر کی ترتیب مسنون اور افضل ہے، لیکن اگر بھیڑ، بیماری یا کسی مجبوری کی وجہ سے ترتیب برقرار رکھنا ممکن نہ ہو تو دم واجب نہیں ہوگا۔</span><span class="en-t"><strong>Mufti Taqi Usmani's position:</strong> The sequence on Yom al-Nahr is Sunnah and preferred, but if maintaining it is not possible due to crowd, illness or compulsion, Dam is NOT obligatory.</span></div></div>
         <div class="flow-box">
-          <div style="text-align:center;font-family:var(--ur);font-size:13px;color:var(--gold-d);font-weight:700;margin-bottom:12px;line-height:2;"><span class="ur">یوم النحر — لازمی ترتیب</span><span class="en-t">Yom al-Nahr — Obligatory Sequence</span></div>
+          <div style="text-align:center;font-family:var(--ur);font-size:13px;color:var(--gold-d);font-weight:700;margin-bottom:12px;line-height:2;"><span class="ur">یوم النحر — مسنون ترتیب</span><span class="en-t">Yom al-Nahr — Sunnah Sequence</span></div>
           <div class="flow-step"><div class="f-num">1</div><div class="f-lbl"><span class="ur">رمی جمرہ عقبہ</span><span class="en-t">Rami Jamrah Aqabah</span></div></div>
           <div class="f-arr">↓</div>
           <div class="flow-step"><div class="f-num">2</div><div class="f-lbl"><span class="ur">قربانی</span><span class="en-t">Sacrifice</span></div></div>
@@ -1149,8 +1296,8 @@ body.en .f-tr{font-family:var(--en);line-height:1.5;}
             <tr><td><span class="ur">وقوفِ مزدلفہ چھوڑنا</span><span class="en-t">Missing Wuquf Muzdalifah</span></td><td style="text-align:center;"><span class="badge b-farz">دم</span></td></tr>
             <tr><td><span class="ur">رمی چھوڑنا</span><span class="en-t">Missing Rami</span></td><td style="text-align:center;"><span class="badge b-farz">دم</span></td></tr>
             <tr><td><span class="ur">طوافِ وداع چھوڑنا</span><span class="en-t">Omitting Tawaf Wada</span></td><td style="text-align:center;"><span class="badge b-farz">دم</span></td></tr>
-            <tr><td><span class="ur">یوم النحر کی ترتیب توڑنا</span><span class="en-t">Breaking Yom al-Nahr sequence</span></td><td style="text-align:center;"><span class="badge b-farz">دم</span></td></tr>
-            <tr><td><span class="ur">منٰی میں رات نہ گزارنا</span><span class="en-t">Not staying nights in Mina</span></td><td style="text-align:center;"><span class="badge b-farz">دم</span></td></tr>
+            <tr><td><span class="ur">یوم النحر کی ترتیب توڑنا</span><span class="en-t">Breaking Yom al-Nahr sequence</span></td><td style="text-align:center;"><span class="badge b-sunnah" style="background:#2980B9;">مسنون*</span></td></tr>
+            <tr><td><span class="ur">منٰی میں رات نہ گزارنا</span><span class="en-t">Not staying nights in Mina</span></td><td style="text-align:center;"><span class="badge b-sunnah" style="background:#2980B9;">دم نہیں**</span></td></tr>
             <tr><td><span class="ur">میقات سے بغیر احرام گزرنا</span><span class="en-t">Passing Miqat without Ihram</span></td><td style="text-align:center;"><span class="badge b-farz">دم</span></td></tr>
             <tr><td><span class="ur">خوشبو لگانا / سلا لباس</span><span class="en-t">Perfume / sewn clothes</span></td><td style="text-align:center;"><span class="badge b-wajib">فدیہ*</span></td></tr>
             <tr><td><span class="ur">بال یا ناخن کاٹنا</span><span class="en-t">Cutting hair/nails</span></td><td style="text-align:center;"><span class="badge b-wajib">فدیہ*</span></td></tr>
@@ -1158,6 +1305,8 @@ body.en .f-tr{font-family:var(--en);line-height:1.5;}
           </tbody>
         </table>
         <div class="info blue"><div class="info-ico">📋</div><div class="info-txt"><span class="ur"><strong>فدیہ* تین میں سے ایک:</strong> ۱) بکری ذبح ۲) چھ مسکین کو کھانا ۳) تین دن روزے</span><span class="en-t"><strong>Fidya* — one of three:</strong> 1) Slaughter a sheep 2) Feed 6 poor 3) Fast 3 days</span></div></div>
+        <div class="info gold"><div class="info-ico">📚</div><div class="info-txt"><span class="ur"><strong>* مسنون ترتیب:</strong> مفتی تقی عثمانی صاحب (حفظہ اللہ) کے فتوے کے مطابق یوم النحر کے اعمال (رمی، قربانی، حلق، طوافِ افاضہ) کی ترتیب مسنون اور افضل ہے — لیکن اگر بھیڑ، مرض یا کسی شرعی مجبوری کی وجہ سے ترتیب برقرار رکھنا ممکن نہ ہو تو دم واجب نہیں ہوگا۔ (ماخوذ: آپ کے مسائل اور ان کا حل)</span><span class="en-t"><strong>* Sunnah Sequence:</strong> Per Mufti Taqi Usmani (may Allah preserve him): the sequence of Yom al-Nahr acts is Sunnah and preferred — but if maintaining the sequence is not possible due to crowd, illness or valid compulsion, Dam is NOT obligatory. (Source: Aap ke Masail aur Unka Hal)</span></div></div>
+        <div class="info teal"><div class="info-ico">🌙</div><div class="info-txt"><span class="ur"><strong>** منٰی میں رات:</strong> مفتی تقی عثمانی صاحب کے مطابق منٰی میں رات گزارنا واجب نہیں ہے اس لیے اس کے چھوڑنے سے دم واجب نہیں ہوتا — البتہ رات منٰی میں گزارنا سنت اور افضل ہے اور اس کا اہتمام کرنا چاہیے۔</span><span class="en-t"><strong>** Mina Night:</strong> Per Mufti Taqi Usmani: staying the nights in Mina is not Wajib, therefore leaving it does not make Dam obligatory — however, it is Sunnah and more virtuous and should be observed when possible.</span></div></div>
       </div>
     </div>
 
@@ -1203,6 +1352,152 @@ body.en .f-tr{font-family:var(--en);line-height:1.5;}
 
 </div><!-- end content -->
 
+<!-- ═══ MAPS ═══ -->
+<div id="maps" class="section">
+  <div class="s-banner">
+    <div class="b-icon">🗺️</div>
+    <div class="b-text">
+      <h2><span class="ur">انٹرایکٹو نقشے</span><span class="en-t">Interactive Maps & GPS Guide</span></h2>
+      <p><span class="ur">مکہ، مدینہ، منٰی اور عرفات کے اہم مقامات</span><span class="en-t">Key locations: Makkah, Madinah, Mina & Arafat</span></div>
+    </div>
+  </div>
+
+  <div class="map-tab-btns">
+    <button class="map-tab-btn active" onclick="switchMap('makkah',this)">🕋 Makkah</button>
+    <button class="map-tab-btn" onclick="switchMap('madinah',this)">🌹 Madinah</button>
+    <button class="map-tab-btn" onclick="switchMap('mina',this)">⛺ Mina</button>
+    <button class="map-tab-btn" onclick="switchMap('arafat',this)">🏔️ Arafat</button>
+  </div>
+
+  <div class="map-container">
+    <div class="map-placeholder" id="mapPlaceholder">
+      <div class="map-placeholder-icon" id="mapIcon">🕋</div>
+      <div class="map-placeholder-text" id="mapTitle">مسجد الحرام — مکہ مکرمہ</div>
+      <div class="map-placeholder-sub" id="mapSub">21.4225° N, 39.8262° E</div>
+      <a class="map-open-btn" id="mapLink" href="https://maps.google.com/?q=21.4225,39.8262" target="_blank">📍 Open in Google Maps</a>
+    </div>
+  </div>
+
+  <div style="padding:0 14px;font-family:var(--ur);font-size:13px;color:var(--text-m);line-height:2;text-align:center;">
+    <span class="ur">🔗 GPS لوکیشن کو گوگل میپس میں کھولیں — آف لائن نقشے کے لیے Google Maps آف لائن ڈاؤن لوڈ کریں</span>
+    <span class="en-t">🔗 Open GPS location in Google Maps — For offline maps, download Google Maps offline area</span>
+  </div>
+
+  <div style="padding:12px 14px 4px;"><div style="font-family:var(--ur);font-size:14px;font-weight:700;color:var(--green-d);border-right:3px solid var(--gold);padding-right:10px;line-height:2;"><span class="ur">اہم مقامات</span><span class="en-t">Points of Interest</span></div></div>
+  <div class="poi-grid" id="poiGrid">
+    <!-- Populated by JS -->
+  </div>
+</div>
+
+<!-- ═══ DAILY CHECKLIST ═══ -->
+<div id="checklist" class="section">
+  <div class="s-banner">
+    <div class="b-icon">✅</div>
+    <div class="b-text">
+      <h2><span class="ur">روزانہ کا شیڈول</span><span class="en-t">Daily Task Manager</span></h2>
+      <p><span class="ur">ہر دن کے مناسک کی چیک لسٹ — مکمل کریں اور ٹریک کریں</span><span class="en-t">Daily ritual checklist — complete & track your progress</span></p>
+    </div>
+  </div>
+
+  <div class="day-sel-wrap" id="daySels">
+    <button class="day-sel-btn active" onclick="showDay(0,this)"><span class="ur">عمرہ</span><span class="en-t">Umrah</span></button>
+    <button class="day-sel-btn" onclick="showDay(1,this)">8 ذی الحجہ</button>
+    <button class="day-sel-btn" onclick="showDay(2,this)">9 ذی الحجہ ⭐</button>
+    <button class="day-sel-btn" onclick="showDay(3,this)">10 ذی الحجہ 🎉</button>
+    <button class="day-sel-btn" onclick="showDay(4,this)">11 ذی الحجہ</button>
+    <button class="day-sel-btn" onclick="showDay(5,this)">12 ذی الحجہ</button>
+    <button class="day-sel-btn" onclick="showDay(6,this)">13 ذی الحجہ</button>
+  </div>
+
+  <div class="checklist-wrap">
+    <div class="checklist-day-title" id="clDayTitle">عمرہ — مکمل گائیڈ | Umrah — Complete Guide</div>
+    <div class="checklist-progress"><div class="checklist-progress-bar" id="clProgress" style="width:0%"></div></div>
+    <div class="checklist-items" id="clItems"><!-- Populated by JS --></div>
+  </div>
+
+  <div style="padding:8px 14px 14px;">
+    <button onclick="resetChecklist()" style="background:transparent;border:1.5px solid var(--cream-d);border-radius:20px;padding:7px 16px;font-family:var(--en);font-size:12px;color:var(--text-l);cursor:pointer;">🔄 <span class="ur">دوبارہ شروع کریں</span><span class="en-t">Reset Checklist</span></button>
+  </div>
+</div>
+
+<!-- ═══ EMERGENCY ═══ -->
+<div id="emergency" class="section">
+  <div class="s-banner">
+    <div class="b-icon">🆘</div>
+    <div class="b-text">
+      <h2><span class="ur">ہنگامی معلومات</span><span class="en-t">Emergency Contacts & Hospitals</span></h2>
+      <p><span class="ur">سعودی عرب کے اہم نمبرز — فوری مدد کے لیے</span><span class="en-t">Saudi Arabia emergency numbers — for immediate help</span></p>
+    </div>
+  </div>
+
+  <div class="emg-banner">
+    <div class="emg-title">🚨 <span class="ur">ہنگامی نمبرز — فوری ڈائل کریں</span><span class="en-t">Emergency Numbers — Dial Immediately</span></div>
+    <div class="emg-grid">
+      <a class="emg-card" href="tel:911">
+        <div class="emg-ico">🚑</div>
+        <div class="emg-info"><div class="emg-label">Emergency</div><div class="emg-num">911</div><div class="emg-name"><span class="ur">سعودی ایمرجنسی</span><span class="en-t">Saudi Emergency</span></div></div>
+      </a>
+      <a class="emg-card" href="tel:920000999">
+        <div class="emg-ico">🏥</div>
+        <div class="emg-info"><div class="emg-label">Hajj Health</div><div class="emg-num">920000999</div><div class="emg-name"><span class="ur">حج صحت خدمات</span><span class="en-t">Hajj Health Services</span></div></div>
+      </a>
+      <a class="emg-card" href="tel:998">
+        <div class="emg-ico">🔥</div>
+        <div class="emg-info"><div class="emg-label">Fire Dept</div><div class="emg-num">998</div><div class="emg-name"><span class="ur">فائر ڈپارٹمنٹ</span><span class="en-t">Fire Department</span></div></div>
+      </a>
+      <a class="emg-card" href="tel:999">
+        <div class="emg-ico">👮</div>
+        <div class="emg-info"><div class="emg-label">Police</div><div class="emg-num">999</div><div class="emg-name"><span class="ur">پولیس</span><span class="en-t">Police</span></div></div>
+      </a>
+      <a class="emg-card" href="tel:920008900">
+        <div class="emg-ico">📍</div>
+        <div class="emg-info"><div class="emg-label">Lost Pilgrim</div><div class="emg-num">920008900</div><div class="emg-name"><span class="ur">گم شدہ حاجی</span><span class="en-t">Lost Pilgrim Center</span></div></div>
+      </a>
+      <a class="emg-card" href="tel:920009100">
+        <div class="emg-ico">🩺</div>
+        <div class="emg-info"><div class="emg-label">Hajj Ministry</div><div class="emg-num">920009100</div><div class="emg-name"><span class="ur">وزارت حج</span><span class="en-t">Ministry of Hajj</span></div></div>
+      </a>
+    </div>
+  </div>
+
+  <div style="padding:12px 14px 4px;"><div style="font-family:var(--ur);font-size:14px;font-weight:700;color:var(--green-d);border-right:3px solid var(--gold);padding-right:10px;line-height:2;"><span class="ur">مکہ کے اسپتال</span><span class="en-t">Hospitals in Makkah</span></div></div>
+
+  <a class="hosp-card" href="https://maps.google.com/?q=21.4296,39.8166" target="_blank">
+    <div class="hosp-ico">🏥</div>
+    <div><div class="hosp-name"><span class="ur">مستشفى الملك عبدالعزيز</span><span class="en-t">King Abdul Aziz Hospital</span></div><div class="hosp-info">Al Zaher, Makkah | ☎ 012 557 7777</div><div class="hosp-dist">📍 Near Masjid al-Haram</div></div>
+  </a>
+  <a class="hosp-card" href="https://maps.google.com/?q=21.4243,39.8282" target="_blank">
+    <div class="hosp-ico">🏥</div>
+    <div><div class="hosp-name"><span class="ur">مستشفى الحرم المكي</span><span class="en-t">Masjid al-Haram Hospital</span></div><div class="hosp-info">Haram Area, Makkah | ☎ 012 556 3000</div><div class="hosp-dist">📍 Adjacent to Al-Haram</div></div>
+  </a>
+  <a class="hosp-card" href="https://maps.google.com/?q=21.3967,39.8731" target="_blank">
+    <div class="hosp-ico">🏥</div>
+    <div><div class="hosp-name"><span class="ur">مستشفى منى المركزي</span><span class="en-t">Mina Central Hospital</span></div><div class="hosp-info">Mina, Makkah | ☎ 012 573 0000</div><div class="hosp-dist">📍 In Mina Camp Area</div></div>
+  </a>
+
+  <div style="padding:12px 14px 4px;"><div style="font-family:var(--ur);font-size:14px;font-weight:700;color:var(--blue);border-right:3px solid #5599CC;padding-right:10px;line-height:2;"><span class="ur">مدینہ کے اسپتال</span><span class="en-t">Hospitals in Madinah</span></div></div>
+
+  <a class="hosp-card" href="https://maps.google.com/?q=24.4757,39.6083" target="_blank">
+    <div class="hosp-ico">🏥</div>
+    <div><div class="hosp-name"><span class="ur">مستشفى الملك فهد</span><span class="en-t">King Fahd Hospital</span></div><div class="hosp-info">Al Mursal, Madinah | ☎ 014 847 7777</div><div class="hosp-dist">📍 Near Masjid al-Nabawi</div></div>
+  </a>
+  <a class="hosp-card" href="https://maps.google.com/?q=24.4672,39.6151" target="_blank">
+    <div class="hosp-ico">🏥</div>
+    <div><div class="hosp-name"><span class="ur">مستشفى الأنصار</span><span class="en-t">Al-Ansar Hospital</span></div><div class="hosp-info">Madinah | ☎ 014 826 6666</div><div class="hosp-dist">📍 Central Madinah</div></div>
+  </a>
+
+  <div style="margin:12px 14px;background:var(--gold-p);border-radius:var(--r-s);padding:14px;border:1px solid var(--gold);">
+    <div style="font-family:var(--ur);font-size:13px;font-weight:700;color:var(--gold-d);margin-bottom:8px;line-height:2;"><span class="ur">⭐ اہم ہدایات</span><span class="en-t">⭐ Important Tips</span></div>
+    <ul style="list-style:none;font-family:var(--ur);font-size:12.5px;color:var(--text-m);line-height:2.2;">
+      <li>◆ <span class="ur">اپنا ہوٹل کارڈ اور گروپ رہنما کا نمبر ہمیشہ ساتھ رکھیں</span><span class="en-t">Always keep your hotel card and group leader's number</span></li>
+      <li>◆ <span class="ur">بچوں کے بازو پر شناختی بینڈ لگائیں</span><span class="en-t">Attach ID bands on children's wrists</span></li>
+      <li>◆ <span class="ur">پاسپورٹ کی فوٹو کاپی الگ جگہ رکھیں</span><span class="en-t">Keep a photocopy of passport separately</span></li>
+      <li>◆ <span class="ur">پاکستانی قونصل خانہ مکہ: 00966-12-577-3888</span><span class="en-t">Pakistan Consulate Makkah: 00966-12-577-3888</span></li>
+      <li>◆ <span class="ur">پاکستانی سفارت خانہ ریاض: 00966-11-482-5581</span><span class="en-t">Pakistan Embassy Riyadh: 00966-11-482-5581</span></li>
+    </ul>
+  </div>
+</div>
+
 <!-- ── FOOTER ── -->
 <div class="footer">
   <div class="f-verse">وَأَتِمُّوا الْحَجَّ وَالْعُمْرَةَ لِلَّهِ</div>
@@ -1215,6 +1510,186 @@ body.en .f-tr{font-family:var(--en);line-height:1.5;}
 </div><!-- end app -->
 
 <script>
+// ── Offline Detection ──
+function checkOnline(){
+  document.getElementById('offlineBanner').classList.toggle('show',!navigator.onLine);
+}
+window.addEventListener('online',checkOnline);
+window.addEventListener('offline',checkOnline);
+checkOnline();
+
+// ── Maps Data ──
+const mapsData={
+  makkah:{icon:'🕋',title:'مسجد الحرام — مکہ مکرمہ | Masjid al-Haram, Makkah',coords:'21.4225,39.8262',
+    poi:[
+      {ico:'🕋',name:'مسجد الحرام',en:'Masjid al-Haram',dist:'Center'},
+      {ico:'⬛',name:'خانۂ کعبہ',en:"Ka'bah",dist:'Inside Haram'},
+      {ico:'🪨',name:'حجرِ اسود',en:'Hajar al-Aswad',dist:'Ka\'bah SE corner'},
+      {ico:'🏛️',name:'مقامِ ابراہیم',en:'Maqam Ibrahim',dist:'~13m from Ka\'bah'},
+      {ico:'⛲',name:'زمزم',en:'Zamzam Well',dist:'Inside Haram'},
+      {ico:'🏃',name:'صفا و مروہ',en:"Safa & Marwah",dist:'Inside Haram'},
+      {ico:'🌄',name:'جبل ابو قبیس',en:'Jabal Abu Qubays',dist:'~500m E'},
+      {ico:'🏔️',name:'جبل نور / غارِ حرا',en:"Jabal Noor / Cave Hira",dist:'~4km N'},
+    ],link:'https://maps.google.com/?q=21.4225,39.8262'},
+  madinah:{icon:'🌹',title:'مسجد نبوی — مدینہ منورہ | Masjid al-Nabawi, Madinah',coords:'24.4672,39.6112',
+    poi:[
+      {ico:'🌹',name:'مسجد نبوی',en:'Masjid al-Nabawi',dist:'Center'},
+      {ico:'💚',name:'روضۂ رسول ﷺ',en:"Rawdah of Prophet ﷺ",dist:'Inside Nabawi'},
+      {ico:'🏛️',name:'باب السلام',en:"Bab al-Salam",dist:'N entrance'},
+      {ico:'⚰️',name:'جنت البقیع',en:'Jannatul Baqi',dist:'~200m SE'},
+      {ico:'🕌',name:'مسجد قبا',en:'Masjid Quba',dist:'~5km S'},
+      {ico:'🗡️',name:'مسجد قبلتین',en:'Masjid Qiblatain',dist:'~4km NW'},
+    ],link:'https://maps.google.com/?q=24.4672,39.6112'},
+  mina:{icon:'⛺',title:'منٰی — خیموں کا شہر | Mina — City of Tents',coords:'21.3956,39.8731',
+    poi:[
+      {ico:'⛺',name:'منٰی — خیموں کا علاقہ',en:'Mina Tent Area',dist:'Center'},
+      {ico:'🪨',name:'جمرہ عقبہ (بڑا)',en:'Jamrah Aqabah (Large)',dist:'W end of Mina'},
+      {ico:'🪨',name:'جمرہ وسطیٰ',en:'Jamrah Wusta (Middle)',dist:'Center bridge'},
+      {ico:'🪨',name:'جمرہ صغریٰ',en:'Jamrah Sughra (Small)',dist:'E end'},
+      {ico:'🏥',name:'منٰی مرکزی اسپتال',en:'Mina Central Hospital',dist:'~1km'},
+    ],link:'https://maps.google.com/?q=21.3956,39.8731'},
+  arafat:{icon:'🏔️',title:'میدانِ عرفات | Plain of Arafat',coords:'21.3548,39.9847',
+    poi:[
+      {ico:'🏔️',name:'جبل الرحمہ',en:"Jabal al-Rahmah",dist:'Center'},
+      {ico:'🕌',name:'مسجد نمرہ',en:'Masjid Namirah',dist:'W side of Arafat'},
+      {ico:'⛺',name:'مزدلفہ',en:'Muzdalifah',dist:'~9km NW'},
+      {ico:'🕌',name:'مشعر الحرام',en:"Mash'ar al-Haram",dist:'In Muzdalifah'},
+    ],link:'https://maps.google.com/?q=21.3548,39.9847'},
+};
+let activeMap='makkah';
+function switchMap(city,btn){
+  activeMap=city;
+  document.querySelectorAll('.map-tab-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  const d=mapsData[city];
+  document.getElementById('mapIcon').textContent=d.icon;
+  document.getElementById('mapTitle').textContent=d.title;
+  document.getElementById('mapSub').textContent=d.coords;
+  document.getElementById('mapLink').href=d.link;
+  renderPOI(city);
+}
+function renderPOI(city){
+  const grid=document.getElementById('poiGrid');
+  const pois=mapsData[city].poi;
+  grid.innerHTML=pois.map(p=>`
+    <a class="poi-card" href="https://maps.google.com/?q=${p.name}" target="_blank">
+      <div class="poi-ico">${p.ico}</div>
+      <div class="poi-info">
+        <div class="poi-name"><span class="ur">${p.name}</span><span class="en-t">${p.en}</span></div>
+        <div class="poi-dist">${p.dist}</div>
+      </div>
+    </a>`).join('');
+}
+renderPOI('makkah');
+
+// ── Daily Checklist ──
+const checklistData=[
+  {title:'عمرہ | Umrah — Complete Guide',tasks:[
+    {ur:'احرام باندھنا — غسل، نیت، تلبیہ',en:'Wear Ihram — ghusl, niyyah, Talbiyah',time:'Before entry'},
+    {ur:'طواف — حجرِ اسود سے ۷ چکر',en:'Tawaf — 7 circuits from Hajar al-Aswad',time:'At Haram'},
+    {ur:'مقامِ ابراہیم کے پیچھے ۲ رکعت',en:'2 rak\'ah behind Maqam Ibrahim',time:'After Tawaf'},
+    {ur:'زمزم پینا — قبلہ رخ تین سانس میں',en:'Drink Zamzam — facing Qiblah, 3 breaths',time:'After prayer'},
+    {ur:'سعی — صفا سے مروہ ۷ چکر',en:"Sa'ee — Safa to Marwah 7 rounds",time:'After Zamzam'},
+    {ur:'حلق یا قصر — احرام کھولنا',en:'Halq/Qasr — remove Ihram',time:'After Sa\'ee'},
+  ]},
+  {title:'۸ ذی الحجہ | 8th Dhul Hijjah — Yom Tarwiyah',tasks:[
+    {ur:'غسل اور احرام باندھنا',en:'Ghusl and wear Ihram',time:'Morning'},
+    {ur:'نیتِ حج اور تلبیہ',en:'Niyyah for Hajj and Talbiyah',time:'At Miqat'},
+    {ur:'منٰی روانگی — تلبیہ کثرت سے',en:'Proceed to Mina — recite Talbiyah abundantly',time:'Morning'},
+    {ur:'ظہر — قصر (۲ رکعت)',en:'Dhuhr — qasr (2 rak\'ah)',time:'Dhuhr'},
+    {ur:'عصر — قصر (۲ رکعت)',en:'Asr — qasr (2 rak\'ah)',time:'Asr'},
+    {ur:'مغرب — ۳ رکعت',en:'Maghrib — 3 rak\'ah',time:'Maghrib'},
+    {ur:'عشاء — قصر (۲ رکعت)',en:'Isha — qasr (2 rak\'ah)',time:'Isha'},
+    {ur:'رات منٰی میں — قرآن، تلبیہ',en:'Spend night in Mina — Quran, Talbiyah',time:'Night'},
+  ]},
+  {title:'⭐ ۹ ذی الحجہ | 9th Dhul Hijjah — Yom Arafah',tasks:[
+    {ur:'فجر منٰی میں',en:'Fajr in Mina',time:'Fajr'},
+    {ur:'سورج نکلنے کے بعد عرفات روانگی',en:'After sunrise: proceed to Arafat',time:'Morning'},
+    {ur:'نمرہ مسجد: ظہر + عصر جمع تقدیم',en:'Namirah: Dhuhr+Asr combined early',time:'Dhuhr'},
+    {ur:'وقوفِ عرفہ — کثرت سے دعا و ذکر',en:'Wuquf Arafah — extensive dua and dhikr',time:'Noon-Sunset'},
+    {ur:'غروب کے بعد مزدلفہ روانگی',en:'After sunset: depart to Muzdalifah',time:'Sunset'},
+    {ur:'مغرب + عشاء جمع تاخیر — مزدلفہ',en:'Maghrib+Isha combined late — Muzdalifah',time:'Night'},
+    {ur:'۷۰ کنکریاں چنیں',en:'Collect 70 pebbles',time:'Night'},
+    {ur:'فجر تک مشعر الحرام میں دعا',en:'Dua at Mash\'ar al-Haram till Fajr',time:'Night'},
+  ]},
+  {title:'🎉 ۱۰ ذی الحجہ | 10th — Eid al-Adha (4 acts in order)',tasks:[
+    {ur:'فجر مزدلفہ میں',en:'Fajr at Muzdalifah',time:'Fajr'},
+    {ur:'سورج نکلنے سے پہلے منٰی روانگی',en:'Before sunrise: move to Mina',time:'Before sunrise'},
+    {ur:'۱) رمی جمرہ عقبہ — ۷ کنکریاں',en:'1) Rami Jamrah Aqabah — 7 pebbles',time:'After sunrise'},
+    {ur:'۲) قربانی — ہدی',en:"2) Sacrifice — Hady",time:'After Rami'},
+    {ur:'۳) حلق یا قصر',en:'3) Halq or Qasr',time:'After sacrifice'},
+    {ur:'۴) طوافِ افاضہ + سعی — مکہ',en:"4) Tawaf al-Ifadah + Sa'ee — Makkah",time:'After Halq'},
+    {ur:'رات منٰی میں',en:'Night in Mina',time:'Night'},
+  ]},
+  {title:'۱۱ ذی الحجہ | 11th Dhul Hijjah',tasks:[
+    {ur:'زوال کے بعد جمرہ صغریٰ — ۷ کنکریاں + دعا',en:'After Dhuhr: Jamrah Sughra — 7 pebbles + dua',time:'After Dhuhr'},
+    {ur:'جمرہ وسطیٰ — ۷ کنکریاں + دعا',en:'Jamrah Wusta — 7 pebbles + dua',time:'After Sughra'},
+    {ur:'جمرہ عقبہ — ۷ کنکریاں (دعا نہیں)',en:'Jamrah Aqabah — 7 pebbles (no dua)',time:'After Wusta'},
+    {ur:'تکبیرِ تشریق — ہر فرض نماز کے بعد',en:'Takbir al-Tashreeq — after every fard prayer',time:'All prayers'},
+    {ur:'رات منٰی میں',en:'Night in Mina',time:'Night'},
+  ]},
+  {title:'۱۲ ذی الحجہ | 12th Dhul Hijjah',tasks:[
+    {ur:'تینوں جمرات — ۷-۷ کنکریاں',en:'All 3 Jamarat — 7 pebbles each',time:'After Dhuhr'},
+    {ur:'تکبیرِ تشریق',en:'Takbir al-Tashreeq',time:'All prayers'},
+    {ur:'اختیاری: غروب سے پہلے منٰی چھوڑ سکتے ہیں',en:'Optional: May leave Mina before sunset',time:'Before sunset'},
+  ]},
+  {title:'۱۳ ذی الحجہ | 13th Dhul Hijjah — Final Day',tasks:[
+    {ur:'تینوں جمرات — آخری رمی',en:'All 3 Jamarat — final Rami',time:'After Dhuhr'},
+    {ur:'تکبیرِ تشریق — آخری عصر تک',en:'Takbir al-Tashreeq — until last Asr',time:'Asr'},
+    {ur:'مکہ جا کر طوافِ وداع',en:'Go to Makkah for Tawaf al-Wada',time:'Evening'},
+    {ur:'روانگی — الحمد للہ حج مکمل!',en:'Departure — Alhamdulillah Hajj complete!',time:'After Wada'},
+  ]},
+];
+let checkStates={};
+let activeDay=0;
+function initCheck(){
+  checklistData.forEach((_,di)=>{checklistData[di].tasks.forEach((_,ti)=>{
+    const k=`${di}_${ti}`;
+    if(checkStates[k]===undefined)checkStates[k]=false;
+  });});
+}
+initCheck();
+function showDay(idx,btn){
+  activeDay=idx;
+  document.querySelectorAll('.day-sel-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderChecklist();
+}
+function renderChecklist(){
+  const d=checklistData[activeDay];
+  document.getElementById('clDayTitle').textContent=d.title;
+  const items=document.getElementById('clItems');
+  items.innerHTML=d.tasks.map((t,ti)=>{
+    const k=`${activeDay}_${ti}`;
+    const checked=checkStates[k];
+    return `<div class="checklist-item${checked?' checked':''}" onclick="toggleCheck(${activeDay},${ti})">
+      <div class="ci-check">${checked?'<span style="color:white;font-size:14px;">✓</span>':''}</div>
+      <div class="ci-text"><span class="ur">${t.ur}</span><span class="en-t">${t.en}</span></div>
+      <div class="ci-time">${t.time}</div>
+    </div>`;
+  }).join('');
+  updateProgress();
+}
+function toggleCheck(di,ti){
+  const k=`${di}_${ti}`;
+  checkStates[k]=!checkStates[k];
+  renderChecklist();
+}
+function updateProgress(){
+  const d=checklistData[activeDay];
+  const total=d.tasks.length;
+  const done=d.tasks.filter((_,ti)=>checkStates[`${activeDay}_${ti}`]).length;
+  document.getElementById('clProgress').style.width=`${(done/total)*100}%`;
+  // mark day button done
+  const btns=document.querySelectorAll('.day-sel-btn');
+  btns[activeDay].classList.toggle('done',done===total&&total>0);
+}
+function resetChecklist(){
+  checklistData[activeDay].tasks.forEach((_,ti)=>{checkStates[`${activeDay}_${ti}`]=false;});
+  renderChecklist();
+}
+renderChecklist();
+
 // ── Language ──
 function setLang(l){
   const b=document.getElementById('bodyEl'),h=document.getElementById('htmlRoot');
