@@ -2,7 +2,12 @@
 <html lang="ur" dir="rtl" id="htmlRoot">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="حج رہنما">
+<meta name="theme-color" content="#0D3B24">
 <title>حج و عمرہ مکمل رہنما | Complete Hajj & Umrah Guide</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;500;600;700&family=Amiri+Quran&family=Amiri:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -514,6 +519,276 @@ body.en .hosp-name{font-family:var(--en);line-height:1.4;}
 .step-img-gallery img{width:200px;height:130px;object-fit:cover;border-radius:var(--r-s);flex-shrink:0;border:1px solid var(--cream-d);}
 
 /* ── NEW TABS ── */
+
+/* ═══════════════════════════════════
+   MOBILE-FIRST COMPLETE OVERHAUL
+═══════════════════════════════════ */
+
+/* Safe area for notch/home indicator */
+:root {
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-left: env(safe-area-inset-left, 0px);
+  --safe-right: env(safe-area-inset-right, 0px);
+}
+
+/* Touch targets — min 44px */
+button, .tab, .widget-item, .step-head,
+.city-btn, .map-tab-btn, .day-sel-btn,
+.checklist-item, .poi-card, .emg-card,
+.hosp-card, .lang-pill button {
+  min-height: 44px;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+/* Prevent text size adjust on orientation change */
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+
+/* Smooth momentum scrolling everywhere */
+.tabs, .day-sel-wrap, .step-img-gallery {
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Widget bar — tighter on mobile */
+.widget-bar {
+  padding: 8px 12px;
+  padding-top: calc(8px + var(--safe-top));
+  gap: 8px;
+  flex-wrap: nowrap;
+}
+.widget-item { padding: 5px 10px; font-size: 12px; gap: 5px; }
+.widget-val { font-size: 12px; }
+.widget-label { font-size: 10px; }
+.widget-icon { font-size: 14px; }
+.lang-pill button { padding: 4px 10px; font-size: 11px; }
+
+/* Sticky tabs - always visible, properly sized */
+.tabs-wrap { top: 48px; }
+.tab { padding: 10px 11px; font-size: 11px; gap: 3px; }
+
+/* Header compact on mobile */
+.header { padding: 16px 12px 14px; }
+.bismillah { font-size: 22px; }
+.h-title { font-size: 22px; }
+.h-sub { font-size: 11px; }
+
+/* Steps — full-width touch friendly */
+.step-head { padding: 11px 12px; gap: 9px; }
+.step-lbl { font-size: 13px; }
+.step-body { padding: 14px 12px; }
+.step-img { height: 160px; border-radius: var(--r-s); }
+
+/* Arabic blocks — better mobile spacing */
+.ar-block { padding: 13px 11px; margin: 10px 0; }
+.ar-text { font-size: 22px !important; line-height: 2.2; }
+.roman { font-size: 11px; }
+.meaning { font-size: 12px; }
+
+/* Info boxes */
+.info { padding: 10px 11px; }
+.info-txt { font-size: 12.5px; }
+
+/* Cards full-width */
+.steps-wrap { padding: 11px; }
+.step-card { margin-bottom: 10px; }
+
+/* Tips grid — single column on small screens */
+@media(max-width: 420px) {
+  .tips-grid { grid-template-columns: 1fr; padding: 11px; }
+  .poi-grid { grid-template-columns: 1fr; }
+  .emg-grid { grid-template-columns: 1fr; }
+}
+
+/* Scroll top button — above home bar */
+.btn-top {
+  bottom: calc(20px + var(--safe-bottom));
+  left: 14px;
+  width: 44px; height: 44px;
+}
+
+/* Section banners — compact */
+.s-banner { padding: 14px 12px; gap: 11px; }
+.b-icon { width: 42px; height: 42px; font-size: 19px; }
+.b-text h2 { font-size: 16px; }
+.b-text p { font-size: 10px; }
+
+/* Tables horizontal scroll on mobile */
+.tbl-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.tbl { min-width: 320px; }
+
+/* Modal full-screen on mobile */
+.modal-box { width: 96vw; max-height: 88vh; border-radius: var(--r); }
+
+/* Flow boxes */
+.flow-box { padding: 13px; }
+.f-lbl { font-size: 12.5px; padding: 6px 12px; }
+
+/* Quran / Hadith cards */
+.quran-card { margin: 12px; padding: 15px; }
+.hadith-card { margin: 0 12px 12px; padding: 14px; }
+.quran-card .ar-text { font-size: 21px; }
+
+/* ── PRAYER TIMES SECTION ── */
+.prayertime-section { background: var(--cream); }
+
+/* City selector */
+.pt-city-bar {
+  display: flex; gap: 6px; flex-wrap: wrap;
+  padding: 12px 12px 0;
+}
+.pt-city-btn {
+  flex: 1; min-width: 80px;
+  padding: 8px 6px; border-radius: 20px;
+  border: 1.5px solid var(--green-l);
+  background: transparent; color: var(--green);
+  font-family: var(--en); font-size: 11px; font-weight: 700;
+  cursor: pointer; transition: all .2s; text-align: center;
+  white-space: nowrap;
+}
+.pt-city-btn.active, .pt-city-btn:hover {
+  background: var(--green); color: white; border-color: var(--green);
+}
+
+/* Madhab selector */
+.madhab-bar {
+  display: flex; gap: 5px; flex-wrap: wrap;
+  padding: 10px 12px 0;
+}
+.madhab-btn {
+  flex: 1; min-width: 70px;
+  padding: 7px 5px; border-radius: 8px;
+  border: 1.5px solid var(--cream-d);
+  background: var(--white); color: var(--text-m);
+  font-family: var(--ur); font-size: 12px; font-weight: 600;
+  cursor: pointer; transition: all .2s; text-align: center;
+  line-height: 1.6; box-shadow: var(--sh-sm);
+}
+body.en .madhab-btn { font-family: var(--en); font-size: 11px; }
+.madhab-btn.active {
+  border-color: var(--gold);
+  background: var(--gold-p);
+  color: var(--gold-d);
+}
+.madhab-btn span.madhab-name { display: block; font-size: 11px; color: var(--text-l); }
+body.en .madhab-btn span.madhab-name { font-size: 9px; }
+
+/* Next prayer banner */
+.next-prayer-banner {
+  margin: 12px 12px 0;
+  background: linear-gradient(135deg, var(--green-d), var(--green));
+  border-radius: var(--r); padding: 14px 16px;
+  border: 1.5px solid var(--gold);
+  display: flex; align-items: center; justify-content: space-between;
+  box-shadow: var(--sh-md);
+}
+.npb-left {}
+.npb-label { font-family: var(--en); font-size: 10px; color: var(--gold-l); letter-spacing: 1px; text-transform: uppercase; }
+.npb-name { font-family: var(--ur); font-size: 18px; color: white; font-weight: 700; line-height: 2; }
+body.en .npb-name { font-family: var(--en); font-size: 16px; line-height: 1.4; }
+.npb-right { text-align: left; }
+.npb-time { font-family: var(--en); font-size: 28px; font-weight: 700; color: var(--gold-l); line-height: 1; }
+.npb-countdown { font-family: var(--en); font-size: 11px; color: var(--cream-d); margin-top: 4px; text-align: left; }
+
+/* Prayer times grid */
+.pt-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px; padding: 12px;
+}
+@media(max-width: 360px) { .pt-grid { grid-template-columns: repeat(2, 1fr); } }
+
+.pt-card {
+  background: var(--white); border-radius: var(--r);
+  padding: 12px 8px; text-align: center;
+  border: 1.5px solid var(--cream-d); box-shadow: var(--sh-sm);
+  transition: all .25s; cursor: default; position: relative;
+  overflow: hidden;
+}
+.pt-card.active-prayer {
+  border-color: var(--gold);
+  background: var(--gold-p);
+  box-shadow: 0 4px 16px rgba(201,168,76,.25);
+}
+.pt-card.active-prayer::before {
+  content: '▶';
+  position: absolute; top: 5px; right: 6px;
+  font-size: 8px; color: var(--gold);
+}
+.pt-icon { font-size: 22px; margin-bottom: 4px; }
+.pt-prayer-name { font-family: var(--ar); font-size: 16px; color: var(--green-d); font-weight: 700; line-height: 1.8; display: block; }
+.pt-prayer-en { font-family: var(--en); font-size: 9px; color: var(--text-l); display: block; margin-bottom: 6px; }
+.pt-time { font-family: var(--en); font-size: 20px; font-weight: 700; color: var(--green-d); line-height: 1; }
+.pt-card.active-prayer .pt-time { color: var(--gold-d); }
+
+/* Madhab comparison table */
+.pt-comparison {
+  margin: 0 12px 12px;
+  background: var(--white); border-radius: var(--r);
+  border: 1px solid var(--cream-d); overflow: hidden;
+  box-shadow: var(--sh-sm);
+}
+.pt-comp-head {
+  background: linear-gradient(to right, var(--green-d), var(--green));
+  padding: 10px 14px;
+  font-family: var(--ur); font-size: 13px; font-weight: 700;
+  color: var(--gold-l); line-height: 2;
+  display: flex; align-items: center; gap: 8px;
+}
+body.en .pt-comp-head { font-family: var(--en); line-height: 1.4; }
+.pt-comp-table { width: 100%; border-collapse: collapse; font-size: 11.5px; }
+.pt-comp-table th {
+  background: var(--green-p); color: var(--green-d);
+  padding: 7px 8px; font-family: var(--en); font-weight: 700;
+  border-bottom: 1px solid var(--cream-d); text-align: center;
+}
+.pt-comp-table td {
+  padding: 7px 8px; border-bottom: 1px solid var(--cream-d);
+  text-align: center; font-family: var(--en); color: var(--text-m);
+}
+.pt-comp-table tr:last-child td { border-bottom: none; }
+.pt-comp-table tr:nth-child(even) td { background: var(--cream); }
+.pt-prayer-col {
+  font-family: var(--ar) !important; font-size: 14px !important;
+  color: var(--green-d) !important; font-weight: 700 !important;
+  direction: rtl;
+}
+.pt-diff { color: #8B1A1A; font-weight: 700; font-size: 10px; }
+.pt-same { color: var(--green-l); }
+
+/* Fajr angle info */
+.pt-angle-info {
+  margin: 0 12px 12px;
+  background: var(--blue-p); border-radius: var(--r-s);
+  padding: 12px 14px; border: 1px solid #4A7ADB;
+}
+.pt-angle-info p {
+  font-family: var(--ur); font-size: 12.5px; color: var(--blue);
+  line-height: 2; margin-bottom: 6px;
+}
+body.en .pt-angle-info p { font-family: var(--en); line-height: 1.7; }
+.pt-angle-table { width: 100%; border-collapse: collapse; font-size: 11px; margin-top: 8px; }
+.pt-angle-table th, .pt-angle-table td {
+  padding: 5px 8px; border: 1px solid #BDD4EE;
+  text-align: center; font-family: var(--en);
+}
+.pt-angle-table th { background: #1A4A7A; color: white; font-weight: 700; }
+.pt-angle-table td { background: white; color: var(--text-m); }
+
+/* Adhan widget in header */
+.adhan-widget {
+  background: rgba(201,168,76,.12);
+  border: 1px solid rgba(201,168,76,.3);
+  border-radius: 8px; padding: 5px 10px;
+  display: flex; align-items: center; gap: 6px;
+  cursor: pointer; transition: all .2s;
+  font-family: var(--en);
+}
+.adhan-widget:hover { background: rgba(201,168,76,.22); }
+.adhan-next-name { font-size: 11px; color: var(--gold-l); font-weight: 700; }
+.adhan-next-time { font-size: 12px; color: var(--gold-l); font-weight: 700; }
+.adhan-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--gold-l); animation: pulse-dot 1.5s infinite; }
+@keyframes pulse-dot { 0%,100%{opacity:1;transform:scale(1);} 50%{opacity:.5;transform:scale(.8);} }
 </style>
 </head>
 <body class="ur" id="bodyEl">
@@ -532,6 +807,13 @@ body.en .hosp-name{font-family:var(--en);line-height:1.4;}
     <div>
       <div class="widget-val" id="wTemp">-- °C</div>
       <div class="widget-label" id="wCity">Makkah</div>
+    </div>
+  </div>
+  <div class="adhan-widget" onclick="showTab('salah',document.querySelector('[data-tab=salah]'))">
+    <div class="adhan-dot"></div>
+    <div>
+      <div class="adhan-next-name" id="wNextPrayer">اوقاتِ نماز</div>
+      <div class="adhan-next-time" id="wNextTime">Prayer Times</div>
     </div>
   </div>
   <div class="widget-sep"></div>
@@ -654,6 +936,7 @@ body.en .hosp-name{font-family:var(--en);line-height:1.4;}
   <div class="tabs" id="tabsEl">
     <div class="tab active" onclick="showTab('umrah',this)"><span>🕋</span><span class="ur">عمرہ</span><span class="en-t">Umrah</span></div>
     <div class="tab" onclick="showTab('hajj',this)"><span>⛺</span><span class="ur">حج</span><span class="en-t">Hajj</span></div>
+    <div class="tab" onclick="showTab('salah',this)" data-tab="salah"><span>🕌</span><span class="ur">نماز</span><span class="en-t">Prayer</span></div>
     <div class="tab" onclick="showTab('azkar',this)"><span>📿</span><span class="ur">اذکار</span><span class="en-t">Du'as</span></div>
     <div class="tab" onclick="showTab('schedule',this)"><span>📅</span><span class="ur">ایام حج</span><span class="en-t">Schedule</span></div>
     <div class="tab" onclick="showTab('checklist',this)"><span>✅</span><span class="ur">چیک لسٹ</span><span class="en-t">Checklist</span></div>
@@ -832,18 +1115,24 @@ body.en .hosp-name{font-family:var(--en);line-height:1.4;}
     </div>
     <div class="step-body">
       <img class="step-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Mina_valley.jpg/640px-Mina_valley.jpg" onerror="this.style.display='none'" alt="Mina">
-      <div class="info gold"><div class="info-ico">📅</div><div class="info-txt"><span class="ur"><strong>آج کا کام:</strong> احرام باندھیں، تلبیہ پڑھتے منٰی پہنچیں، رات منٰی میں گزاریں۔ منٰی آتے ہوئے راستے میں کثرت سے تلبیہ اور تسبیحات پڑھتے رہیں۔ ضرورت سے زیادہ سامان نہ لیں۔</span><span class="en-t"><strong>Today:</strong> Wear Ihram, proceed to Mina reciting Talbiyah, spend night in Mina. Recite Talbiyah abundantly. Don't take unnecessary luggage.</span></div></div>
+      <div class="info gold"><div class="info-ico">📅</div><div class="info-txt"><span class="ur"><strong>آج کا کام:</strong> احرام باندھیں، تلبیہ پڑھتے منٰی پہنچیں، رات منٰی میں گزاریں۔ ۸ ذی الحجہ سے پہلی رات تیاری مکمل کرلیں۔</span><span class="en-t"><strong>Today:</strong> Wear Ihram, proceed to Mina reciting Talbiyah, spend night in Mina. Complete preparations the night before.</span></div></div>
+
+      <div class="info teal"><div class="info-ico">✂️</div><div class="info-txt"><span class="ur"><strong>احرام سے پہلے کی تیاری (رات کو):</strong> سر کے بال سنواریں، مونچھیں کاٹیں، ناخن کاٹیں، زیرِ ناف اور بغل کے بال صاف کریں۔ (مناسک ملا علی قاری: ص۹۶)</span><span class="en-t"><strong>Preparation before Ihram (night before):</strong> Comb hair, trim moustache, cut nails, clean underarm & pubic hair. (Manasik: p.96)</span></div></div>
+
       <div class="ar-block">
         <span class="ar-lbl ur">نیتِ حج</span><span class="ar-lbl">Niyyah for Hajj</span>
         <span class="ar-text">اللَّهُمَّ إِنِّي أُرِيدُ الْحَجَّ فَيَسِّرْهُ لِي وَتَقَبَّلْهُ مِنِّي</span>
         <span class="roman">Allāhumma innī urīdul-ḥajja fayassir-hu lī wa taqabbal-hu minnī</span>
         <span class="meaning"><span class="ur">یا اللہ! میں حج کا ارادہ رکھتا ہوں، آسان فرما اور قبول فرما</span><span class="en-t">O Allah! I intend Hajj, make it easy and accept it from me.</span></span>
       </div>
+
       <ul class="slist">
-        <li><span class="ur">۸ ذی الحجہ کی صبح احرام باندھیں — پھر حرم شریف جا کر احرام کی دو رکعت نفل پڑھیں</span><span class="en-t">Wear Ihram morning of 8th — pray 2 rak'ah at Masjid al-Haram</span></li>
-        <li><span class="ur">تلبیہ پڑھتے منٰی روانہ ہوں — منٰی آتے راستے میں نو ذی الحجہ کی رات تک منٰی میں رہنا سنت ہے</span><span class="en-t">Proceed to Mina reciting Talbiyah — staying in Mina until 9th is Sunnah</span></li>
-        <li><span class="ur">ظہر، عصر، مغرب، عشاء اور فجر — قصر کریں (ظہر، عصر، عشاء: دو دو رکعت)</span><span class="en-t">Pray Dhuhr, Asr, Maghrib, Isha, Fajr — shorten (Dhuhr, Asr, Isha: 2 rak'ah each)</span></li>
-        <li><span class="ur">فضول باتوں اور گھومنے میں وقت ضائع نہ کریں — قرآن، تلبیہ، تسبیحات اور نوافل کا خوب اہتمام کریں</span><span class="en-t">Don't waste time idly — spend in Quran, Talbiyah, dhikr and nafl prayers</span></li>
+        <li><span class="ur">۸ ذی الحجہ کی صبح غسل یا وضو کر کے احرام باندھیں</span><span class="en-t">Morning of 8th: make ghusl or wudu and wear Ihram</span></li>
+        <li><span class="ur"><strong>افضل:</strong> احرام باندھ کر مسجدِ حرام جائیں، تحیۃ المسجد کی نیت سے طواف کریں، پھر مکروہ وقت نہ ہو تو سر ڈھک کر دو رکعت نفل پڑھیں — خواتین یہ نفل گھر پر پڑھیں (بخاری: ۱/۱۲۰)</span><span class="en-t"><strong>Best practice:</strong> After Ihram, go to Masjid al-Haram, perform Tawaf (niyyah: Tahiyyat al-Masjid), then pray 2 rak'ah with head covered if not makruh time — women pray these at home (Bukhari: 1/120)</span></li>
+        <li><span class="ur">نفل کے بعد سر کھول دیں اور دل سے نیت کریں — پھر تین بار تلبیہ کہیں اور دعا کریں — اب احرام کی پابندیاں شروع</span><span class="en-t">After nafl: uncover head, make niyyah in heart — then recite Talbiyah 3 times and make du'a — Ihram restrictions now begin</span></li>
+        <li><span class="ur">ضروری سامان (چار پانچ دن کا) لے کر منٰی روانہ ہوں — پیدل جانا افضل ہے (مکہ سے تقریباً ۳ میل) — راستے میں کثرت سے تلبیہ پڑھتے رہیں</span><span class="en-t">Take 4-5 days' essentials and proceed to Mina — walking is better (~3 miles from Makkah) — recite Talbiyah abundantly throughout</span></li>
+        <li><span class="ur">منٰی میں کوئی خاص کام نہیں — نمازیں باجماعت پڑھیں، دعا، قرآن، تلبیہ اور ذکر میں وقت گزاریں</span><span class="en-t">No special rituals in Mina today — pray in congregation, spend time in du'a, Quran, Talbiyah and dhikr</span></li>
+        <li><span class="ur"><strong>تکبیرِ تشریق واجب:</strong> ۹ ذی الحجہ کی فجر سے ۱۳ ذی الحجہ کی عصر تک — ہر فرض نماز کے بعد ایک بار — مرد بلند آواز سے، خواتین آہستہ (ردالمحتار: ۳/۷۱-۷۵)</span><span class="en-t"><strong>Takbir al-Tashreeq is Wajib:</strong> From Fajr 9th to Asr 13th Dhul Hijjah — once after every fard prayer — men aloud, women softly (Radd al-Muhtar: 3/71-75)</span></li>
       </ul>
     </div>
   </div>
@@ -861,11 +1150,11 @@ body.en .hosp-name{font-family:var(--en);line-height:1.4;}
       <div class="info red"><div class="info-ico">⭐</div><div class="info-txt"><span class="ur"><strong>وقوفِ عرفہ:</strong> حج کا دوسرا رکن اور فرض ہے۔ زوال کے بعد سے غروب تک میدانِ عرفات میں رہنا لازمی۔ البتہ وقوف عرفہ کا وقت ۹ ذی الحجہ کے زوال سے شروع ہوتا ہے۔</span><span class="en-t"><strong>Wuquf at Arafah:</strong> The greatest pillar of Hajj. Standing in Arafat from after noon until sunset is obligatory.</span></div></div>
       <div class="info teal"><div class="info-ico">🏔️</div><div class="info-txt"><span class="ur">وقوف عرفہ کھڑے ہو کر کرنا افضل ہے — بیٹھ کر اور سو کر بھی جائز ہے۔ عرفات میں جہاں چاہیں قیام کریں، عرنہ کے علاوہ — جبل رحمت کے نزدیک افضل ہے۔</span><span class="en-t">Standing at Arafat is preferable but sitting/lying is also valid. Stay anywhere in Arafat except Wadi Uranah — near Jabal Rahmah is best.</span></div></div>
       <ul class="slist">
-        <li><span class="ur">۹ ذی الحجہ — نو ذی الحجہ سے پیشتر یا سورج نکلنے کے بعد منٰی سے عرفات روانہ — سنت یہ ہے کہ پہلے منٰی سے نہ نکلیں</span><span class="en-t">Proceed from Mina to Arafat — Sunnah to depart after sunrise on 9th</span></li>
-        <li><span class="ur">نمرہ مسجد میں: ظہر + عصر جمع تقدیم — ایک اذان، دو اقامتیں</span><span class="en-t">At Masjid Namirah: Dhuhr + Asr combined early — one adhan, two iqamahs</span></li>
-        <li><span class="ur">زوال کے بعد وقوفِ عرفہ شروع — شام تک کثرت سے دعا، تلبیہ، تیسرا کلمہ، چوتھا کلمہ، استغفار</span><span class="en-t">After noon: Begin Wuquf — make extensive dua, Talbiyah, dhikr, istighfar until evening</span></li>
-        <li><span class="ur">غروب کے بعد مزدلفہ روانہ — مغرب+عشاء جمع تاخیر مزدلفہ میں</span><span class="en-t">After sunset: Depart to Muzdalifah — pray Maghrib+Isha combined at Muzdalifah</span></li>
-        <li><span class="ur">مزدلفہ میں مشعر الحرام کے قریب ٹھہرنا افضل — ۷۰ کنکریاں چنیں — صبح تک دعا میں مشغول رہنا سنت</span><span class="en-t">Stay near Mash'ar al-Haram at Muzdalifah — collect 70 pebbles — staying in dua till dawn is Sunnah</span></li>
+        <li><span class="ur">طلوعِ آفتاب کے بعد منٰی سے عرفات روانہ ہوں — پیدل یا سواری (منٰی سے تقریباً ۶ میل) — راستے میں تلبیہ پڑھتے رہیں</span><span class="en-t">After sunrise: proceed from Mina to Arafat (~6 miles) on foot or transport — recite Talbiyah throughout</span></li>
+        <li><span class="ur">زوال سے پہلے پہنچے ہوں تو آرام کرسکتے ہیں — زوال کے قریب غسل یا وضو کریں (مناسک: ص۱۹۱)</span><span class="en-t">If arrived before noon: rest is fine — near Dhuhr time, make ghusl or wudu (Manasik: p.191)</span></li>
+        <li><span class="ur"><strong class="text-red">حنفی مسئلہ (اہم):</strong> مسجدِ نمرہ میں ظہر+عصر کو جمع کر کے دو دو رکعت پڑھائی جاتی ہے — لیکن حنفیہ کے نزدیک یہ جمع جائز نہیں۔ حنفی حاجی ظہر کی نماز ظہر کے وقت اور عصر کی نماز عصر کے وقت الگ الگ اذان و اقامت کے ساتھ ادا کریں (مناسک ملا علی قاری: ص۱۹۵)</span><span class="en-t"><strong class="text-red">Hanafi Ruling (Important):</strong> Masjid Namirah combines Dhuhr+Asr but this combination is NOT valid in Hanafi madhab. Hanafi pilgrims must pray Dhuhr at Dhuhr time and Asr at Asr time separately, each with its own adhan and iqamah. (Manasik: p.195)</span></li>
+        <li><span class="ur">زوال کے بعد وقوفِ عرفہ شروع کریں — غروب تک کثرت سے دعا، تلبیہ، کلمۂ تیسرا+چوتھا، استغفار کریں — اپنے لیے، والدین، مشائخ، عزیزوں اور پوری امت کے لیے مانگیں</span><span class="en-t">After noon: begin Wuquf — make extensive du'a, Talbiyah, dhikr, istighfar until sunset — pray for yourself, parents, teachers, relatives and all Muslims</span></li>
+        <li><span class="ur"><strong>غروب کے بعد فوراً مزدلفہ روانہ ہوں</strong> — مغرب عرفات میں نہ پڑھیں، مزدلفہ جا کر پڑھیں — تاخیر مکروہ ہے (الشامیہ: ۳/۵۹۹)</span><span class="en-t"><strong>After sunset: proceed to Muzdalifah immediately</strong> — do NOT pray Maghrib at Arafat, pray it at Muzdalifah — delay is Makruh (al-Shamiyah: 3/599)</span></li>
       </ul>
       <div class="ar-block">
         <span class="ar-lbl ur">عرفات کی سب سے افضل دعا — بار بار پڑھیں</span><span class="ar-lbl">Best du'a at Arafat — repeat frequently</span>
@@ -877,16 +1166,47 @@ body.en .hosp-name{font-family:var(--en);line-height:1.4;}
     </div>
   </div>
 
-  <!-- STEP 3: 10 Dhul Hijjah -->
+  <!-- STEP 3: MUZDALIFAH — WAJIB -->
   <div class="step-card">
     <div class="step-head" onclick="toggleCard(this)">
       <div class="step-num">3</div>
+      <div class="step-lbl"><span class="ur">مزدلفہ — وقوفِ مزدلفہ 🌙</span><span class="en-t">Muzdalifah — Wuquf al-Muzdalifah 🌙</span></div>
+      <div class="step-arr">▾</div>
+    </div>
+    <div class="step-body">
+      <img class="step-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Muzdalifah_2012.jpg/640px-Muzdalifah_2012.jpg" onerror="this.style.display='none'" alt="Muzdalifah">
+      <div class="badges"><span class="badge b-wajib">واجب / Wajib</span></div>
+      <div class="info red"><div class="info-ico">⚠️</div><div class="info-txt"><span class="ur"><strong>وقوفِ مزدلفہ حج کا واجب ہے:</strong> ۹ ذی الحجہ کی رات مزدلفہ میں ٹھہرنا واجب ہے۔ چھوٹ جانے پر دم واجب ہوتا ہے۔</span><span class="en-t"><strong>Wuquf Muzdalifah is Wajib:</strong> Staying at Muzdalifah on the night of 9th Dhul Hijjah is obligatory. Dam is required if omitted.</span></div></div>
+      <div class="info gold"><div class="info-ico">🕐</div><div class="info-txt"><span class="ur"><strong>وقت:</strong> ۹ ذی الحجہ کے غروبِ آفتاب کے بعد سے ۱۰ ذی الحجہ کی صبحِ صادق (فجر) تک — کم از کم تھوڑی دیر کا وقوف بھی واجب ادا ہو جاتا ہے۔ لیکن فجر سے پہلے نکلنا خلافِ سنت اور دم کا سبب ہے (بلا عذر)۔</span><span class="en-t"><strong>Time:</strong> After sunset of 9th until Fajr of 10th — even a brief stay fulfils the Wajib, but leaving before Fajr without excuse incurs Dam and is against Sunnah.</span></div></div>
+      <ul class="slist">
+        <li><span class="ur">عرفات سے غروب کے بعد مزدلفہ روانہ ہوں — جلدی نہیں، سکون سے چلیں</span><span class="en-t">After sunset at Arafat, proceed calmly to Muzdalifah</span></li>
+        <li><span class="ur">مزدلفہ پہنچ کر <strong>مغرب + عشاء جمع تاخیر</strong> — ایک اذان، دو اقامتیں، مغرب ۳ اور عشاء ۲ رکعت (قصر)</span><span class="en-t">At Muzdalifah: pray <strong>Maghrib + Isha combined late</strong> — one adhan, two iqamahs; Maghrib 3, Isha 2 rak'ah (qasr)</span></li>
+        <li><span class="ur"><strong>مشعر الحرام</strong> کے قریب ٹھہرنا افضل ہے — مزدلفہ کی پوری سرزمین وقوف کے لیے درست ہے</span><span class="en-t">Staying near <strong>Mash'ar al-Haram</strong> is preferable — entire Muzdalifah is valid for Wuquf</span></li>
+        <li><span class="ur">رات یہاں گزاریں — کثرت سے تسبیح، استغفار اور دعا کریں</span><span class="en-t">Spend the night here — make abundant tasbeeh, istighfar and du'a</span></li>
+        <li><span class="ur">۷۰ کنکریاں چنیں — چنے کے دانے کے برابر، پانی سے دھونا ضروری نہیں</span><span class="en-t">Collect 70 pebbles — chickpea-sized, washing not required</span></li>
+        <li><span class="ur">فجر کی نماز پڑھیں — پھر اسفار (روشنی) سے قبل دعا میں مشغول رہنا سنت ہے</span><span class="en-t">Pray Fajr — then remain in du'a before dawn light — Sunnah</span></li>
+        <li><span class="ur">سورج نکلنے سے پہلے منٰی روانہ ہوں — ضعفاء (بوڑھے، بیمار، خواتین) رات کو بھی جا سکتے ہیں</span><span class="en-t">Proceed to Mina before sunrise — weak, elderly, sick & women may leave at night</span></li>
+      </ul>
+      <div class="ar-block">
+        <span class="ar-lbl ur">مزدلفہ کی دعا — مشعر الحرام پر</span><span class="ar-lbl">Du'a at Muzdalifah — at Mash'ar al-Haram</span>
+        <span class="ar-text">رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ</span>
+        <span class="roman">Rabbanā ātinā fid-dunyā ḥasanatan wa fil-ākhirati ḥasanatan wa qinā ʿadhāban-nār</span>
+        <span class="meaning"><span class="ur">اے ہمارے رب! ہمیں دنیا میں بھی بھلائی دے اور آخرت میں بھی — اور آگ کے عذاب سے بچا</span><span class="en-t">O our Lord! Give us good in this world and good in the Hereafter, and protect us from the torment of the Fire.</span></span>
+      </div>
+      <div class="note-warn">📌 <span class="ur"><strong>ضعفاء کے لیے رخصت:</strong> بوڑھے، بیمار اور خواتین آدھی رات کے بعد مزدلفہ سے منٰی جا سکتی ہیں — ان پر دم نہیں۔ عام حاجی فجر سے پہلے نہ جائیں۔</span><span class="en-t"><strong>Concession for weak:</strong> Elderly, sick & women may leave Muzdalifah after midnight for Mina — no Dam on them. Regular pilgrims should not leave before Fajr.</span></div>
+    </div>
+  </div>
+
+  <!-- STEP 4: 10 Dhul Hijjah -->
+  <div class="step-card">
+    <div class="step-head" onclick="toggleCard(this)">
+      <div class="step-num">4</div>
       <div class="step-lbl"><span class="ur">۱۰ ذی الحجہ — یومِ النحر 🎉</span><span class="en-t">10 Dhul Hijjah — Eid al-Adha 🎉</span></div>
       <div class="step-arr">▾</div>
     </div>
     <div class="step-body">
       <img class="step-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Jamarat_2006.jpg/640px-Jamarat_2006.jpg" onerror="this.style.display='none'" alt="Jamarat">
-      <div class="info green"><div class="info-ico">📋</div><div class="info-txt"><span class="ur"><strong>آج کے ۴ کام — ترتیب مسنون ہے:</strong></span><span class="en-t"><strong>4 acts today — sequence is Sunnah (recommended):</strong></span></div></div>
+      <div class="info green"><div class="info-ico">📋</div><div class="info-txt"><span class="ur"><strong>آج کے ۴ کام — ترتیب واجب ہے:</strong></span><span class="en-t"><strong>4 acts today — sequence is Wajib (obligatory):</strong></span></div></div>
       <div class="flow-box">
         <div class="flow-step"><div class="f-num">1</div><div class="f-lbl"><span class="ur">رمی جمرہ عقبہ — ۷ کنکریاں</span><span class="en-t">Rami Jamrah Aqabah — 7 pebbles</span></div></div>
         <div class="f-arr">↓</div>
@@ -895,7 +1215,7 @@ body.en .hosp-name{font-family:var(--en);line-height:1.4;}
         <div class="flow-step"><div class="f-num">3</div><div class="f-lbl"><span class="ur">حلق یا قصر</span><span class="en-t">Halq or Qasr</span></div></div>
         <div class="f-arr">↓</div>
         <div class="flow-step"><div class="f-num">4</div><div class="f-lbl"><span class="ur">طوافِ افاضہ + سعی</span><span class="en-t">Tawaf al-Ifadah + Sa'ee</span></div></div>
-        <div class="flow-note"><span class="ur">ترتیب مسنون ہے — مفتی تقی عثمانی صاحب کے مطابق اگر ترتیب برقرار رکھنا ممکن نہ ہو تو دم واجب نہیں ہوگا</span><span class="en-t">Sequence is Sunnah — per Mufti Taqi Usmani: if maintaining sequence is not possible, Dam is not obligatory</span></div>
+        <div class="flow-note"><span class="ur">ترتیب واجب ہے — حتی الامکان پابندی کریں۔ شدید مجبوری میں صاحبین کے قول پر گنجائش ہے — تفصیل: ترتیب و دم</span><span class="en-t">Sequence is Wajib — observe it as far as possible. In genuine compulsion, see ruling in Order & Dam tab</span></div>
       </div>
       <div class="ar-block">
         <span class="ar-lbl ur">ہر کنکری پھینکتے وقت — رمی کی دعا</span><span class="ar-lbl">While throwing each pebble — Rami du'a</span>
@@ -904,26 +1224,31 @@ body.en .hosp-name{font-family:var(--en);line-height:1.4;}
         <span class="meaning"><span class="ur">اللہ کے نام سے، اللہ بڑا ہے — شیطان کی ذلت اور رحمان کی رضا کے لیے</span><span class="en-t">In Allah's name, Allah is Greatest — in humiliation of Satan and pleasure of the Most Merciful.</span></span>
       </div>
       <ul class="slist">
-        <li><span class="ur">کنکری شہادت کی انگلی اور انگوٹھے سے پکڑ کر تھوڑا اوپر اٹھا کر پھینکیں — ری جمار واجب ہے، چھوڑنے سے دم لازم</span><span class="en-t">Hold pebble between thumb & index finger, throw upward — Rami is Wajib, missing it requires Dam</span></li>
-        <li><span class="ur">کنکریاں جمرات پر لگنا ضروری نہیں — گول احاطے میں گر جائیں تو رمی صحیح</span><span class="en-t">Pebbles don't need to hit the pillar — falling in the circular basin is sufficient</span></li>
-        <li><span class="ur">پہلی کنکری مارتے ہی تلبیہ بند کریں</span><span class="en-t">Stop Talbiyah with the first pebble thrown</span></li>
-        <li><span class="ur">قربانی خود کریں یا معتمد ادارے سے کروائیں — یقین ہو تو حلق/قصر کریں</span><span class="en-t">Perform sacrifice yourself or through trusted authority — once confirmed, do Halq/Qasr</span></li>
-        <li><span class="ur">بال کٹوانے کے بعد احرام کھولیں — بیوی سے جماع کے علاوہ سب حلال ہو جاتا ہے</span><span class="en-t">After Halq: Remove Ihram — everything becomes lawful except marital relations until Tawaf Ifadah</span></li>
-        <li><span class="ur">طوافِ افاضہ کریں — طواف زیارت حج کا آخری رکن اور فرض ہے — اس کا وقت ۱۰ ذی الحجہ سے ۱۲ ذی الحجہ غروب تک ہے</span><span class="en-t">Perform Tawaf al-Ifadah — the final pillar of Hajj — time: 10th to sunset of 12th Dhul Hijjah</span></li>
+        <li><span class="ur">سورج نکلنے سے پہلے منٰی روانہ ہوں — راستے میں <strong>وادی مُحسِّر</strong> پر تیز قدم چلیں (ابرہہ کا لشکر یہاں ہلاک ہوا تھا)</span><span class="en-t">Proceed to Mina before sunrise — walk fast through <strong>Wadi Muhassir</strong> (where Abrahah's army was destroyed)</span></li>
+        <li><span class="ur"><strong>رمیٔ جمرۂ عقبہ:</strong> منٰی پہنچتے ہی سب سے پہلے — زوال سے پہلے کرنا افضل — منٰی دائیں اور مکہ بائیں رکھتے ہوئے کھڑے ہوں — دائیں ہاتھ کے انگوٹھے اور شہادت کی انگلی سے پکڑ کر سات کنکریاں ماریں، ہر کنکری پر <strong>"بسم اللہ اللہ اکبر"</strong> کہیں — کنکریاں احاطے میں گرجائیں تو کافی، ستون کو لگنا ضروری نہیں</span><span class="en-t"><strong>Rami Jamrah Aqabah:</strong> First act upon reaching Mina — better before noon — stand with Mina to right, Makkah to left — throw 7 pebbles held between thumb & index finger, say <strong>"Bismillah Allahu Akbar"</strong> with each — falling in basin is sufficient, hitting pillar not required</span></li>
+        <li><span class="ur"><strong>پہلی کنکری مارتے ہی تلبیہ بند</strong> — اب تلبیہ نہیں پڑھا جائے گا (غنیۃ: ص۱۷۰)</span><span class="en-t"><strong>Stop Talbiyah with the first pebble</strong> — no more Talbiyah after this (Ghunyah: p.170)</span></li>
+        <li><span class="ur"><strong>رمی کے بعد دعا نہ ٹھہریں</strong> — جمرۂ عقبہ کی رمی کے بعد دعا نہیں — فوراً خیمے میں آکر قربانی کی تیاری کریں (بدائع: ص۱۴۶)</span><span class="en-t"><strong>No du'a after Rami Aqabah</strong> — no du'a here — immediately return to tent and prepare for sacrifice (Bada'i: p.146)</span></li>
+        <li><span class="ur"><strong>قربانی (ہدی):</strong> حج تمتع یا قران میں بطورِ شکر واجب ہے — خود منٰی کے ذبح خانے میں جا کر پسند کا جانور ذبح کریں، یا معتمد شخص سے کروائیں</span><span class="en-t"><strong>Sacrifice (Hady):</strong> Wajib for Tamattu/Qiran as gratitude — slaughter personally at Mina's slaughterhouse, or through a trusted person</span></li>
+        <li><span class="ur"><strong>بینک قربانی — موجودہ نظام:</strong> اب قربانی صرف سعودی حکومت کی طرف سے مقرر کردہ بینک ہی کریں گے — اس نظام پر اعتماد کرتے ہوئے قربانی کروائیں۔ جب قربانی ہو جانے کا اطمینان ہو جائے تب حلق یا قصر کریں۔</span><span class="en-t"><strong>Bank Sacrifice — Current System:</strong> Sacrifice is now only performed through the Saudi government's designated banks — trust this official system and proceed accordingly. Once satisfied that the sacrifice has been completed, perform Halq or Qasr.</span></li>
+        <li><span class="ur"><strong>حلق یا قصر:</strong> قربانی کا یقین ہونے کے بعد — مرد پورے سر کے بال منڈوائیں (حلق افضل) یا پورے سر سے انگلی کے پورے سے زیادہ مقدار میں کٹوائیں — خواتین پورے سر سے اتنی مقدار کٹوائیں، چوتھائی کا کٹنا واجب ہے — حلق/قصر کے بعد بیوی سے جماع کے علاوہ احرام کی سب پابندیاں ختم (غنیۃ: ص۱۷۳-۱۷۶)</span><span class="en-t"><strong>Halq or Qasr:</strong> After confirmed slaughter — men shave entire head (Halq preferred) or cut more than a fingertip's length from entire head — women cut same amount from full head, cutting a quarter is Wajib — after Halq/Qasr: all Ihram restrictions end except marital relations until Tawaf Ifadah (Ghunyah: p.173-176)</span></li>
+        <li><span class="ur"><strong>طوافِ زیارت (افاضہ):</strong> حلق کے بعد غسل یا وضو کر کے مکہ روانہ ہوں — <strong>طواف با وضو واجب ہے</strong> — اکثر یا پورا طواف بے وضو ہو تو دم، جنابت/حیض میں ہو تو بدنہ واجب ہوگا — البتہ وضو/غسل کر کے دوبارہ طواف کرلیں تو دم/بدنہ ساقط (مناسک: ص۲۳۲)</span><span class="en-t"><strong>Tawaf al-Ziarat (Ifadah):</strong> After Halq: make ghusl/wudu and go to Makkah — <strong>Tawaf without wudu requires Dam</strong> — without ghusl in state of janabah/haydh requires Badanah — but if wudu/ghusl made and Tawaf repeated, Dam/Badanah is waived (Manasik: p.232)</span></li>
+        <li><span class="ur">طوافِ زیارت کا وقت: ۱۰ ذی الحجہ کی صبحِ صادق سے ۱۲ ذی الحجہ کے غروب تک — آج ۱۰ کو کرنا افضل — ۱۲ کے بعد بلا عذر تاخیر پر امام اعظم کے نزدیک دم</span><span class="en-t">Tawaf al-Ziarat time: from Fajr 10th to sunset 12th — today (10th) is preferred — delay beyond 12th without excuse incurs Dam per Imam A'zam</span></li>
+        <li><span class="ur"><strong>سعی:</strong> طواف کے بعد نمازِ طواف، ملتزم پر دعا، زمزم پی کر — پھر حجرِ اسود کا استلام/اشارہ کر کے صفا سے مروہ سات چکر سعی کریں (غنیۃ: ص۱۷۷)</span><span class="en-t"><strong>Sa'ee:</strong> After Tawaf prayers, du'a at Multazam, drink Zamzam — then touch/signal Hajar al-Aswad and perform 7 rounds Sa'ee from Safa to Marwah (Ghunyah: p.177)</span></li>
+        <li><span class="ur">سعی سے فارغ ہو کر <strong>منٰی واپس آئیں اور رات منٰی میں گزاریں</strong> (غنیۃ: ص۱۷۸-۱۷۹)</span><span class="en-t">After Sa'ee: <strong>return to Mina and spend night there</strong> (Ghunyah: p.178-179)</span></li>
       </ul>
     </div>
   </div>
 
-  <!-- STEP 4: Ayyam Tashreeq -->
+  <!-- STEP 5: Ayyam Tashreeq -->
   <div class="step-card">
     <div class="step-head" onclick="toggleCard(this)">
-      <div class="step-num">4</div>
+      <div class="step-num">5</div>
       <div class="step-lbl"><span class="ur">۱۱–۱۳ ذی الحجہ — ایامِ تشریق</span><span class="en-t">11–13 Dhul Hijjah — Ayyam al-Tashreeq</span></div>
       <div class="step-arr">▾</div>
     </div>
     <div class="step-body">
       <img class="step-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Jamarat_Bridge_2009.jpg/640px-Jamarat_Bridge_2009.jpg" onerror="this.style.display='none'" alt="Jamarat Bridge">
-      <div class="info blue"><div class="info-ico">⛺</div><div class="info-txt"><span class="ur">منٰی میں قیام اور تینوں جمرات کو ہر روز زوال کے بعد ۷-۷ کنکریاں مارنا۔ نمازوں کے بعد تکبیرِ تشریق پڑھنا واجب ہے۔</span><span class="en-t">Stay in Mina and stone all 3 Jamarat with 7 pebbles each after Dhuhr daily. Reciting Takbir al-Tashreeq after every fard prayer is Wajib.</span></div></div>
+      <div class="info blue"><div class="info-ico">⛺</div><div class="info-txt"><span class="ur">۱۱، ۱۲ اور ۱۳ ذی الحجہ — ہر روز زوال کے بعد تینوں جمرات کو بالترتیب سات سات کنکریاں مارنا۔ نمازوں کے بعد تکبیرِ تشریق واجب۔</span><span class="en-t">11th, 12th and 13th Dhul Hijjah — stone all 3 Jamarat with 7 pebbles each after Dhuhr daily. Takbir al-Tashreeq after every fard prayer is Wajib.</span></div></div>
 
       <div class="ar-block">
         <span class="ar-lbl ur">تکبیرِ تشریق — ہر فرض نماز کے بعد — ۹ ذی الحجہ کی فجر سے ۱۳ ذی الحجہ کی عصر تک</span><span class="ar-lbl">Takbir al-Tashreeq — after every Fard — Fajr 9th to Asr 13th Dhul Hijjah</span>
@@ -933,28 +1258,30 @@ body.en .hosp-name{font-family:var(--en);line-height:1.4;}
       </div>
 
       <ul class="slist">
-        <li><span class="ur"><strong>جمرہ صغریٰ (چھوٹا):</strong> ۷ کنکریاں ← قبلہ رخ دعا</span><span class="en-t"><strong>Jamrah Sughra (small):</strong> 7 pebbles ← face Qiblah & make du'a</span></li>
-        <li><span class="ur"><strong>جمرہ وسطیٰ (درمیانہ):</strong> ۷ کنکریاں ← قبلہ رخ دعا</span><span class="en-t"><strong>Jamrah Wusta (middle):</strong> 7 pebbles ← face Qiblah & make du'a</span></li>
-        <li><span class="ur"><strong>جمرہ عقبہ (بڑا):</strong> ۷ کنکریاں ← دعا نہیں</span><span class="en-t"><strong>Jamrah Aqabah (large):</strong> 7 pebbles ← no du'a after</span></li>
-        <li><span class="ur">اگر آپ ۱۳ ذی الحجہ کی صبح منٰی میں ہوں تو بغیر رمی کے آنا جائز نہیں — ۱۳ کو زوال کے بعد رمی کر کے ہی منٰی سے نکلیں</span><span class="en-t">If in Mina on 13th morning, cannot leave without Rami — must stone after Dhuhr on 13th then depart</span></li>
+        <li><span class="ur"><strong>رمی کی ترتیب (۱۱ اور ۱۲ کو):</strong> زوال کے بعد — ۱) جمرۂ صغریٰ: ۷ کنکریاں، پھر قبلہ رخ کھڑے ہو کر خوب دعا ← ۲) جمرۂ وسطیٰ: ۷ کنکریاں، پھر قبلہ رخ خوب دعا ← ۳) جمرۂ عقبہ: ۷ کنکریاں، دعا نہیں</span><span class="en-t"><strong>Rami sequence (11th & 12th):</strong> After Dhuhr — 1) Jamrah Sughra: 7 pebbles + stand facing Qiblah & make extensive du'a ← 2) Jamrah Wusta: 7 pebbles + face Qiblah & du'a ← 3) Jamrah Aqabah: 7 pebbles, no du'a</span></li>
+        <li><span class="ur">ہجوم کی وجہ سے بوڑھوں، بیماروں اور خواتین کو جان یا شدید مشقت کا اندیشہ ہو تو رات میں بھی رمی کر سکتے ہیں (مناسک: ص۲۳۷)</span><span class="en-t">If crowd poses danger to elderly, sick or women, they may stone at night also (Manasik: p.237)</span></li>
+        <li><span class="ur"><strong>۱۲ ذی الحجہ — اختیار:</strong> ۱۲ کی رمی کے بعد غروب سے پہلے منٰی سے نکل جانا جائز ہے — اگر غروب ہو گئی تو ۱۳ کی رمی واجب ہو جائے گی (غنیۃ: ص۱۸۴)</span><span class="en-t"><strong>12th Dhul Hijjah — Choice:</strong> May leave Mina before sunset after 12th's Rami — if sunset occurs while still in Mina, 13th Rami becomes Wajib (Ghunyah: p.184)</span></li>
+        <li><span class="ur"><strong>۱۳ ذی الحجہ کی صبح منٰی میں ہوں تو:</strong> رمی واجب ہے — زوال کے بعد تینوں جمرات کی رمی کر کے ہی منٰی سے نکلیں — افضل یہی ہے (مناسک: ص۲۴۳-۲۴۴)</span><span class="en-t"><strong>If still in Mina on morning of 13th:</strong> Rami is Wajib — must stone all 3 Jamarat after Dhuhr before leaving Mina (Manasik: p.243-244)</span></li>
       </ul>
     </div>
   </div>
 
-  <!-- STEP 5: Tawaf Wada -->
+  <!-- STEP 6: Tawaf Wada -->
   <div class="step-card">
     <div class="step-head" onclick="toggleCard(this)">
-      <div class="step-num">5</div>
+      <div class="step-num">6</div>
       <div class="step-lbl"><span class="ur">طوافِ وداع — آخری فریضہ</span><span class="en-t">Tawaf al-Wada — Farewell Tawaf</span></div>
       <div class="step-arr">▾</div>
     </div>
     <div class="step-body">
       <img class="step-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Tawaf%2C_Makkah.jpg/640px-Tawaf%2C_Makkah.jpg" onerror="this.style.display='none'" alt="Tawaf Wada">
       <div class="badges"><span class="badge b-wajib">واجب / Wajib</span></div>
+      <div class="info gold"><div class="info-ico">🕌</div><div class="info-txt"><span class="ur">مکہ سے روانگی کا آخری عمل — بیرونی حاجیوں پر واجب ہے (مناسک: ص۲۵۲) — نہ اس میں اضطباع و رمل ہے اور نہ اس کے بعد سعی</span><span class="en-t">Last act before leaving Makkah — Wajib on pilgrims from outside (Manasik: p.252) — no Idhtiba, no Ramal, and no Sa'ee after it</span></div></div>
       <ul class="slist">
-        <li><span class="ur">مکہ سے روانگی کا آخری عمل — سات چکر</span><span class="en-t">Last act before leaving Makkah — 7 circuits</span></li>
-        <li><span class="ur">حیض/نفاس والی خواتین پر معاف</span><span class="en-t">Excused for women in menstruation/postnatal bleeding</span></li>
-        <li><span class="ur">طواف کے بعد مکہ میں رکنا مکروہ ہے — جلد روانہ ہوں</span><span class="en-t">Staying in Makkah after Wada Tawaf is makruh — depart soon</span></li>
+        <li><span class="ur">طوافِ زیارت کے بعد اگر کوئی نفل طواف کیا اور طوافِ وداع کے بغیر نکل گئے تو نفلی طواف وداع کے قائم مقام ہو جاتا ہے — البتہ رخصت کی نیت سے الگ وداع کرنا بہتر ہے (غنیۃ: ص۱۹۰)</span><span class="en-t">If a nafl Tawaf was done after Tawaf Ziarat and one left without Wada, that nafl counts as Wada — but performing a dedicated Wada with farewell niyyah is better (Ghunyah: p.190)</span></li>
+        <li><span class="ur">طواف کے بعد جی بھر کر زمزم پئیں — پھر ملتزم سے چمٹ کر آنسو بہائیں، آہ وزاری کریں، مقبولیتِ حج مانگیں، مغفرت مانگیں — اپنے، والدین، اساتذہ اور امت کے لیے دعا کریں (مناسک: ص۲۵۴-۲۵۵)</span><span class="en-t">After Tawaf: drink Zamzam fully — cling to Multazam, weep, lament, ask for acceptance of Hajj and forgiveness — pray for yourself, parents, teachers and Ummah (Manasik: p.254-255)</span></li>
+        <li><span class="ur">حیض/نفاس والی خواتین پر طوافِ وداع معاف ہے</span><span class="en-t">Excused for women in menstruation/postnatal bleeding</span></li>
+        <li><span class="ur">طواف کے بعد مکہ میں رکنا مکروہ ہے — جلد روانہ ہوں</span><span class="en-t">Remaining in Makkah after Wada Tawaf is Makruh — depart promptly</span></li>
       </ul>
       <div class="ar-block">
         <span class="ar-lbl ur">طوافِ وداع کی دعا</span><span class="ar-lbl">Du'a for Tawaf al-Wada</span>
@@ -1253,11 +1580,11 @@ body.en .hosp-name{font-family:var(--en);line-height:1.4;}
   </div>
   <div class="steps-wrap">
     <div class="step-card open">
-      <div class="step-head" onclick="toggleCard(this)"><div class="step-num">1</div><div class="step-lbl"><span class="ur">جن افعال میں ترتیب مسنون ہے</span><span class="en-t">Acts With Recommended (Sunnah) Sequence</span></div><div class="step-arr">▾</div></div>
+      <div class="step-head" onclick="toggleCard(this)"><div class="step-num">1</div><div class="step-lbl"><span class="ur">جن افعال میں ترتیب واجب ہے</span><span class="en-t">Acts Requiring Obligatory Sequence</span></div><div class="step-arr">▾</div></div>
       <div class="step-body">
-        <div class="info gold"><div class="info-ico">📌</div><div class="info-txt"><span class="ur"><strong>مفتی تقی عثمانی صاحب کا موقف:</strong> یوم النحر کی ترتیب مسنون اور افضل ہے، لیکن اگر بھیڑ، بیماری یا کسی مجبوری کی وجہ سے ترتیب برقرار رکھنا ممکن نہ ہو تو دم واجب نہیں ہوگا۔</span><span class="en-t"><strong>Mufti Taqi Usmani's position:</strong> The sequence on Yom al-Nahr is Sunnah and preferred, but if maintaining it is not possible due to crowd, illness or compulsion, Dam is NOT obligatory.</span></div></div>
+        <div class="info red"><div class="info-ico">⚠️</div><div class="info-txt"><span class="ur">یوم النحر کی ترتیب توڑنے سے دم واجب ہوتا ہے۔</span><span class="en-t">Breaking the sequence on Yom al-Nahr makes Dam obligatory.</span></div></div>
         <div class="flow-box">
-          <div style="text-align:center;font-family:var(--ur);font-size:13px;color:var(--gold-d);font-weight:700;margin-bottom:12px;line-height:2;"><span class="ur">یوم النحر — مسنون ترتیب</span><span class="en-t">Yom al-Nahr — Sunnah Sequence</span></div>
+          <div style="text-align:center;font-family:var(--ur);font-size:13px;color:var(--gold-d);font-weight:700;margin-bottom:12px;line-height:2;"><span class="ur">یوم النحر — واجب ترتیب</span><span class="en-t">Yom al-Nahr — Obligatory Sequence</span></div>
           <div class="flow-step"><div class="f-num">1</div><div class="f-lbl"><span class="ur">رمی جمرہ عقبہ</span><span class="en-t">Rami Jamrah Aqabah</span></div></div>
           <div class="f-arr">↓</div>
           <div class="flow-step"><div class="f-num">2</div><div class="f-lbl"><span class="ur">قربانی</span><span class="en-t">Sacrifice</span></div></div>
@@ -1269,6 +1596,7 @@ body.en .hosp-name{font-family:var(--en);line-height:1.4;}
         <ul class="slist">
           <li><span class="ur"><strong>احرام:</strong> سب سے پہلے — بغیر احرام کوئی نسک نہیں</span><span class="en-t"><strong>Ihram:</strong> Must be first — no ritual valid without it</span></li>
           <li><span class="ur"><strong>وقوف عرفہ:</strong> احرام کے بعد، طوافِ افاضہ سے پہلے</span><span class="en-t"><strong>Wuquf Arafah:</strong> After Ihram, before Tawaf al-Ifadah</span></li>
+          <li><span class="ur"><strong>وقوفِ مزدلفہ:</strong> عرفہ کے بعد، منٰی سے پہلے — رات ٹھہرنا واجب</span><span class="en-t"><strong>Wuquf Muzdalifah:</strong> After Arafah, before Mina — staying the night is Wajib</span></li>
           <li><span class="ur"><strong>سعی:</strong> طواف کے بعد</span><span class="en-t"><strong>Sa'ee:</strong> After Tawaf</span></li>
         </ul>
       </div>
@@ -1293,11 +1621,12 @@ body.en .hosp-name{font-family:var(--en);line-height:1.4;}
         <table class="tbl">
           <thead><tr><th><span class="ur">سبب</span><span class="en-t">Cause</span></th><th style="text-align:center;"><span class="ur">کفارہ</span><span class="en-t">Kaffarah</span></th></tr></thead>
           <tbody>
-            <tr><td><span class="ur">وقوفِ مزدلفہ چھوڑنا</span><span class="en-t">Missing Wuquf Muzdalifah</span></td><td style="text-align:center;"><span class="badge b-farz">دم</span></td></tr>
+            <tr style="background:var(--gold-p);"><td><strong><span class="ur">⭐ وقوفِ مزدلفہ چھوڑنا (واجب)</span><span class="en-t">⭐ Missing Wuquf Muzdalifah (Wajib)</span></strong></td><td style="text-align:center;"><span class="badge b-farz">دم واجب</span></td></tr>
             <tr><td><span class="ur">رمی چھوڑنا</span><span class="en-t">Missing Rami</span></td><td style="text-align:center;"><span class="badge b-farz">دم</span></td></tr>
             <tr><td><span class="ur">طوافِ وداع چھوڑنا</span><span class="en-t">Omitting Tawaf Wada</span></td><td style="text-align:center;"><span class="badge b-farz">دم</span></td></tr>
-            <tr><td><span class="ur">یوم النحر کی ترتیب توڑنا</span><span class="en-t">Breaking Yom al-Nahr sequence</span></td><td style="text-align:center;"><span class="badge b-sunnah" style="background:#2980B9;">مسنون*</span></td></tr>
-            <tr><td><span class="ur">منٰی میں رات نہ گزارنا</span><span class="en-t">Not staying nights in Mina</span></td><td style="text-align:center;"><span class="badge b-sunnah" style="background:#2980B9;">دم نہیں**</span></td></tr>
+            <tr><td><span class="ur">یوم النحر کی ترتیب توڑنا (بلا عذر)</span><span class="en-t">Breaking Yom al-Nahr sequence (without excuse)</span></td><td style="text-align:center;"><span class="badge b-farz">دم واجب</span></td></tr>
+            <tr><td><span class="ur">یوم النحر کی ترتیب — شدید مجبوری میں</span><span class="en-t">Yom al-Nahr sequence — in genuine compulsion</span></td><td style="text-align:center;"><span class="badge b-sunnah" style="background:#27AE60;">دم نہیں†</span></td></tr>
+            <tr><td><span class="ur">منٰی میں رات نہ گزارنا</span><span class="en-t">Not staying nights in Mina</span></td><td style="text-align:center;"><span class="badge b-sunnah" style="background:#2980B9;">مسنون*</span></td></tr>
             <tr><td><span class="ur">میقات سے بغیر احرام گزرنا</span><span class="en-t">Passing Miqat without Ihram</span></td><td style="text-align:center;"><span class="badge b-farz">دم</span></td></tr>
             <tr><td><span class="ur">خوشبو لگانا / سلا لباس</span><span class="en-t">Perfume / sewn clothes</span></td><td style="text-align:center;"><span class="badge b-wajib">فدیہ*</span></td></tr>
             <tr><td><span class="ur">بال یا ناخن کاٹنا</span><span class="en-t">Cutting hair/nails</span></td><td style="text-align:center;"><span class="badge b-wajib">فدیہ*</span></td></tr>
@@ -1305,8 +1634,11 @@ body.en .hosp-name{font-family:var(--en);line-height:1.4;}
           </tbody>
         </table>
         <div class="info blue"><div class="info-ico">📋</div><div class="info-txt"><span class="ur"><strong>فدیہ* تین میں سے ایک:</strong> ۱) بکری ذبح ۲) چھ مسکین کو کھانا ۳) تین دن روزے</span><span class="en-t"><strong>Fidya* — one of three:</strong> 1) Slaughter a sheep 2) Feed 6 poor 3) Fast 3 days</span></div></div>
-        <div class="info gold"><div class="info-ico">📚</div><div class="info-txt"><span class="ur"><strong>* مسنون ترتیب:</strong> مفتی تقی عثمانی صاحب (حفظہ اللہ) کے فتوے کے مطابق یوم النحر کے اعمال (رمی، قربانی، حلق، طوافِ افاضہ) کی ترتیب مسنون اور افضل ہے — لیکن اگر بھیڑ، مرض یا کسی شرعی مجبوری کی وجہ سے ترتیب برقرار رکھنا ممکن نہ ہو تو دم واجب نہیں ہوگا۔ (ماخوذ: آپ کے مسائل اور ان کا حل)</span><span class="en-t"><strong>* Sunnah Sequence:</strong> Per Mufti Taqi Usmani (may Allah preserve him): the sequence of Yom al-Nahr acts is Sunnah and preferred — but if maintaining the sequence is not possible due to crowd, illness or valid compulsion, Dam is NOT obligatory. (Source: Aap ke Masail aur Unka Hal)</span></div></div>
-        <div class="info teal"><div class="info-ico">🌙</div><div class="info-txt"><span class="ur"><strong>** منٰی میں رات:</strong> مفتی تقی عثمانی صاحب کے مطابق منٰی میں رات گزارنا واجب نہیں ہے اس لیے اس کے چھوڑنے سے دم واجب نہیں ہوتا — البتہ رات منٰی میں گزارنا سنت اور افضل ہے اور اس کا اہتمام کرنا چاہیے۔</span><span class="en-t"><strong>** Mina Night:</strong> Per Mufti Taqi Usmani: staying the nights in Mina is not Wajib, therefore leaving it does not make Dam obligatory — however, it is Sunnah and more virtuous and should be observed when possible.</span></div></div>
+        <div class="info green"><div class="info-ico">📖</div><div class="info-txt"><span class="ur"><strong>† شدید مجبوری:</strong> جب تمام تر کوشش کے باوجود رمی، ذبح اور حلق کی ترتیب برقرار رکھنا دشوار یا ناممکن ہو — یا قربانی کے وقت کا کسی معتبر ذریعے سے علم ممکن نہ ہو — تو <strong>صاحبین (امام ابو یوسفؒ، امام محمدؒ)</strong> کے قول پر عمل کی گنجائش ہے جو ائمہ ثلاثہ کے بھی موافق ہے۔ ایسی صورت میں دم لازم نہیں۔ نیز حکومتی پابندی کے باعث مذبح تک رسائی نہ ہونے کی صورت میں انتظامی نظام پر اعتماد کرتے ہوئے حلق/قصر کروانا جائز ہے اور کوئی مؤاخذہ نہیں۔</span><span class="en-t"><strong>† Genuine compulsion:</strong> When despite all effort it becomes difficult or impossible to maintain the sequence of Rami → Sacrifice → Halq — or the time of sacrifice cannot be confirmed — then acting on the position of <strong>Sahibain (Imam Abu Yusuf & Imam Muhammad)</strong> is permissible, as it agrees with the other three Imams. Dam is not obligatory in such a case. Similarly, if government restrictions prevent access to the slaughterhouse, proceeding on the official system is permissible with no accountability.</span></div></div>
+        <div class="info red"><div class="info-ico">⚠️</div><div class="info-txt"><span class="ur"><strong>یوم النحر کی ترتیب واجب ہے:</strong> رمی ← قربانی ← حلق/قصر ← طوافِ افاضہ — حجاجِ کرام پر لازم ہے کہ حتی الامکان احتیاط سے اس ترتیب کی پابندی کریں۔</span><span class="en-t"><strong>Yom al-Nahr sequence is Wajib:</strong> Rami → Sacrifice → Halq/Qasr → Tawaf al-Ifadah — pilgrims must observe this order as carefully as possible.</span></div></div>
+        <div class="info gold"><div class="info-ico">📚</div><div class="info-txt"><span class="ur"><strong>شدید مجبوری کی صورت میں گنجائش:</strong> اگر تمام تر کوشش کے باوجود ترتیب قائم رکھنا ممکن نہ رہے — یا قربانی کے وقت کے بارے میں کسی معتبر ذریعے سے اطمینان حاصل نہ ہو سکے — تو ایسی مجبوری میں <strong>صاحبین رحمہما اللہ (امام ابو یوسفؒ اور امام محمدؒ)</strong> کے قول پر عمل کی گنجائش ہے، کیونکہ یہ قول ائمہ ثلاثہ (مالکی، شافعی، حنبلی) کے بھی موافق ہے۔ ایسی مجبوری کی حالت میں ترتیب قائم نہ رہنے پر دم لازم نہیں ہوگا۔</span><span class="en-t"><strong>Concession in genuine compulsion:</strong> If despite all effort, the sequence cannot be maintained — or the time of sacrifice cannot be confirmed through any reliable means — then in such compulsion it is permissible to act on the position of <strong>Sahibain (Imam Abu Yusuf & Imam Muhammad)</strong>, as it also agrees with the other three Imams (Maliki, Shafi'i, Hanbali). In this case, Dam will not be obligatory.</span></div></div>
+        <div class="info blue"><div class="info-ico">🏛️</div><div class="info-txt"><span class="ur"><strong>حکومتی پابندی کی صورت:</strong> اگر حکومتی پابندیوں کے باعث حجاج کو مذبح تک رسائی نہ ہو اور قربانی کے وقت کا معتبر ذریعے سے علم ممکن نہ ہو، تو حکومتی و انتظامی نظام پر اعتماد کرتے ہوئے مقررہ وقت کے بعد حلق یا قصر کروانا جائز ہے اور اس پر کوئی مؤاخذہ نہیں۔</span><span class="en-t"><strong>Government restriction case:</strong> If pilgrims cannot access the slaughterhouse due to government restrictions and cannot confirm the sacrifice time through any reliable means, then trusting the official system and proceeding with Halq/Qasr at the designated time is permissible — no accountability for this.</span></div></div>
+        <div class="info teal"><div class="info-ico">🌙</div><div class="info-txt"><span class="ur"><strong>* منٰی میں رات:</strong> منٰی میں رات گزارنا <strong>مسنون</strong> ہے، واجب نہیں — اس لیے اس کے چھوٹ جانے پر دم واجب نہیں ہوتا۔ البتہ سنت کا اہتمام ضرور کریں۔</span><span class="en-t"><strong>* Mina Night:</strong> Staying nights in Mina is <strong>Sunnah</strong>, not Wajib — therefore leaving it does not make Dam obligatory. However, observe the Sunnah whenever possible.</span></div></div>
       </div>
     </div>
 
@@ -1351,6 +1683,108 @@ body.en .hosp-name{font-family:var(--en);line-height:1.4;}
 </div>
 
 </div><!-- end content -->
+
+<!-- ═══ SALAH TIMES ═══ -->
+<div id="salah" class="section prayertime-section">
+  <div class="s-banner">
+    <div class="b-icon">🕌</div>
+    <div class="b-text">
+      <h2><span class="ur">اوقاتِ نماز — چاروں فقہاء</span><span class="en-t">Prayer Times — Four Madhabs</span></h2>
+      <p><span class="ur">مکہ، مدینہ، منٰی اور عرفات — حنفی، مالکی، شافعی، حنبلی</span><span class="en-t">Makkah, Madinah, Mina, Arafat — Hanafi, Maliki, Shafi'i, Hanbali</span></p>
+    </div>
+  </div>
+
+  <!-- City selector -->
+  <div class="pt-city-bar">
+    <button class="pt-city-btn active" onclick="ptSelectCity('makkah',this)">🕋 Makkah</button>
+    <button class="pt-city-btn" onclick="ptSelectCity('madinah',this)">🌹 Madinah</button>
+    <button class="pt-city-btn" onclick="ptSelectCity('mina',this)">⛺ Mina</button>
+    <button class="pt-city-btn" onclick="ptSelectCity('arafat',this)">🏔️ Arafat</button>
+  </div>
+
+  <!-- Madhab selector -->
+  <div class="madhab-bar">
+    <button class="madhab-btn active" onclick="ptSelectMadhab('hanafi',this)">
+      <span class="ur">حنفی</span><span class="en-t">Hanafi</span>
+      <span class="madhab-name">Imam Abu Hanifah</span>
+    </button>
+    <button class="madhab-btn" onclick="ptSelectMadhab('maliki',this)">
+      <span class="ur">مالکی</span><span class="en-t">Maliki</span>
+      <span class="madhab-name">Imam Malik</span>
+    </button>
+    <button class="madhab-btn" onclick="ptSelectMadhab('shafii',this)">
+      <span class="ur">شافعی</span><span class="en-t">Shafi'i</span>
+      <span class="madhab-name">Imam al-Shafi'i</span>
+    </button>
+    <button class="madhab-btn" onclick="ptSelectMadhab('hanbali',this)">
+      <span class="ur">حنبلی</span><span class="en-t">Hanbali</span>
+      <span class="madhab-name">Imam Ahmad</span>
+    </button>
+  </div>
+
+  <!-- Next prayer banner -->
+  <div class="next-prayer-banner">
+    <div class="npb-left">
+      <div class="npb-label">NEXT PRAYER</div>
+      <div class="npb-name" id="ptNextName"><span class="ur">عشاء</span><span class="en-t">Isha</span></div>
+      <div style="font-family:var(--en);font-size:10px;color:rgba(255,255,255,.6);margin-top:3px;" id="ptMadhabLabel">Hanafi · Makkah</div>
+    </div>
+    <div class="npb-right">
+      <div class="npb-time" id="ptNextTime">--:--</div>
+      <div class="npb-countdown" id="ptCountdown">calculating...</div>
+    </div>
+  </div>
+
+  <!-- Prayer times grid -->
+  <div class="pt-grid" id="ptGrid">
+    <!-- Populated by JS -->
+  </div>
+
+  <!-- Comparison table all 4 madhabs -->
+  <div class="pt-comparison">
+    <div class="pt-comp-head">📊 <span class="ur">چاروں فقہاء کا موازنہ — <span id="ptCompCity">مکہ مکرمہ</span></span><span class="en-t">All 4 Madhabs Comparison — <span id="ptCompCityEn">Makkah</span></span></div>
+    <div style="overflow-x:auto;">
+      <table class="pt-comp-table" id="ptCompTable">
+        <!-- Populated by JS -->
+      </table>
+    </div>
+  </div>
+
+  <!-- Fajr & Isha angle differences -->
+  <div class="pt-angle-info">
+    <p><span class="ur"><strong>فجر اور عشاء کے اوقات کا فرق کیوں؟</strong> — فقہاء کے درمیان فجر (صبحِ صادق) اور عشاء (شفق) کی تعریف میں اختلاف ہے۔ یہ اختلاف زاویۂ آفتاب کی بنیاد پر ہے:</span><span class="en-t"><strong>Why do Fajr & Isha times differ?</strong> — Scholars differ on the definition of Fajr (true dawn) and Isha (twilight). The difference is based on the sun's angle below the horizon:</span></p>
+    <table class="pt-angle-table">
+      <thead>
+        <tr>
+          <th><span class="ur">فقہ</span><span class="en-t">Madhab</span></th>
+          <th><span class="ur">فجر زاویہ</span><span class="en-t">Fajr Angle</span></th>
+          <th><span class="ur">عشاء زاویہ</span><span class="en-t">Isha Angle</span></th>
+          <th><span class="ur">عصر کا وقت</span><span class="en-t">Asr Time</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>حنفی</strong></td><td>18°</td><td>18°</td><td><span class="ur">مثلِ ثانی</span> (2× shadow)</td></tr>
+        <tr><td><strong>مالکی</strong></td><td>18°</td><td>17°</td><td><span class="ur">مثلِ اول</span> (1× shadow)</td></tr>
+        <tr><td><strong>شافعی</strong></td><td>18°</td><td>17°</td><td><span class="ur">مثلِ اول</span> (1× shadow)</td></tr>
+        <tr><td><strong>حنبلی</strong></td><td>18°</td><td>15°</td><td><span class="ur">مثلِ اول</span> (1× shadow)</td></tr>
+      </tbody>
+    </table>
+    <p style="margin-top:8px;font-size:11.5px;"><span class="ur">⚠️ <strong>حنفی عصر:</strong> حنفی مذہب میں عصر مثلِ ثانی (ہر چیز کے سایہ کا دوگنا ہونا) پر شروع ہوتی ہے — باقی تینوں فقہاء کے نزدیک مثلِ اول پر۔</span><span class="en-t">⚠️ <strong>Hanafi Asr:</strong> In Hanafi madhab, Asr begins at Mithl Thani (double shadow) — the other three madhabs start Asr at Mithl Awwal (single shadow).</span></p>
+  </div>
+
+  <!-- Hajj-specific rulings -->
+  <div style="margin:0 12px 14px;">
+    <div style="background:linear-gradient(135deg,var(--green-d),var(--green));border-radius:var(--r);padding:14px;border:1.5px solid var(--gold);">
+      <div style="font-family:var(--ur);font-size:14px;font-weight:700;color:var(--gold-l);line-height:2;margin-bottom:10px;">🕌 <span class="ur">حج کے دوران نماز کے خصوصی مسائل</span><span class="en-t">Special Salah Rulings During Hajj</span></div>
+      <ul style="list-style:none;font-family:var(--ur);font-size:12.5px;color:var(--cream-d);line-height:2.2;">
+        <li>◆ <span class="ur"><strong>قصر:</strong> مکہ سے باہر (منٰی، عرفات، مزدلفہ) ظہر، عصر، عشاء ۲-۲ رکعت</span><span class="en-t"><strong>Qasr:</strong> Outside Makkah (Mina, Arafat, Muzdalifah): Dhuhr, Asr, Isha = 2 rak'ah</span></li>
+        <li>◆ <span class="ur"><strong>جمع:</strong> عرفات میں ظہر+عصر جمع تقدیم، مزدلفہ میں مغرب+عشاء جمع تاخیر</span><span class="en-t"><strong>Jam':</strong> Arafat: Dhuhr+Asr combined early; Muzdalifah: Maghrib+Isha combined late</span></li>
+        <li>◆ <span class="ur"><strong>جمعہ:</strong> حج کے دوران منٰی، عرفات وغیرہ میں جمعہ نہیں — ظہر پڑھیں</span><span class="en-t"><strong>Jumu'ah:</strong> No Jumu'ah in Mina/Arafat during Hajj — pray Dhuhr</span></li>
+        <li>◆ <span class="ur"><strong>تکبیرِ تشریق:</strong> ۹ ذی الحجہ فجر سے ۱۳ ذی الحجہ عصر تک — ہر فرض کے بعد</span><span class="en-t"><strong>Takbir al-Tashreeq:</strong> Fajr 9th to Asr 13th Dhul Hijjah — after every fard prayer</span></li>
+      </ul>
+    </div>
+  </div>
+</div>
 
 <!-- ═══ MAPS ═══ -->
 <div id="maps" class="section">
@@ -1510,6 +1944,249 @@ body.en .hosp-name{font-family:var(--en);line-height:1.4;}
 </div><!-- end app -->
 
 <script>
+// ══════════════════════════════════
+// PRAYER TIMES ENGINE
+// ══════════════════════════════════
+
+// City coordinates
+const PT_CITIES = {
+  makkah:  { lat: 21.4225, lng: 39.8262, tz: 3, name: 'مکہ مکرمہ', en: 'Makkah' },
+  madinah: { lat: 24.4672, lng: 39.6112, tz: 3, name: 'مدینہ منورہ', en: 'Madinah' },
+  mina:    { lat: 21.3956, lng: 39.8731, tz: 3, name: 'منٰی',      en: 'Mina' },
+  arafat:  { lat: 21.3548, lng: 39.9847, tz: 3, name: 'عرفات',     en: 'Arafat' },
+};
+
+// Madhab parameters: { fajrAngle, ishaAngle, asrShadow(1=Mithl1, 2=Mithl2) }
+const PT_MADHABS = {
+  hanafi:  { fajr: 18, isha: 18, asr: 2, name: 'حنفی', en: 'Hanafi' },
+  maliki:  { fajr: 18, isha: 17, asr: 1, name: 'مالکی', en: 'Maliki' },
+  shafii:  { fajr: 18, isha: 17, asr: 1, name: 'شافعی', en: "Shafi'i" },
+  hanbali: { fajr: 18, isha: 15, asr: 1, name: 'حنبلی', en: 'Hanbali' },
+};
+
+const PRAYER_META = [
+  { key:'fajr',    ar:'الفجر',   ur:'فجر',    en:'Fajr',    icon:'🌙' },
+  { key:'sunrise', ar:'الشروق',  ur:'طلوع',   en:'Sunrise', icon:'🌅' },
+  { key:'dhuhr',   ar:'الظهر',  ur:'ظہر',     en:'Dhuhr',   icon:'☀️' },
+  { key:'asr',     ar:'العصر',   ur:'عصر',    en:'Asr',     icon:'🌤️' },
+  { key:'maghrib', ar:'المغرب',  ur:'مغرب',   en:'Maghrib', icon:'🌆' },
+  { key:'isha',    ar:'العشاء',  ur:'عشاء',   en:'Isha',    icon:'🌃' },
+];
+
+let ptActiveCity = 'makkah';
+let ptActiveMadhab = 'hanafi';
+let ptCountdownInterval = null;
+
+// ── Core calculation ──
+function toRad(d){ return d * Math.PI / 180; }
+function toDeg(r){ return r * 180 / Math.PI; }
+
+function calcJD(date){
+  let Y = date.getFullYear(), M = date.getMonth()+1, D = date.getDate();
+  if(M <= 2){ Y--; M += 12; }
+  let A = Math.floor(Y/100), B = 2 - A + Math.floor(A/4);
+  return Math.floor(365.25*(Y+4716)) + Math.floor(30.6001*(M+1)) + D + B - 1524.5;
+}
+
+function sunPos(jd){
+  const D = jd - 2451545.0;
+  const g = (357.529 + 0.98560028*D) % 360;
+  const q = (280.459 + 0.98564736*D) % 360;
+  const L = (q + 1.915*Math.sin(toRad(g)) + 0.020*Math.sin(toRad(2*g))) % 360;
+  const e = 23.439 - 0.00000036*D;
+  const RA = toDeg(Math.atan2(Math.cos(toRad(e))*Math.sin(toRad(L)), Math.cos(toRad(L)))) / 15;
+  const dec = toDeg(Math.asin(Math.sin(toRad(e))*Math.sin(toRad(L))));
+  const EqT = q/15 - ((RA + 360) % 24);
+  return { dec, EqT };
+}
+
+function hourAngle(lat, dec, alt){
+  const num = Math.sin(toRad(alt)) - Math.sin(toRad(lat))*Math.sin(toRad(dec));
+  const den = Math.cos(toRad(lat))*Math.cos(toRad(dec));
+  if(Math.abs(num/den) > 1) return null;
+  return toDeg(Math.acos(num/den));
+}
+
+function calcPrayerTimes(lat, lng, tz, madhab, date){
+  const jd = calcJD(date);
+  const { dec, EqT } = sunPos(jd);
+  const transit = 12 - EqT - lng/15; // solar noon in UTC
+
+  function utcToLocal(utc){ return utc + tz; }
+  function fmt(h){
+    if(h == null) return '--:--';
+    h = ((h % 24) + 24) % 24;
+    const hh = Math.floor(h);
+    const mm = Math.round((h - hh)*60);
+    return `${String(hh).padStart(2,'0')}:${String(mm<60?mm:0).padStart(2,'0')}`;
+  }
+
+  const m = PT_MADHABS[madhab];
+
+  // Sunrise / Sunset (altitude = -0.8333 for refraction+solar disc)
+  const haRise = hourAngle(lat, dec, -0.8333);
+  const sunrise = haRise != null ? utcToLocal(transit - haRise/15) : null;
+  const sunset  = haRise != null ? utcToLocal(transit + haRise/15) : null;
+
+  // Fajr
+  const haFajr = hourAngle(lat, dec, -m.fajr);
+  const fajr = haFajr != null ? utcToLocal(transit - haFajr/15) : null;
+
+  // Dhuhr = solar noon + 1 min
+  const dhuhr = utcToLocal(transit + 1/60);
+
+  // Asr — shadow factor
+  const shadowFactor = m.asr; // 1 or 2
+  const asrAlt = toDeg(Math.atan(1/(shadowFactor + Math.tan(toRad(Math.abs(lat - dec))))));
+  const haAsr = hourAngle(lat, dec, asrAlt);
+  const asr = haAsr != null ? utcToLocal(transit + haAsr/15) : null;
+
+  // Maghrib = sunset + 3 min (slight delay for disc below horizon)
+  const maghrib = sunset != null ? sunset + 3/60 : null;
+
+  // Isha
+  const haIsha = hourAngle(lat, dec, -m.isha);
+  const isha = haIsha != null ? utcToLocal(transit + haIsha/15) : null;
+
+  return {
+    fajr: fmt(fajr), sunrise: fmt(sunrise), dhuhr: fmt(dhuhr),
+    asr: fmt(asr), maghrib: fmt(maghrib), isha: fmt(isha),
+    raw: { fajr, sunrise, dhuhr, asr, maghrib, isha }
+  };
+}
+
+function getAllMadhabTimes(city, date){
+  const c = PT_CITIES[city];
+  const result = {};
+  for(const m of Object.keys(PT_MADHABS)){
+    result[m] = calcPrayerTimes(c.lat, c.lng, c.tz, m, date);
+  }
+  return result;
+}
+
+function getActivePrayer(times){
+  const now = new Date();
+  const mins = now.getHours()*60 + now.getMinutes();
+  const order = ['fajr','sunrise','dhuhr','asr','maghrib','isha'];
+  const rawMins = {};
+  for(const k of order){
+    const t = times.raw[k];
+    if(t != null){
+      let h = ((t % 24)+24)%24;
+      rawMins[k] = Math.floor(h)*60 + Math.round((h-Math.floor(h))*60);
+    }
+  }
+  // find current prayer (last one passed)
+  let active = 'isha';
+  let nextKey = 'fajr';
+  let nextMins = null;
+  for(let i=0; i<order.length; i++){
+    const k = order[i];
+    if(rawMins[k] <= mins){
+      active = k;
+    }
+  }
+  // find next
+  for(let i=0; i<order.length; i++){
+    const k = order[i];
+    if(rawMins[k] > mins){
+      nextKey = k;
+      nextMins = rawMins[k];
+      break;
+    }
+  }
+  if(nextMins == null){ nextKey = 'fajr'; nextMins = rawMins['fajr'] + 1440; }
+  return { active, nextKey, minsUntil: nextMins - mins };
+}
+
+function ptSelectCity(city, btn){
+  ptActiveCity = city;
+  document.querySelectorAll('.pt-city-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderPrayerTimes();
+}
+
+function ptSelectMadhab(madhab, btn){
+  ptActiveMadhab = madhab;
+  document.querySelectorAll('.madhab-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderPrayerTimes();
+}
+
+function renderPrayerTimes(){
+  const city = PT_CITIES[ptActiveCity];
+  const times = calcPrayerTimes(city.lat, city.lng, city.tz, ptActiveMadhab, new Date());
+  const allTimes = getAllMadhabTimes(ptActiveCity, new Date());
+  const { active, nextKey, minsUntil } = getActivePrayer(times);
+
+  // Update city/madhab labels
+  const ml = PT_MADHABS[ptActiveMadhab];
+  document.getElementById('ptMadhabLabel').textContent = `${ml.en} · ${city.en}`;
+  document.getElementById('ptCompCity').textContent = city.name;
+  document.getElementById('ptCompCityEn').textContent = city.en;
+
+  // Next prayer banner
+  const nm = PRAYER_META.find(p=>p.key===nextKey);
+  document.getElementById('ptNextName').innerHTML = `<span class="ur">${nm.ur}</span><span class="en-t">${nm.en}</span>`;
+  document.getElementById('ptNextTime').textContent = times[nextKey];
+  updateCountdown(minsUntil);
+
+  // Grid
+  const grid = document.getElementById('ptGrid');
+  grid.innerHTML = PRAYER_META.map(p=>{
+    const isActive = p.key === active;
+    return `<div class="pt-card${isActive?' active-prayer':''}">
+      <div class="pt-icon">${p.icon}</div>
+      <span class="pt-prayer-name">${p.ar}</span>
+      <span class="pt-prayer-en">${p.en}</span>
+      <div class="pt-time">${times[p.key]}</div>
+    </div>`;
+  }).join('');
+
+  // Comparison table
+  const prayerKeys = ['fajr','dhuhr','asr','maghrib','isha'];
+  const pMeta = PRAYER_META.filter(p=>prayerKeys.includes(p.key));
+  const madhabs = Object.keys(PT_MADHABS);
+  let thead = `<tr><th>نماز</th>${madhabs.map(m=>`<th>${PT_MADHABS[m].name}<br><span style="font-weight:400;font-size:9px;">${PT_MADHABS[m].en}</span></th>`).join('')}</tr>`;
+  let tbody = pMeta.map(p=>{
+    const timesRow = madhabs.map(m=>allTimes[m][p.key]);
+    // highlight differences
+    const cells = timesRow.map((t,i)=>{
+      const same = timesRow.every(v=>v===t);
+      return `<td class="${same?'pt-same':''}">${t}</td>`;
+    }).join('');
+    return `<tr><td class="pt-prayer-col">${p.ar}</td>${cells}</tr>`;
+  }).join('');
+  document.getElementById('ptCompTable').innerHTML = `<thead>${thead}</thead><tbody>${tbody}</tbody>`;
+
+  // Widget bar
+  document.getElementById('wNextPrayer').innerHTML = `<span class="ur">${nm.ur}</span><span class="en-t">${nm.en}</span>`;
+  document.getElementById('wNextTime').textContent = times[nextKey];
+}
+
+function updateCountdown(minsUntil){
+  const h = Math.floor(minsUntil/60);
+  const m = minsUntil % 60;
+  const txt = h > 0 ? `${h}h ${m}m remaining` : `${m} min remaining`;
+  const el = document.getElementById('ptCountdown');
+  if(el) el.textContent = txt;
+}
+
+function startPrayerCountdown(){
+  if(ptCountdownInterval) clearInterval(ptCountdownInterval);
+  renderPrayerTimes();
+  ptCountdownInterval = setInterval(()=>{
+    const city = PT_CITIES[ptActiveCity];
+    const times = calcPrayerTimes(city.lat, city.lng, city.tz, ptActiveMadhab, new Date());
+    const { nextKey, minsUntil } = getActivePrayer(times);
+    updateCountdown(minsUntil);
+    // refresh grid every 5 minutes
+    const now = new Date();
+    if(now.getSeconds() < 5 && now.getMinutes() % 5 === 0) renderPrayerTimes();
+  }, 30000);
+}
+startPrayerCountdown();
+
 // ── Offline Detection ──
 function checkOnline(){
   document.getElementById('offlineBanner').classList.toggle('show',!navigator.onLine);
